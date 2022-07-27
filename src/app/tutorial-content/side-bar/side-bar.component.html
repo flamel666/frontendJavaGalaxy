@@ -1,0 +1,33 @@
+
+<div class="sidebarConteiner">
+<input type="checkbox" id="burger">
+<label for="burger">
+    <i class="fas fa-bars" id="burgerMenu"></i>
+    <i class="fas fa-times" id="burgerMenuClosed"></i>
+</label>
+
+
+<div class="sidebar">
+    <ul class="listCap">       
+        <li><p-tree [value]="nodes">
+            <ng-template let-node pTemplate="url">       
+                <p-button label="{{node.label}}" styleClass="p-button-link" [style]="{'width':'120px'}" (click)="changeSubChapter(node)"></p-button>
+            </ng-template>
+            <ng-template let-node pTemplate="default" [style]="{'width':'-100px'}">                
+                <p *ngIf="node.children?.length!=0">{{node.label}} {{node.children?.length}}</p>
+                <p-button *ngIf="node.children?.length==0" label="{{node.label}}" styleClass="p-button-link" [style]="{'width':'120px'}" (click)="changeChapter(node)"></p-button>
+            </ng-template>
+           
+        </p-tree></li>
+        <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 1</button></li>
+        <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 2</button></li>
+        <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 3</button></li>
+        <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 4</button></li>
+        <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 5</button></li>
+        <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 6</button></li>
+        <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 7</button></li>
+        <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 8</button></li>
+    </ul>
+</div>
+
+</div>

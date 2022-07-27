@@ -1,0 +1,88 @@
+.sidebar{
+    //position: fixed;
+    border: 2px solid black;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: white;
+    overflow-y: auto;
+    transition: all .4s ease;
+    z-index: 9999;
+    .listCap{
+        list-style: none;
+        
+        button{
+            display: block;
+            height: 100%;
+            width: 100%;            
+            margin-bottom: 30px;
+            margin-left: -20px;
+            font-size: 20px;
+            box-sizing: border-box;
+            transition: .4s;
+        }
+
+        li:hover{
+            button{
+                margin-left: -5px;
+            }
+        }
+    }
+}
+
+#burger{
+    display: none;      
+}
+
+label{
+    #burgerMenu, #burgerMenuClosed{
+        position: absolute;
+        cursor: pointer;
+        background: #042331;
+        border-radius: 3px;
+    }
+    #burgerMenu{
+        z-index: 0;
+        left: 70px;
+        margin-top: 10px;
+      //  top: 25px;
+        font-size: 25px;
+        color: white;
+        padding: 6px 12px;
+        transition: all .5s;
+    }
+
+    #burgerMenuClosed{
+        z-index: 0;
+        left: 233px;
+        font-size: 20px;
+        color: #0a5275;
+        padding: 4px 9px;
+        transition: all .3s;
+    }
+}
+
+#burger:checked ~ .sidebar{
+    width: 50px;
+    .descriptionCap {
+        display: none; 
+    }
+}
+
+burger:checked ~ label #burgerMenu{  
+   
+    opacity: 100;
+   
+}
+
+#burger:not(:checked) ~ label #burgerMenu{   
+    left: 270px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#burger:checked ~ label #burgerMenuClosed{   
+    left: 50px;
+    opacity: 0;
+    pointer-events: none;
+}

@@ -1,0 +1,21 @@
+{
+
+    "header":{
+        "title": "Title of hesder",
+        "cambioLingua": "Lenguage",
+        "thema": "Swap thema"
+        
+    },
+
+    "title" : "Title of dick",
+    "page":{
+        "title":"another Title of dick"
+    },
+
+    "welcome":{
+        "title": "DON'T PANIC",
+        "linkStart": "Start"
+    }
+
+  
+}

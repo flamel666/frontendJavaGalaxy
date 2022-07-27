@@ -1,0 +1,13 @@
+<p>tutorial-body-content works!</p>
+<div *ngFor="let item of vett">
+    <div class="article" [innerHTML]="item"></div>
+
+</div>
+
+<div *ngFor="let item of _gridOptions | keyvalue">
+
+    <hr>
+    <div class="article" [innerHTML]="item.value"></div>
+    <p> {{item.key}} --> {{item.value}}</p>
+    <hr>
+</div>

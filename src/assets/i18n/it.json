@@ -1,0 +1,20 @@
+{
+
+    "header":{
+        "title": "titolo dell'hesder",
+        "cambioLingua": "Lingua",
+        "thema": "Cambia tema"       
+    },
+
+    "title" : "Titolo del cazzo",
+    "page":{
+        "title":"altro titolo del cazzo"
+    },
+
+    "welcome":{
+        "title": "NIENTE PANICO",
+        "linkStart": "Iniziamo"
+    }
+
+   
+}

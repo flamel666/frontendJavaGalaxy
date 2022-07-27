@@ -1,0 +1,152 @@
+
+
+#headerTop {
+    z-index: 1;
+    // height: 35px;
+    // width: 100%;    
+    box-sizing: border-box;
+    height: 55px;
+    margin: 0;
+    padding: 0;
+    background-color: var(--navbar-color);//cornflowerblue;
+    border-radius: 50px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 3%;
+
+    transition: var(--transition-delay);
+
+}
+
+#toggle, .lab{
+    display: none;
+}
+
+#toggle{
+    margin-right: auto;
+}
+
+
+#dropdownLanguage {
+
+    padding-right: 30px;
+
+}
+.contentUtility
+.country-item, .contentUtility
+.country-item-value {
+    color: var(--text-color);
+    margin: none;    
+    //font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    font-size: 14px;
+}
+#dropdownLanguage-flag-selected {
+    float: left;
+    padding-right: 1vh;
+    padding-top: 3px;
+}
+
+#linkA,
+#linkB,
+#changeTheme,
+#dropdownLanguage {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 300;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+}
+
+#contentUtility {
+    margin-left: auto;
+}
+
+//////////////////////////////////////button change theme
+.contentUtility label input{
+    appearance: none;
+    cursor: pointer;
+}
+.contentUtility label .R{
+    width: 40px;
+    height: 40px;
+    background-color: var(--navbar-color);
+    line-height: 40px;
+    text-align: center;
+    margin: 0 4px;
+    color: #6f6f6f;
+    font-size: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: -1px -1px 3px rgba(255,255,255,0.1),
+                2px 2px 6px rgba(0,0,0,0.8);
+}
+.contentUtility label .R:hover{
+    box-shadow: -1px -1px 3px rgba(255,255,255,0.1),
+    2px 2px 6px rgba(0,0,0,0.8),
+    inset -2px -2px 10px rgba(255,255,255,0.05),
+    inset 2px 2px 10px rgba(0,0,0,0.8)
+}
+.contentUtility label input:checked ~ .R{
+    color: #00fff1;
+    box-shadow: inset -1px -1px 3px rgba(255,255,255,0.1),
+                inset 2px 2px 6px rgba(0,0,0,1);
+    text-shadow: 0 0 5px #00fff1, 0 0 20px #00fff1;
+}
+//////////////////////////////////////button change theme
+
+#changeTheme {
+    //background: #0d94a6;
+    height: 45px !important;
+    margin-right: 45px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+///////////////////////////////MEDIA query menu HEADER////////////////////////////////////
+@media screen and (max-width: 599px){
+
+    .contentUtility{
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+     .lab{
+        //display: flex;
+       // margin-right: auto;
+    }
+
+    #toggle{
+        display: inline;
+        margin-left: 250px;
+    }
+
+    .themaChange, #changeTheme, #dropdownLanguage{
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .lab{
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+  
+
+    #toggle:checked ~ .contentUtility{
+        max-height: 500px;
+        height: 200px;
+        padding-top: 50px;
+        overflow: visible;
+    } 
+
+    
+}

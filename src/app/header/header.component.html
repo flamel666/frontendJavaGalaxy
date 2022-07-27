@@ -1,0 +1,60 @@
+
+
+<div class="headerTopp" id="headerTop">
+    <a href="javascript:void(0)" [routerLink] = "['/']" >
+    <img id="logoImg" src="assets/images/header.component/varie/logo.png" />
+    </a>
+    <a id="linkA" href="javascript:void(0)" [routerLink] = "['/auth/signin']"> abouts </a>
+    <a id="linkB" href="javascript:void(0)" [routerLink] = "['/auth/login']"> link </a>
+    <input type="checkbox" id="toggle">
+    <label for="toggle" class="lab"> <i class="ri-menu-line"></i></label>
+    <div id="contentUtility" class="contentUtility" #drop>
+
+        <label class="themaChange">
+            <input type="radio" name="thema" (change)="switchColor();" >               
+            <i class="fa-solid fa-moon R" ></i>   
+        </label>
+        <label class="themaChange">
+            <input type="radio" name="thema" (change)="switchColor();" checked>           
+            <i class="fa-solid fa-sun R"></i>            
+        </label>
+
+        <button id="changeTheme" pButton type="button" iconPos="left" label="{{'header.thema' | translate}}" (click)="switchColor();">
+            <img id="iconChangeTheme" src="assets/images/header.component/varie/icon_light_dark.png" />
+            
+        </button>
+
+        <!--<label id="labelLanguage" for="float-input">{{'header.cambioLingua' | translate}}:</label>-->
+        <p-dropdown id="dropdownLanguage"  [options]="languages" [(ngModel)]="selectedLenguage" optionLabel="name"
+             (onChange)="switchLang(selectedLenguage.name)" >
+            <ng-template id="element" pTemplate="selectedItem">
+                <div class="country-item country-item-value" *ngIf="selectedLenguage">
+                    <img id="dropdownLanguage-flag-selected"
+                        src="assets/images/header.component/flag/flag-{{selectedLenguage.name}}.png"
+                        [class]="'flag flag-' + selectedLenguage.code.toLowerCase()" />
+                    <div>{{selectedLenguage.name}}</div>
+                </div>
+            </ng-template>
+            <ng-template let-lenguage pTemplate="item">
+                <div class="country-item">
+                    <img id="dropdownLanguage-flag-selected"
+                        src="assets/images/header.component/flag/flag-{{lenguage.name}}.png"
+                        [class]="'flag flag-' + lenguage.code.toLowerCase()" />
+                    <div>{{lenguage.name}}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+    
+    </div>
+    
+</div>
+
+<div class="sun-container">
+    <!-- <div class="sunny"> -->
+     <img class="sun" style="border-radius: 50px;" src="assets/images/header.component/varie/sun-14.gif" />   
+       <!-- </div> -->
+</div>
+
+<div class="moon-sun-container">
+    <img class="moon" src="assets/images/header.component/varie/Moon_14.gif" />
+</div>
