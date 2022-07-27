@@ -42,6 +42,82 @@ body{
   }
 //
 }
+
+//sideBar
+#sidebarGlobal{
+  background: transparent;
+  .p-tree{
+    background: transparent;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-top: 0;
+    width: 100%;
+    .p-treenode{                  
+        border-radius:6px;
+        .p-treenode-children{
+          //background: white;
+          margin-left: -5px;
+          .p-treenode{
+            border: 1px solid black;
+            background: white;
+            .custom-p-button-link{
+              
+              width: 125%;
+              color: red;
+              font-size: 15px;
+              text-align: left;
+              padding: 0;
+              margin-left: -35px;
+              
+            }
+            .custom-p-button-link:enabled:focus{
+              box-shadow:none;
+             
+            }
+            .custom-p-button-link:enabled:hover{
+              .paragraphSidebarContent{
+                text-decoration: underline;
+              }    
+            }
+          }
+        }
+      .p-tree-toggler{//è la freccetta
+            
+       }
+    }
+    .p-treenode-content{
+      background: yellow;
+      margin-right: 0;
+      margin-top: -10px;
+      margin-left: 0;
+      padding-left: 0;
+      border: 1px solid black;
+    }
+    
+  }
+
+  .custom-p-button-link{
+   
+    width: 113%;
+    color: red;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+    margin-left: -20px;
+    
+  }
+  .custom-p-button-link:enabled:focus{
+    box-shadow:none;    
+  }
+  .custom-p-button-link:enabled:hover{
+    .paragraphSidebarContent{
+      text-decoration: underline;
+    }    
+  }
+}
   
 
 html, body { height: 100%; }

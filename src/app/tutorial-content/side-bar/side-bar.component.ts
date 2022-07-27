@@ -18,6 +18,9 @@ import { TutorialJavaService } from '../services/tutorial-java.service';
 })
 export class SideBarComponent implements OnInit {
 
+  private languageCode: string;
+  private language: string;
+
   items!: MenuItem[];
   item!: MenuItem[];
 
@@ -28,15 +31,17 @@ export class SideBarComponent implements OnInit {
 
   pageToShow?: PageTutorial;
 
-  constructor(private router: Router, public chapterJavaService: TutorialJavaService) { }
+  constructor(private router: Router, public chapterJavaService: TutorialJavaService) {
+    this.languageCode = "java";
+    this.language = "ita";
+   }
 
   ngOnInit(): void {
-    this.chapterJavaService.getChapters().subscribe(response=>{//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
+    console.log(""+this.languageCode+" "+this.language)
+    this.chapterJavaService.getChapters(this.languageCode, this.language).subscribe(response=>{//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
       console.log(response);
       this.chaptersJavaCourse = response;
-      this.nodes= [
-        {
-        }];
+      this.nodes= [];
 
       this.chaptersJavaCourse.forEach(el => {
         console.log(el.id)

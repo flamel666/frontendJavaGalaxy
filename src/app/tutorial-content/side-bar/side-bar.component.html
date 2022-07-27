@@ -1,24 +1,41 @@
 
 <div class="sidebarConteiner">
-<input type="checkbox" id="burger">
-<label for="burger">
-    <i class="fas fa-bars" id="burgerMenu"></i>
-    <i class="fas fa-times" id="burgerMenuClosed"></i>
-</label>
+    <input type="checkbox" id="burger">
+    <label for="burger">
+        <i class="fas fa-bars" id="burgerMenu"></i>
+        <i class="fas fa-times" id="burgerMenuClosed"></i>
+    </label>
 
 
-<div class="sidebar">
+<div class="sidebar" id="sidebarGlobal">
     <ul class="listCap">       
-        <li><p-tree [value]="nodes">
-            <ng-template let-node pTemplate="url">       
-                <p-button label="{{node.label}}" styleClass="p-button-link" [style]="{'width':'120px'}" (click)="changeSubChapter(node)"></p-button>
-            </ng-template>
-            <ng-template let-node pTemplate="default" [style]="{'width':'-100px'}">                
-                <p *ngIf="node.children?.length!=0">{{node.label}} {{node.children?.length}}</p>
-                <p-button *ngIf="node.children?.length==0" label="{{node.label}}" styleClass="p-button-link" [style]="{'width':'120px'}" (click)="changeChapter(node)"></p-button>
-            </ng-template>
+        <li class="listItem">
+            <p-tree [value]="nodes">
+
+                <ng-template let-node pTemplate="url">       
+                    <p-button styleClass="p-button-link custom-p-button-link"  (click)="changeSubChapter(node)">
+                     <p class="paragraphSidebar">
+                        <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
+                        <span class="paragraphSidebarContent">{{node.label}}</span> 
+                     </p>
+                    </p-button>
+                </ng-template>
+
+                <ng-template let-node pTemplate="default" >                
+                    <p class="paragraphSidebarNode" *ngIf="node.children?.length!=0">
+                       <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
+                       <span class="paragraphSidebarContent">{{node.label}}</span> 
+                    </p>
+                    <p-button *ngIf="node.children?.length==0" styleClass="p-button-link custom-p-button-link" (click)="changeChapter(node)">
+                        <p class="paragraphSidebarOrphanNode">
+                        <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
+                        <span class="paragraphSidebarContent">{{node.label}}</span>   
+                    </p>                     
+                    </p-button>
+                 </ng-template>
            
-        </p-tree></li>
+            </p-tree>
+        </li>
         <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 1</button></li>
         <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 2</button></li>
         <li><button type="button" (click)="navigate()"><p class="descriptionCap">naviagte</p> 3</button></li>

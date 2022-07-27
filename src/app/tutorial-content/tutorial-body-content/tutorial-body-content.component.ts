@@ -42,7 +42,7 @@ export class TutorialBodyContentComponent implements OnInit {
     this.vett.push(`<${this.p} class="reddo">ser</${this.p}>`);
     this._gridOptions.set(4, `<${this.p} class="red">tata</${this.p}>`)
 
-    this.chapterJavaService.getPage().subscribe(response=>{
+    this.chapterJavaService.getPageByChapter("1").subscribe(response=>{
       console.log(response);
       this.pageToShow = response;
   

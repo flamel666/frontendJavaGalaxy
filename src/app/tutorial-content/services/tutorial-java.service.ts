@@ -21,12 +21,9 @@ export class TutorialJavaService{
 
     }
 
-    public getChapters():Observable<ChaptersCourse[]>{
-        return this.httpConnection.get<ChaptersCourse[]>("http://localhost:8080/tutorial/java/chapters");
-    }
-
-    public getPage():Observable<PageTutorial>{
-        return this.httpConnection.get<PageTutorial>("http://localhost:8080/tutorial/java/page");
+    //get chapters by programming language and language
+    public getChapters(programmingLanguage: string, language: string):Observable<ChaptersCourse[]>{
+        return this.httpConnection.get<ChaptersCourse[]>("http://localhost:8080/tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
     }
 
     public getPageByChapter(chapterId: string):Observable<PageTutorial>{

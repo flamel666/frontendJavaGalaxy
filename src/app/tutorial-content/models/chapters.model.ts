@@ -6,6 +6,7 @@ export class ChaptersCourse{
 	chapterNumber? : number;	
 	chapterTitle? : string;		
 	programmingLanguage?: string;
+	language?: string;
 	subChapters? : Array<SubChaptersCourse>;
 		
 	
