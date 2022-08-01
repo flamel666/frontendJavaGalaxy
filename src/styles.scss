@@ -63,7 +63,7 @@ body{
           .p-treenode{
             border: 1px solid black;
             background: white;
-            .custom-p-button-link{
+            .custom-p-button-link, .custom-p-button-linkLeaf{
               
               width: 125%;
               color: red;
@@ -73,11 +73,11 @@ body{
               margin-left: -35px;
               
             }
-            .custom-p-button-link:enabled:focus{
+            .custom-p-button-link:enabled:focus, .custom-p-button-linkLeaf:enabled:focus{
               box-shadow:none;
              
             }
-            .custom-p-button-link:enabled:hover{
+            .custom-p-button-link:enabled:hover, .custom-p-button-linkLeaf:enabled:hover{
               .paragraphSidebarContent{
                 text-decoration: underline;
               }    
@@ -95,11 +95,12 @@ body{
       margin-left: 0;
       padding-left: 0;
       border: 1px solid black;
+      justify-content: center;
     }
     
   }
 
-  .custom-p-button-link{
+  .custom-p-button-link, .custom-p-button-linkLeaf{
    
     width: 113%;
     color: red;
@@ -109,15 +110,40 @@ body{
     margin-left: -20px;
     
   }
-  .custom-p-button-link:enabled:focus{
+  .custom-p-button-link:enabled:focus, .custom-p-button-linkLeaf:enabled:focus{
     box-shadow:none;    
   }
-  .custom-p-button-link:enabled:hover{
+  .custom-p-button-link:enabled:hover, .custom-p-button-linkLeaf:enabled:hover{
     .paragraphSidebarContent{
       text-decoration: underline;
     }    
   }
 }
+
+#burger:checked ~ .sidebar{
+
+  
+
+  .custom-p-button-link:enabled:hover, .custom-p-button-linkLeaf:enabled:hover{
+    .paragraphSidebarChapter{
+      text-decoration: underline;
+    }    
+  }
+
+  .custom-p-button-linkLeaf{
+    width: 180% !important;
+    color: black;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+    margin-left: -20px!important;
+  }
+  .custom-p-button-link{
+    margin-left: -11px !important;
+  }
+
+}
+//sideBar
   
 
 html, body { height: 100%; }

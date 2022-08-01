@@ -13,7 +13,7 @@
             <p-tree [value]="nodes">
 
                 <ng-template let-node pTemplate="url">       
-                    <p-button styleClass="p-button-link custom-p-button-link"  (click)="changeSubChapter(node)">
+                    <p-button styleClass="p-button-link custom-p-button-linkLeaf"  (click)="changeSubChapter(node)">
                      <p class="paragraphSidebar">
                         <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
                         <span class="paragraphSidebarContent">{{node.label}}</span> 
@@ -30,7 +30,7 @@
                         <p class="paragraphSidebarOrphanNode">
                         <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
                         <span class="paragraphSidebarContent">{{node.label}}</span>   
-                    </p>                     
+                        </p>                     
                     </p-button>
                  </ng-template>
            
