@@ -115,7 +115,12 @@ export class SideBarComponent implements OnInit {
     console.log('scope chapter is ' + lable.key);
     console.log('scope chapter is ' + lable.label);
     console.log('scope chapter is ' + lable.children?.length);
+    console.log('scope chapter is ex ' + lable.expanded);
     console.log('--------------------------------------');
+
+    if(lable.expanded != true){
+      lable.expanded= true;
+    }
     
     this.chapterJavaService.changeIdChapter(""+lable?.key);
 

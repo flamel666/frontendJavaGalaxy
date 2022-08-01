@@ -21,12 +21,8 @@
                     </p-button>
                 </ng-template>
 
-                <ng-template let-node pTemplate="default" >                
-                    <p class="paragraphSidebarNode" *ngIf="node.children?.length!=0">
-                       <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
-                       <span class="paragraphSidebarContent">{{node.label}}</span> 
-                    </p>
-                    <p-button *ngIf="node.children?.length==0" styleClass="p-button-link custom-p-button-link" (click)="changeChapter(node)">
+                <ng-template let-node pTemplate="default" >   
+                    <p-button  styleClass="p-button-link custom-p-button-link" (click)="changeChapter(node)">
                         <p class="paragraphSidebarOrphanNode">
                         <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
                         <span class="paragraphSidebarContent">{{node.label}}</span>   
