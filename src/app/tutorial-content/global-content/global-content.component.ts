@@ -6,11 +6,18 @@ import { NavigationEnd, Router } from '@angular/router';
   templateUrl: './global-content.component.html',
   styleUrls: ['./global-content.component.scss']
 })
-export class GlobalContentComponent implements OnInit {  
-  
-  constructor(private router: Router) { }
+export class GlobalContentComponent implements OnInit {    
 
-  ngOnInit(): void {
+  constructor(private router: Router) {
+    this.router.events.subscribe((evt) => {//serve ad andare top nella pagina quando termina la navigazione
+      if (!(evt instanceof NavigationEnd)) {//forse dobbiamo metterlo ancora più su
+          return;
+      }
+      window.scrollTo(0, 0)
+  });
+  }
+
+  ngOnInit(): void {   
     this.router.events.subscribe((evt) => {//serve ad andare top nella pagina quando termina la navigazione
       if (!(evt instanceof NavigationEnd)) {//forse dobbiamo metterlo ancora più su
           return;

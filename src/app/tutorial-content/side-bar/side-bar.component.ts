@@ -37,6 +37,7 @@ export class SideBarComponent implements OnInit {
    }
 
   ngOnInit(): void {
+   
     console.log(""+this.languageCode+" "+this.language)
     this.chapterJavaService.getChapters(this.languageCode, this.language).subscribe(response=>{//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
       console.log(response);

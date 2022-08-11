@@ -1,8 +1,50 @@
 <p>tutorial-body-content works!</p>
-<div *ngFor="let item of vett">
+<!--
+<ng-template #buttonIcon>
+    <div> Your html</div>
+    <p-tabView> <p-tabPanel header="Header 2">Content 1</p-tabPanel> </p-tabView>
+</ng-template>
+
+<ng-container>
+    <code>
+    boh
+</code>
+</ng-container>
+
+<ng-template>
+    boh2
+</ng-template>
+
+<ng-container 
+   *ngTemplateOutlet="buttonIcon">
+</ng-container>
+
+
+<div #iconButton></div>
+
+<div [outerHTML]="content"></div>
+-->
+
+<ng-container *ngIf ="tabViewContents.size>0">
+    <p-tabView>
+        <ng-container  *ngFor="let item of tabViewContents | keyvalue">
+        <p-tabPanel   header="{{item.key}}">
+            
+                <div class="article" [innerHTML]="item.value"></div>        
+            
+        </p-tabPanel>    
+    </ng-container>
+    </p-tabView>
+</ng-container>
+
+<div *ngIf ="!(tabViewContents.size>0)">
+<div *ngFor="let item of defaultContent" >
+    
     <div class="article" [innerHTML]="item"></div>
 
 </div>
+</div>
+
 
 <div *ngFor="let item of _gridOptions | keyvalue">
 
@@ -10,4 +52,8 @@
     <div class="article" [innerHTML]="item.value"></div>
     <p> {{item.key}} --> {{item.value}}</p>
     <hr>
+
+
 </div>
+
+
