@@ -9,6 +9,7 @@ import {PanelMenuModule} from 'primeng/panelmenu';
 import {TreeModule} from 'primeng/tree';
 import {ButtonModule} from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
+import {SkeletonModule} from 'primeng/skeleton';
 
 import { TutorialBodyContentComponent } from './tutorial-body-content/tutorial-body-content.component';
 import { SimpleTemplateContentComponent } from './templates/simple-template-content/simple-template-content.component';
@@ -26,7 +27,8 @@ import { SimpleTemplateContentComponent } from './templates/simple-template-cont
     PanelMenuModule,
     TreeModule,
     ButtonModule,
-    TabViewModule 
+    TabViewModule ,
+    SkeletonModule
   ]
 })
 export class TutorialContentModule { }

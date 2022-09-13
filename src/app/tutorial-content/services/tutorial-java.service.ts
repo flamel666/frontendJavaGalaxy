@@ -34,7 +34,7 @@ export class TutorialJavaService{
         return this.httpConnection.get<PageTutorial>("http://localhost:8080/tutorial/java/page/subchapter/"+subChapterId);
     }
 
-    changeIdChapter(id : string){
+    changeIdChapter(id : string){       
         this.idChapter?.next(id);
     }
 

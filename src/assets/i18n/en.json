@@ -3,8 +3,12 @@
     "header":{
         "title": "Title of hesder",
         "cambioLingua": "Lenguage",
-        "thema": "Swap thema"
-        
+        "thema": "Swap thema",
+        "about": "About me",
+        "menu": {
+            "header": "Courses",
+            "subItem": "Java"
+        }
     },
 
     "title" : "Title of dick",
@@ -14,7 +18,7 @@
 
     "welcome":{
         "title": "DON'T PANIC",
-        "linkStart": "Start"
+        "linkStart": "Let's start"
     }
 
   

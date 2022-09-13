@@ -24,7 +24,7 @@ export class SideBarComponent implements OnInit {
   items!: MenuItem[];
   item!: MenuItem[];
 
-  nodes!: TreeNode[];  
+  nodes: TreeNode[]=[];  
 
   childrenParam!: Children[];
   chaptersJavaCourse?: ChaptersCourse[];
@@ -34,6 +34,7 @@ export class SideBarComponent implements OnInit {
   constructor(private router: Router, public chapterJavaService: TutorialJavaService) {
     this.languageCode = "java";
     this.language = "ita";
+    
    }
 
   ngOnInit(): void {
@@ -111,7 +112,7 @@ export class SideBarComponent implements OnInit {
     this.router.navigate(["/auth/signin"]);
   }
 
-  public changeChapter(lable: TreeNode){
+  public changeChapter(lable: TreeNode, key: string){
     console.log('--------------------------------------');
     console.log('scope chapter is ' + lable.key);
     console.log('scope chapter is ' + lable.label);
@@ -127,13 +128,14 @@ export class SideBarComponent implements OnInit {
 
   }
 
-  public changeSubChapter(lable: TreeNode){
-    console.log('--------------------------------------');
+  public changeSubChapter(lable: TreeNode, key: string){
+    console.log('--------------------------------------' +key);
     console.log('scope subchapter is ' + lable.key);
     console.log('scope subchapter is ' + lable.label);
     console.log('scope subchapter is ' + lable.children?.length);
     console.log('--------------------------------------');
-
+    document.getElementById(key)?.classList.toggle("part");
+    console.log('scope subchapter is ' + document.getElementById(key));
     this.chapterJavaService.changeIdSubChapter(""+lable?.data);    
   }
  

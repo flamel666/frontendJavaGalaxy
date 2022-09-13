@@ -1,0 +1,22 @@
+#canvas{
+    height: 100%;
+    width: 100%;
+}
+
+.containerCanva{
+    
+    height: 100%;
+    width: 100%;
+   // margin-left: 50%;
+   // margin-top: 10px;
+    position: absolute;
+   // margin-top: 1000px;
+    pointer-events: none;
+   // display: flex;
+   // justify-content: center;
+    align-items: center;
+    top: 50;
+    height: 200vmin;     
+    z-index: -1000;
+    margin-top: 0px;
+}

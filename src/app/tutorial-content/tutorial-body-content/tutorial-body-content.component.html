@@ -1,4 +1,4 @@
-<p>tutorial-body-content works!</p>
+
 <!--
 <ng-template #buttonIcon>
     <div> Your html</div>
@@ -24,6 +24,19 @@
 
 <div [outerHTML]="content"></div>
 -->
+<div class="tutorialBodyContent">
+
+<div *ngIf="tabViewContents.size==0 && defaultContent.length == 0">
+
+    <div class="skeleton"> <p-skeleton width="50%" height="2rem" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
+    <br>
+    <div class="skeleton"><p-skeleton width="80%" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
+    <div class="skeleton"><p-skeleton width="70%" styleClass="mb-1" borderRadius="16px"></p-skeleton></div>
+    <div class="skeleton"><p-skeleton width="85%" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
+    <div class="skeleton"><p-skeleton width="55%" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
+    <div class="skeleton"> <p-skeleton width="10rem" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
+    <div class="skeleton"> <p-skeleton width="5rem" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
+</div>
 
 <ng-container *ngIf ="tabViewContents.size>0">
     <p-tabView>
@@ -57,3 +70,4 @@
 </div>
 
 
+</div>

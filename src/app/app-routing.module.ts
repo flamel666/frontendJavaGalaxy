@@ -1,13 +1,17 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-
 const routes: Routes = [
   {
-    path: "",
-    component: WelcomePageComponent
+    path: "**",
+    redirectTo: 'home'
   }, 
+  {
+    path: "",
+    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
+  }, 
+  
+  
   {
     path: "auth",
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
@@ -16,7 +20,8 @@ const routes: Routes = [
     path: "code",
     loadChildren: () => import('./tutorial-content/tutorial-content.module').then(m => m.TutorialContentModule)
   
-  }
+  },
+  { path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) }
 ];
 
 @NgModule({

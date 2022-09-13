@@ -1,7 +1,7 @@
-.sidebar{    
+.sidebar{        
     //position: fixed;
     max-height: 1000px;
-    border: 2px solid black;
+   // border: 2px solid white;
     left: 0;
     width: 250px;
     height: 100%;
@@ -31,37 +31,28 @@
     }
 }
 
+.skeleton{
+    margin: 10px 10px !important;
+    
+}
 #burger{
     display: none;      
 }
 
 label{
-    #burgerMenu, #burgerMenuClosed{
+    #burgerMenuClosed{
         position: absolute;
         cursor: pointer;
         background: #042331;
-        border-radius: 3px;
-    }
-    #burgerMenu{
-        z-index: 0;
-        left: 75px;
-        margin-top: -30px;
-      //  top: 25px;
-        font-size: 15px;
+        border-radius: 15px;
         color: white;
-        padding: 6px 12px;
-        transition: all .5s;
-    }
-
-    #burgerMenuClosed{
+        margin-top: 15px;
         z-index: 0;
-        left: 237px;
-        margin-top: -25px;
-        font-size: 15px;
-        color: #0a5275;
-        padding: 4px 9px;
-        transition: all .3s;
-    }
+        left: 233px;        
+        font-size: 15px;        
+        padding: 4px 8px;
+        transition: all .4s ease;
+    }        
 }
 
 #burger:checked ~ .sidebar{
@@ -81,50 +72,68 @@ label{
     }
 }
 
-burger:checked ~ label #burgerMenu{  
-   
-    opacity: 100;
-   
-}
-
-#burger:not(:checked) ~ label #burgerMenu{   
-    left: 270px;
-    opacity: 0;
-    pointer-events: none;
+#burger:checked ~ label #burgerMenu{     
+    opacity: 100;   
 }
 
 #burger:checked ~ label #burgerMenuClosed{   
-    left: 50px;
-    opacity: 0;
-    pointer-events: none;
+    left: 81px;
+    transform: rotate(180deg);   
 }
-
 
 .listCap{
     margin-top: 1px;
     
 }
 
-.listItem{      
+.listItem{ 
+        
     margin-left: -40px;
    .paragraphSidebarNode{
     font-size: 15px;    
     color: black;
     .paragraphSidebarChapter{
-        font-size: 20px;   
+        font-size: 20px;       
+       
     }
+    
 }
 
     .paragraphSidebarOrphanNode{
+        display: flex;
+        
         .paragraphSidebarChapter{
-            font-size: 20px;   
+            font-size: 20px;      
+          //  white-space: nowrap ;      
+           // display: inline-block; 
+        }
+        .paragraphSidebarContent{
+            padding-top: 4px;
+            width: 180px;
+           // display: inline-block;
+           // white-space: nowrap ;
         }
     }
 
     .paragraphSidebar{
+        display: flex;
+       
         .paragraphSidebarChapter{
             font-size: 20px;   
-        }
+           // white-space: nowrap ;
+           // display: inline-block;
+        }  
+        .paragraphSidebarContent{
+            padding-top: 4px;
+            width: 180px;
+        //    display: inline-block;
+           // white-space: nowrap ;
+        }             
+    }
+
+    .part{
+        color: red;
+       
     }
    
 }

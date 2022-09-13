@@ -5,48 +5,25 @@
 @import "../node_modules/primeng/resources/themes/lara-light-blue/theme.css"; 
 
 @import "../src/globalVar.scss";
+@import "../src/app/header/header.component.scss";
+
+
      // this is the scss file of one of the 16 free styles of ngprime.
 body{
-    padding: 1rem;
+   // padding: 1rem;
 }
 
 #headerTop{
-//scelta lingua
-.p-dropdown {
-    background-color: var(--component-color) ;
-    border-radius: 50px;
-    width: 101.5px;
-    height: 45px;
-    border: none;      
-}
-.p-dropdown .p-dropdown-trigger{
-  color: white;
-}
-.p-dropdown-panel {
-    background-color: var(--component-color) ;
-    border-radius: 30px 30px 40px 40px;
-    margin-bottom: 10px;
-    height: 115px;
-  }   
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
-   
-    background-color: #5d94ec ;
-    border-radius: 40px 40px 40px 40px;
-    width: 99px;
-  }
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
-    color: #1D4ED8;
-    background: #5d94ec;
-    border-radius: 40px 40px 40px 40px;
-    width: 99px;
-  }
-//
+ 
+
+
 }
 
 //sideBar
 #sidebarGlobal{
   background: transparent;
   .p-tree{
+    border: none;
     background: transparent;
     margin-left: 0;
     padding-left: 0;
@@ -55,23 +32,39 @@ body{
     margin-top: 0;
     padding-top: 0;
     width: 100%;
+    .p-tree-wrapper{
+    //  -webkit-box-shadow: 0px 0px 15px 0px var(--navbar-color), inset 5px 5px 15px 5px var(--navbar-color);
+    box-shadow: inset 0px 0px 50px -10px var(--navbar-color);
+    }
     .p-treenode{                  
         border-radius:6px;
         .p-treenode-children{
           //background: white;
           margin-left: -5px;
+          .p-tree-toggler{
+            width: 25px !important;
+          }
           .p-treenode{
             border: 1px solid black;
             background: white;
-            .custom-p-button-link, .custom-p-button-linkLeaf{
-              
+            .custom-p-button-link, .custom-p-button-linkLeaf{              
               width: 125%;
-              color: red;
-              font-size: 15px;
+              color: var(--text-color);//scritta nelle celle figlie
+              font-weight: var(--font-weight);
+              font-size: 18px;
               text-align: left;
-              padding: 0;
+              padding-left: 0;
               margin-left: -35px;
               
+                .paragraphSidebarContent{
+                     width: 160px;
+                    padding-top: 4px;                   
+                }
+                
+                
+        
+           
+           
             }
             .custom-p-button-link:enabled:focus, .custom-p-button-linkLeaf:enabled:focus{
               box-shadow:none;
@@ -81,30 +74,48 @@ body{
               .paragraphSidebarContent{
                 text-decoration: underline;
               }    
+             
             }
           }
         }
       .p-tree-toggler{//è la freccetta
             margin-right: 20px;
+            color: var(--icon-color);
+            &:hover{
+              background: var(--icon-hover-side-bar);
+            }
+       }
+       .p-tree-toggler:not(.p-disabled):focus {
+        outline: 0 none !important;
+        outline-offset: 0 !important;
+        box-shadow: none !important;
+        border: none !important;  
        }
     }
     .p-treenode-content{
-      background: yellow;
+      background: var(--navbar-color);//colore delle celle     
       margin-right: 0;
       margin-top: -10px;
       margin-left: 0;
       padding-left: 0;
       border: 1px solid black;
-      justify-content: center;
+      justify-content: left;
+     
+      &:hover{
+        background: var(--navbar-hover-component-color);
+      }   
+      
     }
-    
+       
   }
+
 
   .custom-p-button-link, .custom-p-button-linkLeaf{
    
     width: 113%;
-    color: red;
-    font-size: 15px;
+    color: var(--text-color);//scritta nelle celle root
+    font-weight: var(--font-weight);
+    font-size: 18px;
     text-align: left;
     padding: 0;
     margin-left: -20px;
@@ -118,6 +129,20 @@ body{
       text-decoration: underline;
     }    
   }
+
+
+  
+  
+
+}
+
+//skeleton
+.p-skeleton {
+  background-color: #cad6e2;
+  border-radius: 6px;
+}
+.p-skeleton:after {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
 }
 
 #burger:checked ~ .sidebar{

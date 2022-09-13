@@ -3,7 +3,12 @@
     "header":{
         "title": "titolo dell'hesder",
         "cambioLingua": "Lingua",
-        "thema": "Cambia tema"       
+        "thema": "Cambia tema",     
+        "about": "Su di me",
+        "menu": {
+            "header": "Corsi",
+            "subItem": "Java"
+        }
     },
 
     "title" : "Titolo del cazzo",
