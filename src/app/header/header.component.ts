@@ -101,6 +101,16 @@ export class HeaderComponent implements OnInit {
 public switchLang(lang: string) {
   this.translate.use(lang);
   this.cookies.set("LANG",lang);
+  
+  this.translate.get("header.menu.header").forEach(e =>{      
+    this.dropDownHeader = e;
+
+    this.translate.get("header.menu.subItem").forEach(e =>{
+     
+      this.dropDownSubHeader = e;
+      this.setLabels();
+    });
+  });
 }
 
 public switchColor(): void{

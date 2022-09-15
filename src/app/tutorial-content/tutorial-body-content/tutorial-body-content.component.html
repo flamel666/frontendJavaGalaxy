@@ -1,4 +1,3 @@
-
 <!--
 <ng-template #buttonIcon>
     <div> Your html</div>
@@ -26,48 +25,128 @@
 -->
 <div class="tutorialBodyContent">
 
-<div *ngIf="tabViewContents.size==0 && defaultContent.length == 0">
+    <div *ngIf="tabViewContents.size==0 && defaultContent.length == 0">
 
-    <div class="skeleton"> <p-skeleton width="50%" height="2rem" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
-    <br>
-    <div class="skeleton"><p-skeleton width="80%" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
-    <div class="skeleton"><p-skeleton width="70%" styleClass="mb-1" borderRadius="16px"></p-skeleton></div>
-    <div class="skeleton"><p-skeleton width="85%" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
-    <div class="skeleton"><p-skeleton width="55%" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
-    <div class="skeleton"> <p-skeleton width="10rem" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
-    <div class="skeleton"> <p-skeleton width="5rem" styleClass="mb-2" borderRadius="16px"></p-skeleton></div>
-</div>
+        <div class="skeleton">
+            <p-skeleton width="50%" height="2rem" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+        </div>
+        <br>
+        <div class="skeleton">
+            <p-skeleton width="80%" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+        </div>
+        <div class="skeleton">
+            <p-skeleton width="70%" styleClass="mb-1" borderRadius="16px"></p-skeleton>
+        </div>
+        <div class="skeleton">
+            <p-skeleton width="85%" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+        </div>
+        <div class="skeleton">
+            <p-skeleton width="55%" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+        </div>
+        <div class="skeleton">
+            <p-skeleton width="10rem" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+        </div>
+        <div class="skeleton">
+            <p-skeleton width="5rem" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+        </div>
+    </div>
 
-<ng-container *ngIf ="tabViewContents.size>0">
-    <p-tabView>
-        <ng-container  *ngFor="let item of tabViewContents | keyvalue">
-        <p-tabPanel   header="{{item.key}}">
-            
-                <div class="article" [innerHTML]="item.value"></div>        
-            
-        </p-tabPanel>    
+    <ng-container *ngIf="tabViewContents.size>0">
+        <div class="buttonNavigate">
+            <div class="contentButtonPrevious">
+                <p-button class="buttonPrevious" (click)="previousArgument()">
+                    <i class="pi pi-angle-left"></i>
+                    {{'ContentBodyTutorial.buttonPrevious' | translate}}
+                </p-button>
+            </div>
+            <div class="contentButtonNext">
+                <p-button class="buttonNext" (click)="nextArgument()">
+                    {{'ContentBodyTutorial.buttonNext' | translate}}
+                    <i class="pi pi-angle-right"></i>
+                </p-button>
+
+            </div>
+        </div>
+        <hr>
+        <p-tabView>
+            <ng-container *ngFor="let item of tabViewContents | keyvalue">
+                <p-tabPanel header="{{item.key}}">
+
+                    <div class="article" [innerHTML]="item.value"></div>
+
+                </p-tabPanel>
+            </ng-container>
+        </p-tabView>
+        <hr>
+        <div class="buttonNavigate onTheBottom">
+            <div class="contentButtonPrevious">
+                <p-button class="buttonPrevious" (click)="previousArgument()">
+                    <i class="pi pi-angle-left"></i>
+                    {{'ContentBodyTutorial.buttonPrevious' | translate}}
+                </p-button>
+            </div>
+            <div class="contentButtonNext">
+                <p-button class="buttonNext" (click)="nextArgument()">
+                    {{'ContentBodyTutorial.buttonNext' | translate}}
+                    <i class="pi pi-angle-right"></i>
+                </p-button>
+
+            </div>
+        </div>
     </ng-container>
-    </p-tabView>
-</ng-container>
 
-<div *ngIf ="!(tabViewContents.size>0)">
-<div *ngFor="let item of defaultContent" >
-    
-    <div class="article" [innerHTML]="item"></div>
+    <div *ngIf="!(tabViewContents.size>0) && (defaultContent.length>0)">
 
-</div>
-</div>
+        <div class="article" [innerHTML]="defaultContent[0]" style="font-size: 30px;"></div>
+        <div class="buttonNavigate">
+            <div class="contentButtonPrevious">
+                <p-button class="buttonPrevious" (click)="previousArgument()">
+                    <i class="pi pi-angle-left"></i>
+                    {{'ContentBodyTutorial.buttonPrevious' | translate}}
+                </p-button>
+            </div>
+            <div class="contentButtonNext">
+                <p-button class="buttonNext" (click)="nextArgument()">
+                    {{'ContentBodyTutorial.buttonNext' | translate}}
+                    <i class="pi pi-angle-right"></i>
+                </p-button>
+
+            </div>
+        </div>
+        <hr>
+        <div *ngFor="let item of defaultContent">
+
+            <div class="article" [innerHTML]="item"></div>
+
+        </div>
+        <hr>
+        <div class="buttonNavigate onTheBottom">
+            <div class="contentButtonPrevious">
+                <p-button class="buttonPrevious" (click)="previousArgument()">
+                    <i class="pi pi-angle-left"></i>
+                    {{'ContentBodyTutorial.buttonPrevious' | translate}}
+                </p-button>
+            </div>
+            <div class="contentButtonNext">
+                <p-button class="buttonNext" (click)="nextArgument()">
+                    {{'ContentBodyTutorial.buttonNext' | translate}}
+                    <i class="pi pi-angle-right"></i>
+                </p-button>
+
+            </div>
+        </div>
+    </div>
 
 
-<div *ngFor="let item of _gridOptions | keyvalue">
+    <div *ngFor="let item of _gridOptions | keyvalue">
 
-    <hr>
-    <div class="article" [innerHTML]="item.value"></div>
-    <p> {{item.key}} --> {{item.value}}</p>
-    <hr>
+        <hr>
+        <div class="article" [innerHTML]="item.value"></div>
+        <p> {{item.key}} --> {{item.value}}</p>
+        <hr>
 
 
-</div>
+    </div>
 
 
 </div>

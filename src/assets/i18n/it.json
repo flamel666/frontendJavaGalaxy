@@ -19,6 +19,11 @@
     "welcome":{
         "title": "NIENTE PANICO",
         "linkStart": "Iniziamo"
+    },
+
+    "ContentBodyTutorial":{
+        "buttonPrevious" : "Precedente",
+        "buttonNext": "Successivo"
     }
 
    

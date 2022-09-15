@@ -13,6 +13,10 @@ import {SkeletonModule} from 'primeng/skeleton';
 
 import { TutorialBodyContentComponent } from './tutorial-body-content/tutorial-body-content.component';
 import { SimpleTemplateContentComponent } from './templates/simple-template-content/simple-template-content.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { httpTranslateLoader } from '../app.module';
+import { HttpClient } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +32,14 @@ import { SimpleTemplateContentComponent } from './templates/simple-template-cont
     TreeModule,
     ButtonModule,
     TabViewModule ,
-    SkeletonModule
+    SkeletonModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
   ]
 })
 export class TutorialContentModule { }

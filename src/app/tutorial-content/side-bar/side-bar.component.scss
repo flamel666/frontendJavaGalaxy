@@ -70,6 +70,10 @@ label{
     .descriptionCap {
         display: none; 
     }
+
+    .selectedArgument{        
+        width: 40px;
+    }
 }
 
 #burger:checked ~ label #burgerMenu{     
@@ -131,10 +135,51 @@ label{
         }             
     }
 
-    .part{
-        color: red;
-       
+
+    .puntinaPost-it{
+        position: absolute;
+        width: 40px;
+        height: 25px;
+        //padding-right: 70px;
+        right: 0;
+        top:0;
+        display: none;
     }
+
+    .selectedArgument{
+       
+        overflow: visible;
+       // width: 50px;
+       // background: linear-gradient(to right, #fa0000, #3764b6, #79dd52) !important;
+      /// -webkit-box-shadow: 8px 8px 15px 0px rgba(0,0,0,0.81); 
+       //box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+       position:relative;
+      // box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+      box-shadow:0 1px 4px var(--box-shadow-color1), 0 0 20px var(--box-shadow-color2) inset;
+      transform:rotate(-4deg);
+     // background-color: var(--navbar-hover-component-color);
+     .puntinaPost-it{
+       display: block;
+        top: -10px;
+        right: -5px;
+     }
+    }
+    /*
+    .selectedArgument:before{
+        position:absolute;
+        content:"";
+        width:80%;
+        top:140px;bottom:15px;left:30px;
+        background-color:#ff0000;
+       // z-index:-1;
+        -webkit-box-shadow:0 23px 17px 0 #ff0000;
+        -moz-box-shadow:0 23px 17px 0 #ff0000;
+        box-shadow: 0 37px 17px 0 #ff0000;
+        -webkit-transform:rotate(-4deg);
+        -moz-transform:rotate(-4deg);
+        transform:rotate(-4deg);
+      }*/
+    
    
 }
 

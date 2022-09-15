@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, TemplateRef, Type, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+
 import { TabViewModule } from 'primeng/tabview';
 import { ComponentPageTutorial } from '../models/component-page-tutorial.model';
 import { PageTutorial } from '../models/page.model';
@@ -29,7 +30,7 @@ export class TutorialBodyContentComponent implements OnInit {
   pageToShow?: PageTutorial;
 
   constructor(public chapterJavaService: TutorialJavaService, private viewContainerRef: ViewContainerRef, private sanitizer: DomSanitizer) {
-
+    
     this.chapterJavaService.idChapterSubChanged$?.subscribe(id => {
       console.log("sono nel body-contet. sotto capitolo cambiato: " + id);
       this.chapterJavaService.getPageBySubChapter(id).subscribe(response => {
@@ -52,6 +53,7 @@ export class TutorialBodyContentComponent implements OnInit {
         this.createPage(this.pageToShow);
       });
     });
+    
   }
 
 /*
@@ -71,17 +73,21 @@ export class TutorialBodyContentComponent implements OnInit {
     // this.viewContainerRef.createComponent(tab);
 */
     this.chapterJavaService.getPageByChapter("1").subscribe(response => {
+      this.chapterJavaService.notifyChangeFromTutorialBodyContent("1");
       console.log(response);
       this.pageToShow = response;
+      this.createPage(this.pageToShow);
+      /*
       this.pageToShow.compontentsPage?.forEach(el => {
         this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id=""${el.componentIdCss}>${el.componentContent}</${el.componentType}>`);
-      });
+      });*/
     });
+
   }
 
   private createPage(pageToShow: PageTutorial) {
 
-    this.defaultContent.push(`<h1 class="reddo">CREATE PAGE</h1>`);
+   // this.defaultContent.push(`<h1 class="reddo">CREATE PAGE</h1>`);
     if (pageToShow.compontentsPage![0].componentType == "p-tabView") {
       pageToShow.compontentsPage?.forEach(e => {
         console.log("page: " + e.componentType);
@@ -254,6 +260,16 @@ export class TutorialBodyContentComponent implements OnInit {
       }
 
     return options;
+  }
+
+  public previousArgument(): void{
+    console.log("previous");
+    this.chapterJavaService.previousChapter("1");
+  }
+
+  public nextArgument(): void{
+    console.log("next");
+    this.chapterJavaService.nextChapter("1");
   }
 
 }

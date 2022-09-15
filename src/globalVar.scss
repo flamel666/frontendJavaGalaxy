@@ -18,6 +18,8 @@ body {
 
     //sideBar
     --icon-hover-side-bar: #58c4fa;
+    --box-shadow-color1: rgba(0, 0, 0, 0.3);
+    --box-shadow-color2: rgba(0, 0, 0, 0.1);
     
     --scroll-bar-color-primary: #00ffe7;
     --scroll-bar-color-secondary: rgb(16, 69, 243);
@@ -61,6 +63,8 @@ body.dark {
 
     //sideBar
     --icon-hover-side-bar: #272069;
+    --box-shadow-color1: rgba(102, 96, 96, 0.3);
+    --box-shadow-color2: rgba(102, 96, 96, 0.1);
 
     --geometry-color: rgb(73, 73, 73);
     --scroll-bar-color-primary: #00c3ff;
