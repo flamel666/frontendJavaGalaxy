@@ -28,25 +28,6 @@ export class TutorialJavaService{
     idChapterChanged$? = this.idChapter?.asObservable(); 
     idChapterSubChanged$? = this.idSubChapter?.asObservable(); 
 
-    private idActualChapter? = new Subject<string>();
-    private idPreviousChapter? = new Subject<string>();
-    private idNextChapter? = new Subject<string>();
-
-    private idActualSunChapter? = new Subject<string>();
-    private idPreviousSunChapter? = new Subject<string>();
-    private idNextSunChapter? = new Subject<string>();
-
-    idActualChapterChanged$? = this.idActualChapter?.asObservable(); 
-    idPreviousChapterChanged$? = this.idPreviousChapter?.asObservable();
-    idNextChapterChanged$? = this.idNextChapter?.asObservable();
-
-    idActualSubChapterChanged$? = this.idActualSunChapter?.asObservable(); 
-    idPreviousSubChapterChanged$? = this.idPreviousSunChapter?.asObservable();
-    idNextSubChapterChanged$? = this.idNextSunChapter?.asObservable();
-
-
-
-
     constructor(public httpConnection: HttpClient){
 
     }
@@ -85,14 +66,5 @@ export class TutorialJavaService{
         console.log("service");
         this.actionFromTutorialBodyPreviousContent?.next(event);
     }
-
-    /*
-    potrei creare delle variabili da condividere tra il sideBar e il tutorialBodyContent.
-        previous, actual e next argument
-    su queste 3 variabili andrebbero sottoscritti degli observable, sia in un componente che nell'altro(forse no).
-    posso inserire l'observable solo nel sideBar per quelle 3 variabili mentre il tutorialBodyContent può chiamare direttametne un metodo nel service che si occuperà
-    di aggiornare il capitolo successivo e sfruttare l'observable già sottoscritto con il sideBar.
-    l'unico dilemma potrebbe essere: "come marchio a video il capitolo che sto leggendo se nn ci clicco direttamente sopra, ma utilizzo i tasti next/previous"?
-    posso provare a manipolare direttamente l'oggetto ThreeNode. da provare
-    */
+   
 }

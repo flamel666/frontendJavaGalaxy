@@ -1,11 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
 import { TreeNode } from 'primeng/api';
-import { Observable } from 'rxjs';
-import { TextureDataType } from 'three';
+import { delay } from 'rxjs';
 
 import { ChaptersCourse } from "../models/chapters.model";
 import { Children } from '../models/children.model';
@@ -183,8 +182,6 @@ export class SideBarComponent implements OnInit {
       this.evalueateNextChapters(lable.parent!);
       this.evalueatePreviousChapters(this.selectedChapter!);
       document.getElementById(this.selectedChapter?.key!)?.classList.add("selectedArgument");
-
-
     }
 
   }
@@ -193,7 +190,7 @@ export class SideBarComponent implements OnInit {
 
   private initializeChapter(selectedCapId: string) {
     console.log("inizializzo con key: " + selectedCapId);
-    document.getElementById(selectedCapId)?.classList.toggle("selectedArgument");
+    document.getElementById(selectedCapId)?.classList.add("selectedArgument");
     this.selectedChapter = this.nodes[Number(selectedCapId) - 1];
 
     if (this.nodes.length > 1)
@@ -205,6 +202,7 @@ export class SideBarComponent implements OnInit {
       this.selectedChapter!.expanded = true;
     }
 
+   
     this.initializeSubChapter(this.selectedChapter);
     console.log("capitolo successivo: " + this.nextChapter?.key);
     console.log("sotto capitolo successivo: " + this.nextSubChapter?.key);
@@ -373,6 +371,24 @@ export class SideBarComponent implements OnInit {
     console.log("nex  chapter " + this.nextChapter?.key);
     console.log("previous  chapter " + this.previousChapter?.key);
 
+  }
+
+  refreshChildSelectedAddedEffects(event: any){
+   
+   if(event.node.key == this.selectedChapter?.key)
+   (async () => { 
+    setTimeout(() => 
+    {
+      document.getElementById(this.selectedSubChapter?.key!)?.classList.add("selectedArgument");
+    },
+    50);
+
+      })();    
+  }
+
+  refreshChildSelectedRemoveEffects(event: any){    
+    if(event.node.key == this.selectedChapter?.key)
+      document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
   }
 
 

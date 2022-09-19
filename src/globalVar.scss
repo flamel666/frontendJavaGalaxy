@@ -2,6 +2,7 @@ $desktop: 960px;
 
 body {
     --background-color: rgb(255, 255, 255);
+    --background-color-ContentTutorial: rgb(255, 255, 255);
     --component-color: #3B82F6; //#3B82F6    
     --text-color: rgb(0, 0, 0);
     --icon-color:rgb(0, 0, 0);
@@ -52,6 +53,7 @@ body {
 body.dark {
 
     --background-color: #121212;
+    --background-color-ContentTutorial: rgb(100, 100, 100);
     --component-color: #9511ec; //#3B82F6
     --text-color: rgb(253, 253, 253);
     --icon-color:white;

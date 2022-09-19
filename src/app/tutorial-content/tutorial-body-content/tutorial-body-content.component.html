@@ -52,6 +52,7 @@
     </div>
 
     <ng-container *ngIf="tabViewContents.size>0">
+        <br>
         <div class="buttonNavigate">
             <div class="contentButtonPrevious">
                 <p-button class="buttonPrevious" (click)="previousArgument()">
@@ -97,7 +98,7 @@
 
     <div *ngIf="!(tabViewContents.size>0) && (defaultContent.length>0)">
 
-        <div class="article" [innerHTML]="defaultContent[0]" style="font-size: 30px;"></div>
+       <br>
         <div class="buttonNavigate">
             <div class="contentButtonPrevious">
                 <p-button class="buttonPrevious" (click)="previousArgument()">

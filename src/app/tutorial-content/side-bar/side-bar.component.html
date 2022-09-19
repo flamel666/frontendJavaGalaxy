@@ -16,9 +16,10 @@
                 <div class="skeleton"><p-skeleton idth="99%" height="4rem" borderRadius="16px" ></p-skeleton></div>
             </div>
             
-            <p-tree [value]="nodes" *ngIf="nodes.length>0">
+            <p-tree [value]="nodes" *ngIf="nodes.length>0" (onNodeExpand)="refreshChildSelectedAddedEffects($event)" (onNodeCollapse)="refreshChildSelectedRemoveEffects($event)">
+               
                 <p-skeleton width="10rem" height="4rem" borderRadius="16px"></p-skeleton>
-                <ng-template let-node pTemplate="url">       
+                <ng-template let-node pTemplate="url" >       
                     <p-button styleClass="p-button-link custom-p-button-linkLeaf"  (click)="changeSubChapter(node, node.key)">
                      <p class="paragraphSidebar" id="{{node.key}}">
                         <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
