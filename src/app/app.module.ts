@@ -94,5 +94,5 @@ export class AppModule {
 
 //metodo per la traduzione
 export function httpTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json'); 
 }
