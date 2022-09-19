@@ -1,0 +1,20 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { GlobalContentComponent } from './global-content/global-content.component';
+
+
+
+const routes: Routes = [
+    {
+        path: 'code/java',
+        component: GlobalContentComponent
+      }
+ 
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class TutorialContentRoutingModule { }

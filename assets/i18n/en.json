@@ -1,0 +1,30 @@
+{
+
+    "header":{
+        "title": "Title of hesder",
+        "cambioLingua": "Lenguage",
+        "thema": "Swap thema",
+        "about": "About me",
+        "menu": {
+            "header": "Courses",
+            "subItem": "Java"
+        }
+    },
+
+    "title" : "Title of dick",
+    "page":{
+        "title":"another Title of dick"
+    },
+
+    "welcome":{
+        "title": "DON'T PANIC",
+        "linkStart": "Let's start"
+    },
+
+    "ContentBodyTutorial":{
+        "buttonPrevious" : "Previous",
+        "buttonNext": "Next"
+    }
+
+  
+}

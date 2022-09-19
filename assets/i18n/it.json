@@ -1,0 +1,30 @@
+{
+
+    "header":{
+        "title": "titolo dell'hesder",
+        "cambioLingua": "Lingua",
+        "thema": "Cambia tema",     
+        "about": "Su di me",
+        "menu": {
+            "header": "Corsi",
+            "subItem": "Java"
+        }
+    },
+
+    "title" : "Titolo del cazzo",
+    "page":{
+        "title":"altro titolo del cazzo"
+    },
+
+    "welcome":{
+        "title": "NIENTE PANICO",
+        "linkStart": "Iniziamo"
+    },
+
+    "ContentBodyTutorial":{
+        "buttonPrevious" : "Precedente",
+        "buttonNext": "Successivo"
+    }
+
+   
+}

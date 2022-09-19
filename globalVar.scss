@@ -1,0 +1,156 @@
+$desktop: 960px; 
+
+body {
+    --background-color: rgb(255, 255, 255);
+    --background-color-ContentTutorial: rgb(255, 255, 255);
+    --component-color: #3B82F6; //#3B82F6    
+    --text-color: rgb(0, 0, 0);
+    --icon-color:rgb(0, 0, 0);
+
+    --text-color-body: rgb(255, 255, 255);
+
+    --navbar-color: #007bb8;// #007bb8
+        --font-size: 15px;
+        --font-weight: 600;
+        --navbar-hover-component-color: #00aaff;//#00618b;
+        --transition-delay-hover: 0.5s;
+        --logo-url: "../../assets/images/header.component/varie/logo.png";
+
+
+    //sideBar
+    --icon-hover-side-bar: #58c4fa;
+    --box-shadow-color1: rgba(0, 0, 0, 0.3);
+    --box-shadow-color2: rgba(0, 0, 0, 0.1);
+    
+    --scroll-bar-color-primary: #00ffe7;
+    --scroll-bar-color-secondary: rgb(16, 69, 243);
+    --geometry-color: rgb(252, 243, 243);
+    
+    --transition-delay: 1s;
+   
+   // background-color: var(--background-color);
+    background: url("assets/images/background/background_galaxy.png") black;
+    transition: var(--transition-delay);
+  
+    overflow-x: hidden;
+}
+
+/////////////////////////////scroll bar
+::-webkit-scrollbar{
+    width: 8px;       
+}
+::-webkit-scrollbar-track{   
+    background-color: rgba(255, 255, 255, 0.09);   
+    border-radius: 10px;    
+}
+::-webkit-scrollbar-thumb{   
+    transition: var(--transition-delay); 
+     background: linear-gradient(to top, var(--scroll-bar-color-secondary), var(--scroll-bar-color-primary));    //#00ffe7      
+     border-radius: 10px;     
+}
+/////////////////////////////scroll bar
+
+body.dark {
+
+    --background-color: #121212;
+    --background-color-ContentTutorial: rgb(100, 100, 100);
+    --component-color: #9511ec; //#3B82F6
+    --text-color: rgb(253, 253, 253);
+    --icon-color:white;
+
+    --navbar-color: rgb(6, 0, 59);//corrispettivo hex #06003b 
+        --navbar-hover-component-color: #0b0069;
+        --logo-url: "../../assets/images/header.component/varie/logo-white.png";
+
+
+    //sideBar
+    --icon-hover-side-bar: #272069;
+    --box-shadow-color1: rgba(102, 96, 96, 0.3);
+    --box-shadow-color2: rgba(102, 96, 96, 0.1);
+
+    --geometry-color: rgb(73, 73, 73);
+    --scroll-bar-color-primary: #00c3ff;
+    --scroll-bar-color-secondary: rgb(2, 16, 212);
+    transition: var(--transition-delay);
+    
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////Chenge THEME//////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ /*
+.canvasContainer{
+    margin-top: -100;
+    z-index: -1000;
+}
+.sun-container{
+    margin-left: 50%;
+    margin-top: 10px;
+    position: absolute;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    height: 200vmin;
+    z-index: -1;    
+}
+
+
+.moon-sun-container{
+    --rotation: 0;   
+    margin-left: 50%;
+    margin-top: 10px;
+    position: absolute;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    height: 200vmin;
+    transform: rotate(var(--rotation));
+    transition: transform var(--transition-delay);
+    z-index: -1;    
+}
+
+ .sun-container img{
+    height: 100px;
+    width: 100px;
+}
+.moon-sun-container img{    
+    height: 80px;
+    width: 80px;
+}
+
+.sun, .moon{    
+    position: absolute;
+    transition: opacity, fill,  var(--transition-delay);
+    width: 30px;
+    height: 30px;
+    fill: var(--component-color) !important;
+    z-index: -1;
+}
+
+.sun{
+    top: 60px;
+}
+
+.moon{
+    bottom: 70px;
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+.dark .moon{
+    opacity: 1;
+}
+
+.dark .moon-sun-container{
+    --rotation: 180deg;    
+}*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////Chenge THEME//////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
