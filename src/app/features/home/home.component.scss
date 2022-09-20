@@ -22,13 +22,12 @@
     color: white;
     text-align: center;
 }
+
 .contentLink{
     margin-top: -100px;
     margin-bottom: 300px;
-    margin-left: 500px;
-
-   
-    
+    margin-left: 500px;    
+  // margin-right: -100px;
 }
 /*
 .linkStart:hover{
@@ -44,7 +43,6 @@
 //key frames
 .linkStart {
     font-size: 45px;
-
     position: relative;
     display: inline-block;
     padding: 30px 61px;
@@ -196,4 +194,43 @@
     50% {
       transform: translate(15px, 0);
     }
+  }
+
+
+  /*
+  @media screen and (max-width: 1200px) {
+
+
+  }
+
+  @media screen and (max-width: 1024px) {
+
+
+  }*/
+
+  @media screen and (max-width: 768px) {
+    .welcomeMessage{     
+      font-size: 150px !important;      
+    }
+    .linkStart {
+      font-size: 35px !important;  
+     
+    }
+    .contentLink{      
+      margin-left: 0px; 
+    }
+
+  }
+
+  @media screen and (max-width: 480px) {
+    .welcomeMessage{     
+      font-size: 98px !important;      
+    }
+    .linkStart {
+      font-size: 25px !important;   
+      i{
+        font-size: 20px !important;
+      } 
+    }
+
   }

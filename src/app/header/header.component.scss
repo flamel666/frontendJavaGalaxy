@@ -718,8 +718,7 @@ svg{
       animation: slideUp 1s ease-in-out infinite;
     }
   }
-
-
+  
   .bubbles {
     position: absolute;
     top: 0;
@@ -777,7 +776,7 @@ svg{
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   #headerTop{
   .p-menubar {
     display: none;

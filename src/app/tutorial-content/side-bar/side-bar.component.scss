@@ -52,6 +52,9 @@ label{
         font-size: 15px;        
         padding: 4px 8px;
         transition: all .4s ease;
+        i{
+            transition: all .4s ease;
+        }
     }        
 }
 
@@ -82,7 +85,10 @@ label{
 
 #burger:checked ~ label #burgerMenuClosed{   
     left: 81px;
-    transform: rotate(180deg);   
+    i{
+        transform: rotate(180deg);
+    }
+       
 }
 
 .listCap{
@@ -183,3 +189,83 @@ label{
    
 }
 
+/*
+  @media screen and (max-width: 1200px) {
+
+
+  }
+
+  @media screen and (max-width: 1024px) {
+
+
+  }*/
+
+  @media screen and (max-width: 768px) {    
+    .sidebar{        
+        transition: none;
+        width: 0px;
+        top: 0;
+        max-height: 1000px;
+        position: fixed;   
+        z-index: 9999;
+        transition: all .4s ease;
+    }
+
+    #burger:checked ~ .sidebar{
+        width: 300px;
+        position: fixed;   
+        z-index: 88888;
+        
+    .listCap{
+        .listItem{          
+        .paragraphSidebarContent{        
+                visibility: visible;
+                display: block;        
+        }   
+      
+    }
+    }   
+        .descriptionCap {
+            display: block; 
+        }
+    
+        .selectedArgument{        
+            width: 190px;
+        }
+    }
+
+    label{
+        #burgerMenuClosed{
+            transition: none;
+            position: absolute;
+            cursor: pointer;
+            background: #042331;
+            border-radius: 0 15px 15px 0;            
+            color: white;
+            margin-top: -60px;
+            z-index: 99999;
+            left: 0px;        
+            font-size: 35px;        
+            padding: 4px 8px;
+          //  transform: rotate(180deg);
+            transition: all .4s ease;
+            i{
+                transform: rotate(180deg);
+                transition: all .4s ease;
+            }
+        }        
+    }
+
+    #burger:checked ~ label #burgerMenuClosed{   
+        left: 300px;
+        i{
+            transform: rotate(360deg);
+        }
+       
+    }
+
+  }
+
+  @media screen and (max-width: 480px) {   
+
+  }
