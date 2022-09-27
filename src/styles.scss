@@ -12,7 +12,26 @@
 
 
 // this is the scss file of one of the 16 free styles of ngprime.
+*{ 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+}
 
+html{
+  overflow-x: hidden;
+}
+/*
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+*/
 
 //sideBar
 #sidebarGlobal {
@@ -191,16 +210,6 @@
 
 //sideBar
 
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
 
 
 /*
