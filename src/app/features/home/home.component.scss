@@ -185,6 +185,8 @@
     }
   }
 
+
+  
   //////////////////////schede di presentazione////////////////////////
   .contentPresentationGlobal{
    display: flex;   
@@ -211,9 +213,9 @@
 
   .withBody{
     background-color: white;
-    border: 5px solid var(--component-color);
+    border: 5px solid var(--navbar-color);
     color: black;
-    border-radius: 10px;
+    border-radius: 30px;
     
   }
 

@@ -151,6 +151,12 @@ onTop(){
 @HostListener('window:scroll', ['$event'])
 onScroll(event: MouseEvent) {
   
+  if(window.pageYOffset > 50)    
+    document.getElementById('containerArrow')!.style.display = 'none';
+
+    if(window.pageYOffset < 50)    
+    document.getElementById('containerArrow')!.style.display = 'block';
+
   if(window.pageYOffset > 100)    
     document.getElementById('gooey-button')!.style.display = 'block';
   

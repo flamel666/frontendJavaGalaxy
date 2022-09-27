@@ -33,5 +33,4 @@ export class HomeModule {
     AOS.init({offset: 350});
   }
 
-
 }
