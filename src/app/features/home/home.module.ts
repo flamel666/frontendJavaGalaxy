@@ -8,6 +8,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 
+import * as AOS from 'aos';
 
 
 @NgModule({
@@ -27,6 +28,10 @@ import { HttpClient } from '@angular/common/http';
   ]
 })
 export class HomeModule {
-  
+
+  constructor(){
+    AOS.init({offset: 350});
+  }
+
 
 }

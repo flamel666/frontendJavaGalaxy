@@ -185,6 +185,51 @@
     }
   }
 
+  //////////////////////schede di presentazione////////////////////////
+  .contentPresentationGlobal{
+   display: flex;   
+   flex-wrap: wrap;
+  }
+  .contentSchedes{
+    flex: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .presentationSchedes{  
+    min-height: 200px;
+    width: 500px;    
+    margin-bottom: 70px;
+    font-size: 40px;
+    text-align: center;
+    padding-top: 15px;
+  }
+
+  .firstSchedes{
+    margin-top: 100px;
+  }
+
+  .withBody{
+    background-color: white;
+    border: 5px solid var(--component-color);
+    color: black;
+    border-radius: 10px;
+    
+  }
+
+  .withOutBody{
+    color: white;
+
+  }
+
+  .left{
+    margin-right: 30px;
+  }
+  .right{
+    margin-left: 30px;
+  }
+
+//////////////////////schede di presentazione////////////////////////
   @keyframes slideRight {
     0%,
     100% {
@@ -202,11 +247,26 @@
 
 
   }
-
+*/
   @media screen and (max-width: 1024px) {
+    .reversed{
+      flex-direction: column-reverse;     
+      align-items: center;     
+    }
 
+    .contentSchedes{      
+      flex: 100%;
+      flex-wrap: wrap;      
+    }
 
-  }*/
+    .left{
+      margin-right: 0;
+    }
+    .right{
+      margin-left: 0;
+    }
+
+  }
 
   @media screen and (max-width: 768px) {
     .welcomeMessage{     
@@ -232,5 +292,15 @@
         font-size: 20px !important;
       } 
     }
+
+    .presentationSchedes{  
+      height: 150px;
+      width: 350px;    
+      margin-bottom: 70px;
+      font-size: 25px;
+      text-align: center;
+      padding-top: 15px;
+    }
+
 
   }

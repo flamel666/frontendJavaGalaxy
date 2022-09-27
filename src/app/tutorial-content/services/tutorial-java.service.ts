@@ -36,8 +36,8 @@ export class TutorialJavaService{
         this.actionFromTutorialBodyContent?.next(id);
     }
 
-    //get chapters by programming language and language
-    public getChapters(programmingLanguage: string, language: string):Observable<ChaptersCourse[]>{
+    //get chapters by programming language and language http://localhost:8080/
+    public getChapters(programmingLanguage: string, language: string):Observable<ChaptersCourse[]>{//79.32.72.214
         return this.httpConnection.get<ChaptersCourse[]>("http://localhost:8080/tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
     }
 

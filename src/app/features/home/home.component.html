@@ -1,32 +1,57 @@
-
-
 <!--
 <div class="canvasContainer">
     <app-cube></app-cube>
 </div>-->
 
-<div class="welcomeContent">       
-      
-      <div class="content">
-          <img class="imagePanic welcomeContent" src="assets/images/welcome.component/image/2p.png" />
-      </div>
-      <div class="content">
-          <h1 class="welcomeMessage">{{'welcome.title' | translate }}</h1>
-      </div>  
-    
-      <div class="contentLink">        
-        <a class="linkStart" href="javascript:void(0)" [routerLink] = "['/code/java']">
-            
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            {{'welcome.linkStart' | translate }}    
-            <i class="pi pi-forward" style="font-size: 2rem"></i>       
-          </a>
+<div class="welcomeContent">
+
+    <div class="contentPresentationGlobal">
+
+        <div class="contentSchedes firstSchedes reversed">
+            <div class="presentationSchedes left withOutBody" data-aos="fade-right" data-aos-duration="900">
+                Sei già uno sviluppatore e vuoi imparare un nuovo linguaggio?
+            </div>
+            <div class="presentationSchedes right withBody" data-aos="fade-left" data-aos-duration="900">
+                Vuoi diventare uno sviluppatore e non sai da dove iniziare?
+            </div>
         </div>
-       
-      
-  </div>
-  
- 
+
+        <div class="contentSchedes "> 
+            <div class="presentationSchedes left  withBody" data-aos="fade-right" data-aos-duration="900">
+                Vuoi imparare le tecnologie necessarie per costruire le tue applicazioni?                
+            </div>
+            <div class="presentationSchedes right withOutBody" data-aos="fade-left" data-aos-duration="900">
+                Vuoi imparare le tecniche e le metodologie utilizzate nel mondo del lavoro?
+            </div>
+        </div>
+
+        <div class="contentSchedes reversed">
+            <div class="presentationSchedes left withOutBody" data-aos="fade-right" data-aos-duration="900">
+               Quì useremo e parleremo delle tecniche, delle configurazioni e dei metodi usati nel mondo reale
+            </div>
+            <div class="presentationSchedes right withBody" data-aos="fade-left" data-aos-duration="900">
+                Quì troverai tutto il necessario per concretizzare le tue idee
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <img class="imagePanic welcomeContent" src="assets/images/welcome.component/image/2p.png" />
+    </div>
+
+    <div class="content">
+        <h1 class="welcomeMessage">{{'welcome.title' | translate }}</h1>
+    </div>
+
+    <div class="contentLink">
+        <a class="linkStart" href="javascript:void(0)" [routerLink]="['/code/java']">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            {{'welcome.linkStart' | translate }}
+            <i class="pi pi-forward" style="font-size: 2rem"></i>
+        </a>
+    </div>
+
+</div>
