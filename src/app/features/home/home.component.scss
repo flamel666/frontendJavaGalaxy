@@ -17,6 +17,45 @@
     margin-bottom: 100px;
 
 }
+
+.astro{   
+  width: 250px;
+  height: 250px;  
+  margin-top: 60px;
+  margin-bottom: 0;
+  animation: slideUp 4s ease-in-out infinite;
+}
+
+.contentAstronautsRocket{
+  margin: none;
+  padding: none;
+  z-index: -1000;
+  .astro{
+    margin-top: -300px;
+    margin-left: -50%;
+    width: 550px;
+    height: 550px;
+    animation: slideUpAndDown 4s ease-in-out infinite;
+  }
+}
+
+.contentAstronauts{
+  align-self:flex-end;
+  margin-right: 70px;
+  margin-bottom: -200px;
+
+}
+
+.contentPanicWord{
+  text-align: center;
+  .astroCart{
+    width: 250px;
+    height: 250px;
+    margin-bottom: -90px;
+    margin-right: 40%;
+  }
+}
+
 .welcomeMessage{     
     font-size: 200px !important;
     color: white;
@@ -42,6 +81,7 @@
 
 //key frames
 .linkStart {
+    z-index: 1;
     font-size: 45px;
     position: relative;
     display: inline-block;
@@ -244,6 +284,28 @@
     }
   }
 
+  @keyframes slideUp {
+    0%,
+    100% {
+      transform: translate(0, 15px);
+    }
+  
+    50% {
+      transform: translate(0, -10px);
+    }
+  }
+
+  @keyframes slideUpAndDown {
+    0%,
+    100% {
+      transform: translate(-5px, 15px);
+    }
+  
+    50% {
+      transform: translate(10px, -10px);
+    }
+  }
+
 
   /*
   @media screen and (max-width: 1200px) {
@@ -272,9 +334,21 @@
   }
 
   @media screen and (max-width: 768px) {
+    .contentPanicWord{      
+      .astroCart{        
+        margin-bottom: -78px;        
+      }
+    }
     .welcomeMessage{     
       font-size: 150px !important;      
     }
+
+    .contentAstronautsRocket{     
+      .astro{        
+        margin-left: 20%;         
+      }
+    }
+
     .linkStart {
       font-size: 35px !important;  
      
@@ -286,8 +360,25 @@
   }
 
   @media screen and (max-width: 480px) {
+    .contentPanicWord{
+      
+      .astroCart{
+        width: 200px;
+        height: 200px;
+        margin-bottom: -58px;
+        
+      }
+    }
     .welcomeMessage{     
       font-size: 98px !important;      
+    }
+    .contentAstronautsRocket{      
+      .astro{        
+        width: 400px;
+        height: 400px;       
+        margin-top: -250px;
+        margin-left: 30%;         
+      }
     }
     .linkStart {
       font-size: 25px !important;   

@@ -5,7 +5,9 @@
 
 <div class="welcomeContent">
 
-    
+    <div class="contentAstronauts">
+        <img class="astro" src="assets/images/welcome.component/image/AstroB.png" />
+    </div>
    <div class="contentPresentationGlobal">
 
         <div class="contentSchedes firstSchedes">
@@ -42,13 +44,13 @@
         <img class="imagePanic welcomeContent" src="assets/images/welcome.component/image/2p.png" />
     </div>
 
-    <div class="content">
+    <div class="contentPanicWord">
+        <img class="astroCart" src="assets/images/welcome.component/image/astroCart.png" />
         <h1 class="welcomeMessage">{{'welcome.title' | translate }}</h1>
     </div>
 
     <div class="contentLink">
         <a class="linkStart" href="javascript:void(0)" [routerLink]="['/code/java']">
-
             <span></span>
             <span></span>
             <span></span>
@@ -56,7 +58,11 @@
             {{'welcome.linkStart' | translate }}
             <i class="pi pi-forward" style="font-size: 2rem"></i>
         </a>
+        <div class="contentAstronautsRocket">
+            <img class="astro" src="assets/images/welcome.component/image/astroRocketFinal.png" />
+        </div>
     </div>
+    
 
 
 </div>
