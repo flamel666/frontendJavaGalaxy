@@ -1,4 +1,145 @@
 
+//////
+.wrapper {
+  position: relative;
+  perspective: 40em;
+  display: grid;
+  transform-style: preserve-3d;
+}
+
+.card {
+  grid-area: 1 / 1;
+  height: 200px;
+  width: 400px;
+  transform: translateX(10px) rotateY(25deg) rotateX(10deg);
+  background: rgba(249, 198, 26, 0.88);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30px;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 900;
+  backface-visibility: hidden;
+  box-shadow: 0 10px 30px -3px rgba(0,0,0,.1);
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.card .enclosed {
+  background: #000;
+  line-height: 1;
+  color: rgba(249, 198, 26, 1);
+  padding: 0 5px;
+  display: inline-block;
+  transform: translate(-1px, 1px) scale(0.75);
+  transform-origin: right center;
+}
+
+.wrapper:before {
+  --bw: 9px;
+  grid-area: 1 / 1;
+  content: '';
+  backface-visibility: hidden;
+  height: 100%;
+  width: 100%;
+  margin-top: calc(-1 * var(--bw));
+  margin-left: calc(-1 * var(--bw));
+  background: transparent;
+  transform: translateX(-60px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+  pointer-events: none;
+  border: var(--bw) solid rgb(255, 3, 3);
+ // border-radius: 50%;
+  box-sizing: content-box;
+}
+/*.wrapper:hover > div,
+.wrapper:hover:before {
+  transform: none;
+}*/
+.wrapper > div,
+.wrapper:before {
+  will-change: transform;
+  transition: .3s transform cubic-bezier(.25,.46,.45,1);
+}
+
+/*//////////////////////// animazione liquido
+.a {
+  position: relative;
+  padding: 20px 50px;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 40px;
+}
+
+.a p {
+  //position: absolute;
+  //margin-top: 15%;
+  //color: #fff;
+  // font-size: 30px;
+  z-index: 1;
+}
+
+.a .liquid {
+  position: absolute;
+  top: -130px;
+  left: 0;
+  width: 500px;
+  height: 500px;
+  //background: #00FF80;
+  background:conic-gradient(#d7d7d7, #c3c3c3, #cccccc, #c6c6c6,
+								#d7d7d7, #c3c3c3, #cccccc, #c6c6c6,
+								#d7d7d7, #c3c3c3, #cccccc, #c6c6c6,
+								#d7d7d7, #c3c3c3, #cccccc, #c6c6c6);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
+  transition: .5s;
+}
+
+.a .liquid::after,
+.a .liquid::before {
+  content: '';
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  background: #000;
+}
+
+.a .liquid::before {
+  
+  border-radius: 45%;
+  background: rgba(20, 20, 20,  1);
+  animation: animate 10s linear infinite;
+}
+
+.a .liquid::after {
+  
+  border-radius: 40%;
+  background: rgba(20, 20, 20, .5);
+  animation: animate 15s linear infinite;
+}
+
+
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
+
+*/
 .welcomeContent{   
     margin-top: 130px;
     width: 100%;
@@ -229,6 +370,56 @@
   
   //////////////////////schede di presentazione////////////////////////
   /// /*
+  .contentImage{
+    position: absolute;
+    z-index: 100;  
+    width: 105px;
+    height: 105px;
+    background: white;    
+    border-radius: 50px;
+    margin-top: -30px;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+    box-shadow: 5px 5px 15px 5px #000000;
+    padding-top: 3px;
+  }
+  .imgCard{    
+    width: 99px;
+    height: 99px;     
+  }
+
+  .contentImageSecond{
+    margin-top: 130px;
+    margin-left: -20px;    
+  }
+  .imageContentThird{
+    margin-top: -10%;
+    margin-left: 10px;
+  }
+  .imageContentFourth{
+    margin-left: 8%;
+  }
+
+  .contentImageBottom{
+    margin-left: 83%;
+    margin-top: 115px;
+  }
+  .adjustTop{
+    margin-top: -45px;
+  }
+  .adjustBottom{
+    margin-top: 130px;
+  }
+
+  .imgZen{
+    margin-left: 5px;
+    width: 95px;
+    height: 95px;
+  }
+
+  .imgMuscle{
+    width: 115px;
+    margin-right: 5px;
+  }
   .contentPresentationGlobal{
    display: flex;   
    flex-wrap: wrap;
@@ -237,6 +428,7 @@
     flex: 100%;
     display: flex;
     justify-content: center;
+   
   }
 
   .presentationSchedes{  
@@ -244,25 +436,35 @@
     width: 500px;    
     margin-bottom: 70px;
     font-size: 40px;
-    text-align: center;
-    padding-top: 15px;
+    text-align: center;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
   }
 
   .firstSchedes{
     margin-top: 100px;
   }
 
+  .lastSchedes{
+    width: 80% !important;
+    margin-left: 10%;
+  }
+
   .withBody{
-    background-color: white;
-    border: 5px solid var(--navbar-color);
+    background-color: rgb(241, 237, 237);
+    
+    border: 1px solid var(--navbar-color);
     color: black;
     border-radius: 30px;
-    
+    -webkit-box-shadow: 2px 2px 15px -5px #f7e7b3; 
+box-shadow: 2px 2px 15px -5px #f7e7b3;
   }
 
   .withOutBody{
     color: white;
-
+    text-shadow: 1px 1px 3px #fffbed;
   }
 
   .left{
@@ -334,11 +536,27 @@
   }
 
   @media screen and (max-width: 768px) {
+
+    .firstSchedes{
+      .contentImage{
+        margin-left: -20px;
+      }
+    }
+    .contentSchedes{
+    p{    
+      font-size:4vw;
+     }
+    }
+    .contentImageBottom{     
+      margin-left: 78%;
+    }  
+
     .contentPanicWord{      
       .astroCart{        
         margin-bottom: -78px;        
       }
     }
+
     .welcomeMessage{     
       font-size: 150px !important;      
     }
@@ -360,6 +578,30 @@
   }
 
   @media screen and (max-width: 480px) {
+
+    .contentImage{     
+      width: 80px;
+      height: 80px;
+    }
+
+    .imgCard{
+      width: 74px;
+      height: 74px;
+    }
+
+    .contentImageBottom{      
+      margin-top: 125px;
+    }
+    .adjustBottom{
+      margin-top: 135px;
+    }
+    .contentSchedes{
+      p{    
+        font-size:6vw;
+       }
+      }
+
+
     .contentPanicWord{
       
       .astroCart{
@@ -388,13 +630,14 @@
     }
 
     .presentationSchedes{  
-      height: 150px;
+      min-height: 200px;
       width: 350px;    
       margin-bottom: 70px;
       font-size: 25px;
       text-align: center;
       padding-top: 15px;
     }
+
 
 
   }
