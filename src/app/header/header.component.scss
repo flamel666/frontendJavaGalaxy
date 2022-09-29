@@ -715,7 +715,7 @@ svg{
 
   &:hover{
     i{
-      animation: slideUp 1s ease-in-out infinite;
+      animation: slideUp 2s ease-in-out infinite;
     }
   }
   
@@ -768,11 +768,11 @@ svg{
 @keyframes slideUp {
   0%,
   100% {
-    transform: translate(0, -3px);
+    transform: translate(0, 0);
   }
 
   50% {
-    transform: translate(0, 9px);
+    transform: translate(0, 0);
   }
 }
 

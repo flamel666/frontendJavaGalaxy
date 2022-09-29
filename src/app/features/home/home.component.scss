@@ -164,6 +164,9 @@ h1 {
   height: 250px;  
   margin-top: 60px;
   margin-bottom: 0;
+  //box-shadow: 2px 2px var(--boxshadow-view) -5px #f7e7b3;
+  filter: drop-shadow(5px 2px 2px #f7e7b32a) contrast(187%) saturate(300%);
+  //filter: contrast(187%);
   animation: slideUp 4s ease-in-out infinite;
 }
 
@@ -458,8 +461,8 @@ h1 {
     border: 1px solid var(--navbar-color);
     color: black;
     border-radius: 30px;
-    -webkit-box-shadow: 2px 2px 15px -5px #f7e7b3; 
-box-shadow: 2px 2px 15px -5px #f7e7b3;
+    -webkit-box-shadow: 2px 2px var(--boxshadow-view) -5px #f7e7b3; 
+    box-shadow: 2px 2px var(--boxshadow-view) -5px #f7e7b3;
   }
 
   .withOutBody{

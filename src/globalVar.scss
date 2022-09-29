@@ -6,6 +6,7 @@ body {
     --component-color: #3B82F6; //#3B82F6    
     --text-color: rgb(0, 0, 0);
     --icon-color:rgb(0, 0, 0);
+    --boxshadow-view: 15px;
 
     --text-color-body: rgb(255, 255, 255);
 
@@ -57,6 +58,8 @@ body.dark {
     --component-color: #9511ec; //#3B82F6
     --text-color: rgb(253, 253, 253);
     --icon-color:white;
+
+    --boxshadow-view: 5px;
 
     --navbar-color: rgb(6, 0, 59);//corrispettivo hex #06003b 
         --navbar-hover-component-color: #0b0069;
