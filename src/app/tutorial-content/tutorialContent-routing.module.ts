@@ -6,10 +6,14 @@ import { GlobalContentComponent } from './global-content/global-content.componen
 
 
 const routes: Routes = [
+  /*  {
+      path: 'code/java',
+      component: GlobalContentComponent
+    },*/
     {
-        path: 'code/java',
-        component: GlobalContentComponent
-      }
+      path: 'code/:code',
+      component: GlobalContentComponent
+    }
  
 ];
 

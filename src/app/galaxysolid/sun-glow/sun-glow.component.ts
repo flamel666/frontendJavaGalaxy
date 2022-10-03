@@ -57,6 +57,8 @@ export class SunGlowComponent implements OnInit, AfterViewInit {
 
 
    //---------------------------resize event-------------------
+   mobileMediaQuery:any = window.matchMedia("(max-width: 480px)")
+
    private setupResize(){
     window.addEventListener("resize", this.resize.bind(this));
   }
@@ -73,6 +75,12 @@ export class SunGlowComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.createScene();
+    this.resize();
+    
+    if(this.mobileMediaQuery.matches){
+      this.bloomPass.radius = 1;
+    }
+    
   }
 
   ngOnInit(): void {

@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 import { MenuItem } from 'primeng/api';
 import { TreeNode } from 'primeng/api';
@@ -18,8 +19,8 @@ import { TutorialJavaService } from '../services/tutorial-java.service';
 })
 export class SideBarComponent implements OnInit {
 
-  private languageCode: string;
-  private language: string;
+  private languageCode?: string;
+  private language?: string;
 
   items!: MenuItem[];
   item!: MenuItem[];
@@ -39,10 +40,9 @@ export class SideBarComponent implements OnInit {
   previousSubChapter?: TreeNode = undefined;
   nextSubChapter?: TreeNode = undefined;
 
-  constructor(private router: Router, public chapterJavaService: TutorialJavaService) {
-    this.languageCode = "java";
-    this.language = "ita";
-
+  constructor(private router: Router, public chapterJavaService: TutorialJavaService, private route: ActivatedRoute,
+    private cookies: CookieService) {
+   
     this.chapterJavaService.actionFromTutorialBodyContentChanged$?.subscribe(key => {
       console.log("sono nel costruttore della sideBar ");
       this.initializeChapter(key);
@@ -59,9 +59,11 @@ export class SideBarComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {        
+   
+      this.languageCode = this.route.snapshot.paramMap.get('code')!;
+      this.language = this.cookies.get("LANG");  
 
-    console.log("" + this.languageCode + " " + this.language)
     this.chapterJavaService.getChapters(this.languageCode, this.language).subscribe(response => {//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
       console.log(response);
       this.chaptersJavaCourse = response;

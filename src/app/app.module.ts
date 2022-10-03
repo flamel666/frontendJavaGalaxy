@@ -33,11 +33,6 @@ import { CookieService } from 'ngx-cookie-service';
 import {MenubarModule} from 'primeng/menubar';
 import { HomeModule } from './features/home/home.module';
 
-
-
-
-
-
 //angularMaterial
 
 

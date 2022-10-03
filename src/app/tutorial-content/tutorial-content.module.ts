@@ -18,12 +18,13 @@ import { httpTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 
 
+
 @NgModule({
   declarations: [
     SideBarComponent,
     GlobalContentComponent,
     TutorialBodyContentComponent,
-    SimpleTemplateContentComponent,    
+    SimpleTemplateContentComponent 
   ],
   imports: [
     CommonModule,

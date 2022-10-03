@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe, PipeTransform, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, Pipe, PipeTransform, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -16,5 +16,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: MouseEvent) {
+   
+    if(window.pageYOffset > 50)    
+    document.getElementById('containerArrow')!.style.display = 'none';
+
+    if(window.pageYOffset < 50)    
+    document.getElementById('containerArrow')!.style.display = 'block';
+   
+  }
   
 }

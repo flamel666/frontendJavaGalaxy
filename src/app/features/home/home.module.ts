@@ -1,4 +1,4 @@
-import { NgModule, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { HostListener, NgModule, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
@@ -32,5 +32,4 @@ export class HomeModule {
   constructor(){
     AOS.init({offset: 350});
   }
-
 }

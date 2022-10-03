@@ -8,6 +8,8 @@
     background: white;
     overflow-y: auto;
     transition: all .4s ease;
+    margin-left: 10px;
+    padding-left: 40px;
     z-index: 9999;
     .listCap{
         list-style: none;
@@ -46,9 +48,9 @@ label{
         background: #042331;
         border-radius: 15px;
         color: white;
-        margin-top: 15px;
+        margin-top: 45px;
         z-index: 0;
-        left: 233px;        
+        left: 243px;        
         font-size: 15px;        
         padding: 4px 8px;
         transition: all .4s ease;
@@ -59,7 +61,7 @@ label{
 }
 
 #burger:checked ~ .sidebar{
-    width: 100px;
+    width: 90px;
     
 .listCap{
     .listItem{          
@@ -111,6 +113,7 @@ label{
 
     .paragraphSidebarOrphanNode{
         display: flex;
+        min-height: 40px;
         
         .paragraphSidebarChapter{
             font-size: 20px;      
@@ -166,7 +169,7 @@ label{
      // background-color: var(--navbar-hover-component-color);
      .puntinaPost-it{
        display: block;
-        top: -10px;
+        top: 5px;
         right: -5px;
      }
     }
@@ -202,17 +205,21 @@ label{
 
   @media screen and (max-width: 768px) {    
     .sidebar{        
-        transition: none;
-        width: 0px;
-        top: 0;
+       
+        width: 300px;
+        left:-310px;
+        top: 5px;
+       
         max-height: 1000px;
         position: fixed;   
         z-index: 9999;
         transition: all .4s ease;
     }
 
-    #burger:checked ~ .sidebar{
+    #burger:checked ~ .sidebar{       
+        left:0;
         width: 300px;
+       
         position: fixed;   
         z-index: 88888;
         
@@ -258,6 +265,8 @@ label{
 
     #burger:checked ~ label #burgerMenuClosed{   
         left: 300px;
+        position: fixed; 
+        top:325px;
         i{
             transform: rotate(360deg);
         }
