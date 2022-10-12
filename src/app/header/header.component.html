@@ -9,7 +9,7 @@
     </div>
 
     <a href="javascript:void(0)" [routerLink] = "['/home']" >
-    <img id="logoImg" src="assets/images/header.component/varie/logo{{logo}}.png" />
+    <img id="logoImg" src="assets/images/header.component/varie/logo-white.png" />
     </a>
     <!--
      bisogna fare la pagina di presentazione
@@ -50,7 +50,7 @@
         <!--<label id="labelLanguage" for="float-input">{{'header.cambioLingua' | translate}}:</label>-->
         <div class="switchThema">
         <p-dropdown id="dropdownLanguage"  [options]="languages" [(ngModel)]="selectedLenguage" optionLabel="name"
-             (onChange)="switchLang(selectedLenguage.name)" >
+             (onChange)="switchLang(selectedLenguage.name)" [disabled]="true">
             <ng-template id="element" pTemplate="selectedItem">
                 <div class="country-item country-item-value" *ngIf="selectedLenguage">
                     <img id="dropdownLanguage-flag-selected"
@@ -93,7 +93,7 @@
     </p-menubar>
 
     <p-dropdown id="dropdownLanguage"  [options]="languages" [(ngModel)]="selectedLenguage" optionLabel="name"
-             (onChange)="switchLang(selectedLenguage.name)" >
+             (onChange)="switchLang(selectedLenguage.name)" [disabled]="true">
             <ng-template id="element" pTemplate="selectedItem">
                 <div class="country-item country-item-value" *ngIf="selectedLenguage">
                     <img id="dropdownLanguage-flag-selected"

@@ -32,6 +32,7 @@ import { ProvasunComponent } from './galaxysolid/provasun/provasun.component';
 import { CookieService } from 'ngx-cookie-service';
 import {MenubarModule} from 'primeng/menubar';
 import { HomeModule } from './features/home/home.module';
+import { CountVisitorServiceService } from './global-service/count-visitor-service.service';
 
 //angularMaterial
 
@@ -76,15 +77,30 @@ export class AppModule {
 
   private expireDate!: Date;
 
-    constructor(private cookieCreator: CookieService){      
+    constructor(private cookieCreator: CookieService, private counterService: CountVisitorServiceService){   
+
+      if(!this.cookieCreator.check("visit")){
+        this.counterService.incrementVisitour();
+        let date = new Date();
+        console.log("date: "+date);
+        date.setUTCHours(23);
+        date.setMinutes(59);
+        date.setSeconds(59);
+        console.log("after set date: "+date);
+        this.cookieCreator.set("visit","visited", date);
+       }
+
+       /*
       if(this.cookieCreator.check("EX"))
       this.cookieCreator.set("ALL","cazz");
       else{
         this.expireDate = new Date();
         this.expireDate.setDate(this.expireDate.getDate() + 100)
         this.cookieCreator.set("EX","cazz", this.expireDate);
-      }
+      }*/
     }
+
+
  }
 
 //metodo per la traduzione

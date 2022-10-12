@@ -22,6 +22,9 @@ export class SideBarComponent implements OnInit {
   private languageCode?: string;
   private language?: string;
 
+  //current selected chapter or subchapter 
+  private selectedElementInTheBar?:string;
+
   items!: MenuItem[];
   item!: MenuItem[];
 
@@ -42,7 +45,9 @@ export class SideBarComponent implements OnInit {
 
   constructor(private router: Router, public chapterJavaService: TutorialJavaService, private route: ActivatedRoute,
     private cookies: CookieService) {
-   
+      
+   this.selectedElementInTheBar ="1";
+
     this.chapterJavaService.actionFromTutorialBodyContentChanged$?.subscribe(key => {
       console.log("sono nel costruttore della sideBar ");
       this.initializeChapter(key);
@@ -148,6 +153,8 @@ export class SideBarComponent implements OnInit {
       lable.expanded = true;
     }
 
+    if(this.selectedElementInTheBar != lable.key){
+      this.selectedElementInTheBar = lable.key;
     document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(this.selectedChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(lable.key!)?.classList.add("selectedArgument");
@@ -157,6 +164,7 @@ export class SideBarComponent implements OnInit {
     this.evalueateNextChapters(lable);
     this.evalueatePreviousChapters(this.selectedChapter!);
     this.initializeSubChapter(this.selectedChapter!);
+    }
   }
 
   public changeSubChapter(lable: TreeNode, key: string) {
@@ -168,10 +176,10 @@ export class SideBarComponent implements OnInit {
 
     console.log('---------------------------parent-------' + lable.parent?.key);
 
+    if(this.selectedElementInTheBar != lable.key){
+      this.selectedElementInTheBar = lable.key;
     document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
-    document.getElementById(lable.key!)?.classList.add("selectedArgument");
-
-    
+    document.getElementById(lable.key!)?.classList.add("selectedArgument");    
 
     this.chapterJavaService.changeIdSubChapter("" + lable?.data);
 
@@ -185,7 +193,7 @@ export class SideBarComponent implements OnInit {
       this.evalueatePreviousChapters(this.selectedChapter!);
       document.getElementById(this.selectedChapter?.key!)?.classList.add("selectedArgument");
     }
-
+  }
   }
 
 

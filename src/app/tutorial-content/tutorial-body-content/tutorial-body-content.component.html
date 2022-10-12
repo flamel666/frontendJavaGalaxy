@@ -69,7 +69,7 @@
             </div>
         </div>
         <hr>
-        <p-tabView>
+        <p-tabView [scrollable]="true">
             <ng-container *ngFor="let item of tabViewContents | keyvalue">
                 <p-tabPanel header="{{item.key}}">
 
@@ -95,9 +95,8 @@
             </div>
         </div>
     </ng-container>
-
-    <div *ngIf="!(tabViewContents.size>0) && (defaultContent.length>0)">
-
+   
+    <div *ngIf="!(tabViewContents.size>0) && (defaultContent.length>0)">        
        <br>
         <div class="buttonNavigate">
             <div class="contentButtonPrevious">
@@ -115,13 +114,17 @@
             </div>
         </div>
         <hr>
-        <div *ngFor="let item of defaultContent" class="defaultTutorialContent">
 
-            <div class="article" [innerHTML]="item"></div>
-
+        <div *ngFor="let item of defaultContent; let i = index;" class="defaultTutorialContent">
+            
+            <div class="article" [innerHTML]="item"></div>            
+            
+            <span #tabbedPane id="{{i}}"></span>
+           
         </div>
+        
         <hr>
-        <div class="buttonNavigate onTheBottom">
+        <div class="buttonNavigate onTheBottom">            
             <div class="contentButtonPrevious">
                 <p-button class="buttonPrevious" (click)="previousArgument()">
                     <i class="pi pi-angle-left"></i>
@@ -149,5 +152,5 @@
 
     </div>
 
-
+    
 </div>

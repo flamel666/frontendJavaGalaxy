@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
+import { ServiceConfigurationService } from "src/app/config-service/service-configuration.service";
 import { ChaptersCourse } from "../models/chapters.model";
 import { PageTutorial } from "../models/page.model";
 
@@ -28,7 +29,7 @@ export class TutorialJavaService{
     idChapterChanged$? = this.idChapter?.asObservable(); 
     idChapterSubChanged$? = this.idSubChapter?.asObservable(); 
 
-    constructor(public httpConnection: HttpClient){
+    constructor(public httpConnection: HttpClient, public configService: ServiceConfigurationService){
 
     }
 
@@ -38,15 +39,18 @@ export class TutorialJavaService{
 
     //get chapters by programming language and language http://localhost:8080/
     public getChapters(programmingLanguage: string, language: string):Observable<ChaptersCourse[]>{//79.32.72.214
-        return this.httpConnection.get<ChaptersCourse[]>("http://localhost:8080/tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
+        let ip = this.configService.getIpServer();
+        return this.httpConnection.get<ChaptersCourse[]>(ip+"tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
     }
 
     public getPageByChapter(chapterId: string):Observable<PageTutorial>{
-        return this.httpConnection.get<PageTutorial>("http://localhost:8080/tutorial/java/page/chapter/"+chapterId);
+        let ip = this.configService.getIpServer();
+        return this.httpConnection.get<PageTutorial>(ip+"tutorial/java/page/chapter/"+chapterId);
     }
 
     public getPageBySubChapter(subChapterId: string):Observable<PageTutorial>{
-        return this.httpConnection.get<PageTutorial>("http://localhost:8080/tutorial/java/page/subchapter/"+subChapterId);
+        let ip = this.configService.getIpServer();
+        return this.httpConnection.get<PageTutorial>(ip+"tutorial/java/page/subchapter/"+subChapterId);
     }
 
     changeIdChapter(id : string){       

@@ -1,0 +1,12 @@
+<div class="tab-panel-templates">    
+<p-tabView [scrollable]="scrollableTabView">
+    <ng-container *ngFor="let item of tabViewContents | keyvalue">
+        <p-tabPanel header="{{item.key}}">
+
+            <div class="article" [innerHTML]="item.value"></div>
+            
+
+        </p-tabPanel>
+    </ng-container>
+</p-tabView>
+</div>

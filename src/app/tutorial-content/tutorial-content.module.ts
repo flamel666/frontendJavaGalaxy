@@ -16,6 +16,7 @@ import { SimpleTemplateContentComponent } from './templates/simple-template-cont
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
+import { TabPanelComponent } from './templates/tab-panel/tab-panel.component';
 
 
 
@@ -24,7 +25,8 @@ import { HttpClient } from '@angular/common/http';
     SideBarComponent,
     GlobalContentComponent,
     TutorialBodyContentComponent,
-    SimpleTemplateContentComponent 
+    SimpleTemplateContentComponent,
+    TabPanelComponent 
   ],
   imports: [
     CommonModule,
