@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 enum ipConfig{
-    IPPUBLICSERVER="http://93.148.120.184:80/"//localhost:8080
+    IPPUBLICSERVER="https://93.148.120.184:80/"//localhost:8080
 }
 
 @Injectable({
