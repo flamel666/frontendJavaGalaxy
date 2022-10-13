@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static('./dist/java-galaxy/'));
 
 app.get('/*', (req, res) => {
-    res.sendFile('index.html', { root: 'dist/java-galaxy/' });
+    res.sendFile('index.html', { root: './dist/java-galaxy/' });
   });
 
 // Start the app by listening on the default Heroku port
