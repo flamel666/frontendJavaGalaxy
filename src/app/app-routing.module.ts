@@ -2,14 +2,13 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  
   {
-    path: "**",
-    redirectTo: 'home'
-  }, 
-  {
-    path: "",
-    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
-  }, 
+    path: "", pathMatch: "full", redirectTo: 'home'
+   // loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
+  },
+  { path: 'home',
+   loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) },
   
   
   {
@@ -21,7 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./tutorial-content/tutorial-content.module').then(m => m.TutorialContentModule)
   
   },
-  { path: 'home', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) }
+  {//questo va messo sempre alla fine 
+    path: "**",//se vado su una pagina che non esiste allora mi dirotta su home
+    redirectTo: 'home' //magari usarlo per un errore 404 custom
+  }
 ];
 
 @NgModule({

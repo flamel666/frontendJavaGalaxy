@@ -171,7 +171,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
   this.loaderGltf.load('assets/star_of_sun/scene.gltf', (gltf)=>{   
     gltf.scene.children[0].position.y = -50;
     gltf.scene.children[0].position.x = 0;      
-    gltf.scene.children[0].setRotationFromAxisAngle(new THREE.Vector3(1,0,0,),0);       
+    gltf.scene.children[0].setRotationFromAxisAngle(new THREE.Vector3(1,0,0,),0);      
+    si dovrebbe poter animare un gltf scrivendo il nome dell'animazione preso da 
+    https://sketchfab.com/
     this.scene.add(gltf.scene.children[0]);    
   });
 */
