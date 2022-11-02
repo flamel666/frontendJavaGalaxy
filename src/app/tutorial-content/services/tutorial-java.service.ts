@@ -40,17 +40,17 @@ export class TutorialJavaService{
     //get chapters by programming language and language http://localhost:8080/
     public getChapters(programmingLanguage: string, language: string):Observable<ChaptersCourse[]>{//79.32.72.214
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<ChaptersCourse[]>("https://188.217.229.176:443/tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
+        return this.httpConnection.get<ChaptersCourse[]>("https://37.183.210.228:443/java-galaxy/tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
     }
 
     public getPageByChapter(chapterId: string):Observable<PageTutorial>{
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<PageTutorial>("https://188.217.229.176:443/tutorial/java/page/chapter/"+chapterId);
+        return this.httpConnection.get<PageTutorial>("https://37.183.210.228:443/java-galaxy/tutorial/java/page/chapter/"+chapterId);
     }
 
     public getPageBySubChapter(subChapterId: string):Observable<PageTutorial>{
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<PageTutorial>("https://188.217.229.176:443/tutorial/java/page/subchapter/"+subChapterId);
+        return this.httpConnection.get<PageTutorial>("https://37.183.210.228:443/java-galaxy/tutorial/java/page/subchapter/"+subChapterId);
     }
 
     changeIdChapter(id : string){       
