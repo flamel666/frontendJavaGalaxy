@@ -45,12 +45,14 @@ export class TutorialJavaService{
 
     public getPageByChapter(chapterId: string):Observable<PageTutorial>{
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<PageTutorial>("https://javagalazy.sytes.net/java-galaxy/tutorial/java/page/chapter/"+chapterId);
+        return this.httpConnection.get<PageTutorial>("hhttps://javagalazy.sytes.net/java-galaxy/tutorial/java/page/chapter/"+chapterId);
     }
 
-    public getPageBySubChapter(subChapterId: string):Observable<PageTutorial>{
+    public getPageBySubChapter(subChapterId: string):Observable<PageTutorial>{        
+        let chapter = subChapterId.substring(0,subChapterId.indexOf("."));
+        let subChapter = subChapterId.substring(subChapterId.indexOf(".")+1,subChapterId.length);
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<PageTutorial>("https://javagalazy.sytes.net/java-galaxy/tutorial/java/page/subchapter/"+subChapterId);
+        return this.httpConnection.get<PageTutorial>("https://javagalazy.sytes.net/java-galaxy/tutorial/java/page/chapter/"+chapter+"/subchapter/"+subChapter);
     }
 
     changeIdChapter(id : string){       
