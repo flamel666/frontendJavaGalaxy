@@ -40,17 +40,19 @@ export class TutorialJavaService{
     //get chapters by programming language and language http://localhost:8080/
     public getChapters(programmingLanguage: string, language: string):Observable<ChaptersCourse[]>{//79.32.72.214
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<ChaptersCourse[]>("http://localhost:8080/tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
+        return this.httpConnection.get<ChaptersCourse[]>(ip+"tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
     }
 
     public getPageByChapter(chapterId: string):Observable<PageTutorial>{
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<PageTutorial>("http://localhost:8080/tutorial/java/page/chapter/"+chapterId);
+        return this.httpConnection.get<PageTutorial>(ip+"tutorial/java/page/chapter/"+chapterId);
     }
 
-    public getPageBySubChapter(subChapterId: string):Observable<PageTutorial>{
+    public getPageBySubChapter(subChapterId: string):Observable<PageTutorial>{        
+        let chapter = subChapterId.substring(0,subChapterId.indexOf("."));
+        let subChapter = subChapterId.substring(subChapterId.indexOf(".")+1,subChapterId.length);
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<PageTutorial>("http://localhost:8080/tutorial/java/page/subchapter/"+subChapterId);
+        return this.httpConnection.get<PageTutorial>(ip+"tutorial/java/page/chapter/"+chapter+"/subchapter/"+subChapter);
     }
 
     changeIdChapter(id : string){       

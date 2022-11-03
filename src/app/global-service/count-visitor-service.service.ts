@@ -12,6 +12,11 @@ export class CountVisitorServiceService {
 
   public incrementVisitour():void{       
     let ip = this.configService.getIpServer();
+  /*
+    this.httpConnection.post("https://javagalazy.sytes.net/java-galaxy/counter/visit/increment", { title: 'Increment visitour' }).subscribe(data => {
+      
+    });
+    */
     this.httpConnection.post(ip+"counter/visit/increment", { title: 'Increment visitour' }).subscribe(data => {
     
   });

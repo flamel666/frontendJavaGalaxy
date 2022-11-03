@@ -170,6 +170,7 @@ export class SideBarComponent implements OnInit {
   public changeSubChapter(lable: TreeNode, key: string) {
     console.log('--------------------------------------' + key);
     console.log('scope subchapter is ' + lable.key);
+    console.log('sotto capitolo numero:  ' +key.substring(key.indexOf(".")+1,key.length));
     console.log('scope subchapter data ' + lable.data);
     console.log('scope subchapter is ' + lable.label);
     console.log('scope subchapter is ' + lable.children?.length);
@@ -181,7 +182,7 @@ export class SideBarComponent implements OnInit {
     document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(lable.key!)?.classList.add("selectedArgument");    
 
-    this.chapterJavaService.changeIdSubChapter("" + lable?.data);
+    this.chapterJavaService.changeIdSubChapter(key);
 
     //calcoliamo i nuovi valori
     this.evalueateNextSubChapters(lable!);
@@ -236,7 +237,8 @@ export class SideBarComponent implements OnInit {
     console.log("sub: " + this.nextSubChapter);
     if (this.nextSubChapter != undefined) {
       document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
-      this.chapterJavaService.changeIdSubChapter(this.nextSubChapter.data);
+      //this.nextSubChapter.key.substring(key.indexOf(".")+1,key.length)
+      this.chapterJavaService.changeIdSubChapter(""+this.nextSubChapter.key);
       document.getElementById(this.nextSubChapter?.key!)?.classList.add("selectedArgument");
       //evaluete new subChapters
       this.evalueateNextSubChapters(this.nextSubChapter);
@@ -259,7 +261,8 @@ export class SideBarComponent implements OnInit {
 
     if (this.previousSubChapter != undefined) {
       document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
-      this.chapterJavaService.changeIdSubChapter(this.previousSubChapter.data);
+      
+      this.chapterJavaService.changeIdSubChapter(""+this.previousSubChapter.key);
       document.getElementById(this.previousSubChapter?.key!)?.classList.add("selectedArgument");
       //evaluete new subChapterss
       this.evalueatePreviousSubChapters(this.previousSubChapter);
@@ -277,8 +280,8 @@ export class SideBarComponent implements OnInit {
         this.initializeSubChapter(this.selectedChapter!);
         
       }else{
-        let selectedSubChapter = this.previousChapter.children[this.previousChapter.children.length-1];
-        this.chapterJavaService.changeIdSubChapter(selectedSubChapter.data);
+        let selectedSubChapter = this.previousChapter.children[this.previousChapter.children.length-1];        
+        this.chapterJavaService.changeIdSubChapter(selectedSubChapter.key!);
         document.getElementById(selectedSubChapter?.key!)?.classList.add("selectedArgument");
         this.evalueatePreviousSubChapters(selectedSubChapter);
         this.evalueateNextSubChapters(this.selectedSubChapter!);
