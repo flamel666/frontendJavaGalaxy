@@ -376,11 +376,19 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   public previousArgument(): void {
     console.log("previous");
     this.chapterJavaService.previousChapter("1");
+   //if the page offset(y) is greater than 100, go up
+    if(window.pageYOffset > 100) {
+      window.scrollTo(0, 100)
+    }
   }
 
   public nextArgument(): void {
     console.log("next");
     this.chapterJavaService.nextChapter("1");
+    //if the page offset(y) is greater than 100, go up
+    if(window.pageYOffset > 100) {
+      window.scrollTo(0, 100)
+    }
   }
 
 }
