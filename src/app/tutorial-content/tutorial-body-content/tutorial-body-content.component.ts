@@ -61,7 +61,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         console.log("nel subscribe ");
         console.log(response);
         this.pageToShow = response;
-        this.createPage(this.pageToShow);        
+        this.createPage(this.pageToShow);         
       });
     });
 
@@ -78,7 +78,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         this.defaultContent = [];
         console.log(response);
         this.pageToShow = response;
-        this.createPage(this.pageToShow);
+        this.createPage(this.pageToShow);        
         //   this.placeholderContainer.createComponent(TabPanelComponent);       
       });
     });
@@ -377,15 +377,18 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     console.log("previous");
     this.chapterJavaService.previousChapter("1");
    //if the page offset(y) is greater than 100, go up
-    if(window.pageYOffset > 100) {
-      window.scrollTo(0, 100)
-    }
+   this.goOnTop();
   }
 
   public nextArgument(): void {
     console.log("next");
     this.chapterJavaService.nextChapter("1");
     //if the page offset(y) is greater than 100, go up
+    this.goOnTop();
+  }
+
+
+  public goOnTop(): void{
     if(window.pageYOffset > 100) {
       window.scrollTo(0, 100)
     }

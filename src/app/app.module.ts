@@ -33,6 +33,7 @@ import { CookieService } from 'ngx-cookie-service';
 import {MenubarModule} from 'primeng/menubar';
 import { HomeModule } from './features/home/home.module';
 import { CountVisitorServiceService } from './global-service/count-visitor-service.service';
+//import { AppDraggableDirective } from './global-directives/app-draggable.directive';
 
 //angularMaterial
 

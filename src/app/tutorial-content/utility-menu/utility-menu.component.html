@@ -1,0 +1,33 @@
+<!--
+<div>
+
+    <p style="font-size: 100px; color: red;"  appAppDraggable draggable="true">utility-menu works!</p>
+</div>
+-->
+
+<div class="ContentToolBar" appAppDraggable draggable="true">
+<div id="toolBarShake" class="toolBarShake">
+    <div id="contentMenuLeft" class="contentMenuLeft">
+        <button pButton pRipple type="button" class="p-button-danger" [disabled]="!isAvailable">
+            <i class="pi pi-youtube" style="font-size: 1.5rem" [pTooltip]="availabilityMessage"
+                tooltipPosition="bottom"></i>
+        </button>
+    </div>
+
+    <div class="toolBar">
+
+        <button id="burger" class="bottone" (click)="openAndCloseBurger()" pTooltip="Drag me" tooltipPosition="bottom"
+            tooltipEvent="focus" [life]="2000">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+    </div>
+
+    <div id="contentMenuRight" class="contentMenuRight">
+
+    </div>
+</div>
+</div>
+
+<div class="cone"></div>

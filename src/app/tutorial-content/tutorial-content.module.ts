@@ -10,6 +10,9 @@ import {TreeModule} from 'primeng/tree';
 import {ButtonModule} from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
 import {SkeletonModule} from 'primeng/skeleton';
+import {DragDropModule} from 'primeng/dragdrop';
+import {SpeedDialModule} from 'primeng/speeddial';
+import {TooltipModule} from 'primeng/tooltip';
 
 import { TutorialBodyContentComponent } from './tutorial-body-content/tutorial-body-content.component';
 import { SimpleTemplateContentComponent } from './templates/simple-template-content/simple-template-content.component';
@@ -17,6 +20,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 import { TabPanelComponent } from './templates/tab-panel/tab-panel.component';
+import { UtilityMenuComponent } from './utility-menu/utility-menu.component';
+import { AppDraggableDirective } from '../global-directives/app-draggable.directive';
+import { MessageService } from 'primeng/api';
+
 
 
 
@@ -26,7 +33,10 @@ import { TabPanelComponent } from './templates/tab-panel/tab-panel.component';
     GlobalContentComponent,
     TutorialBodyContentComponent,
     SimpleTemplateContentComponent,
-    TabPanelComponent 
+    TabPanelComponent,
+    UtilityMenuComponent,
+    AppDraggableDirective
+    
   ],
   imports: [
     CommonModule,
@@ -36,6 +46,9 @@ import { TabPanelComponent } from './templates/tab-panel/tab-panel.component';
     ButtonModule,
     TabViewModule ,
     SkeletonModule,
+    DragDropModule,
+    TooltipModule,
+    SpeedDialModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -43,6 +56,7 @@ import { TabPanelComponent } from './templates/tab-panel/tab-panel.component';
         deps: [HttpClient]
       }
     }),
-  ]
+  ],
+  providers: [MessageService]
 })
 export class TutorialContentModule { }
