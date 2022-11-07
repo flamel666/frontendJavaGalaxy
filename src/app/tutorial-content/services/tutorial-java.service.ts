@@ -29,6 +29,11 @@ export class TutorialJavaService{
     idChapterChanged$? = this.idChapter?.asObservable(); 
     idChapterSubChanged$? = this.idSubChapter?.asObservable(); 
 
+    private youtubeVideo? = new Subject<string>();
+
+    youtubeVideoChanged$? = this.youtubeVideo?.asObservable();
+
+
     constructor(public httpConnection: HttpClient, public configService: ServiceConfigurationService){
 
     }
@@ -73,4 +78,7 @@ export class TutorialJavaService{
         this.actionFromTutorialBodyPreviousContent?.next(event);
     }
    
+    youTubeVideoChanged(idVideo: string){
+        this.youtubeVideo?.next(idVideo);
+    }
 }

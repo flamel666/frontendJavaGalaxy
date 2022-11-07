@@ -5,29 +5,37 @@
 </div>
 -->
 
-<div class="ContentToolBar" appAppDraggable draggable="true">
-<div id="toolBarShake" class="toolBarShake">
-    <div id="contentMenuLeft" class="contentMenuLeft">
-        <button pButton pRipple type="button" class="p-button-danger" [disabled]="!isAvailable">
-            <i class="pi pi-youtube" style="font-size: 1.5rem" [pTooltip]="availabilityMessage"
-                tooltipPosition="bottom"></i>
-        </button>
+<div id="ContentToolBar" class="ContentToolBar" appAppDraggable draggable="true">
+    <div id="toolBarShake" class="toolBarShake">
+
+        <div id="contentMenuLeft" class="contentMenuLeft">
+            <button pButton pRipple type="button" class="p-button-danger" [disabled]="!isAvailable" (click)="openAndCloseYouTube()">
+                <i class="pi pi-youtube" style="font-size: 1.5rem" [pTooltip]="availabilityMessage"
+                    tooltipPosition="bottom"></i>
+            </button>
+        </div>
+
+        <div class="toolBar">
+
+            <button id="burgerUtilityMenu" class="bottone" (click)="openAndCloseBurger()" pTooltip="Drag me"
+                tooltipPosition="bottom" tooltipEvent="focus" [life]="2000">
+                <div></div>
+                <div></div>
+                <div></div>
+            </button>
+        </div>
+
+        <div id="contentMenuRight" class="contentMenuRight">
+
+        </div>
     </div>
 
-    <div class="toolBar">
-
-        <button id="burger" class="bottone" (click)="openAndCloseBurger()" pTooltip="Drag me" tooltipPosition="bottom"
-            tooltipEvent="focus" [life]="2000">
-            <div></div>
-            <div></div>
-            <div></div>
-        </button>
+    <div id="youTubeContent" class="youTubeContent">
+        <youtube-player [videoId]="videoId" [height]="300" [width]="630"> </youtube-player>
     </div>
 
-    <div id="contentMenuRight" class="contentMenuRight">
-
-    </div>
-</div>
 </div>
 
 <div class="cone"></div>
+<!--
+<youtube-player [videoId]="videoId"> </youtube-player>-->

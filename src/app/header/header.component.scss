@@ -36,6 +36,7 @@
         background-color: var(--navbar-color);       
         border: none;
         border-radius: 10px;       
+        
       }
       .p-menubar .p-menuitem-link {//sottoContainer
         padding: 0.75rem 1.25rem;       
@@ -392,94 +393,94 @@
   }
 
   .p-menubar {//container
-    padding: 0.5rem;      
-    transition: var(--transition-delay);
-    background-color: var(--navbar-color);       
+    padding: 0.5rem !important;      
+    transition: var(--transition-delay) !important;
+    background-color: var(--navbar-color) !important;       
    // border: 1px solid black;
-    border-radius: 10px;    
+    border-radius: 10px !important;    
     width: 100% !important;   
-    border:none;
+    border:none !important;
   }
   .p-menubar .p-menuitem-link {//sottoContainer
-    padding: 0.75rem 1.25rem;       
+    padding: 0.75rem 1.25rem !important;       
     //border-radius: 50px !important;         
-    user-select: none;
-    transition: var(--transition-delay-hover);
-    border: 1px solid rgb(71, 68, 68); 
+    user-select: none !important;
+    transition: var(--transition-delay-hover) !important;
+    border: 1px solid rgb(71, 68, 68) !important; 
     width: 230px !important;   
   }
  
   .p-menubar .p-menuitem-link .p-menuitem-text {
-    color: var(--text-color); 
-    font-size: var(--font-size);
-    font-weight: var(--font-weight);
+    color: var(--text-color) !important; 
+    font-size: var(--font-size) !important;
+    font-weight: var(--font-weight) !important;
     
   }
   .p-menubar .p-menuitem-link .p-menuitem-icon {
-    color: var(--icon-color); 
-    margin-right: 0.5rem;
+    color: var(--icon-color) !important; 
+    margin-right: 0.5rem !important;
   }
  
   .p-menubar .p-menuitem-link .p-submenu-icon {//icona freccetta verso il basso
-    color: var(--icon-color);
-    margin-left: 7rem;   
-    transition: all .4s ease;
+    color: var(--icon-color) !important;
+    margin-left: 7rem !important;   
+    transition: all .4s ease !important;
   }
 
   .p-menubar .p-menuitem-link:not(.p-disabled):hover {
-    transition: var(--transition-delay-hover);    
+    transition: var(--transition-delay-hover) !important;    
     background-color: var(--navbar-hover-component-color) !important;
   }
   .p-menubar .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
-    color: var(--icon-color);
+    color: var(--icon-color) !important;
   }
   .p-menubar .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon {
-    color: var(--icon-color);
+    color: var(--icon-color) !important;
   }
   .p-menubar .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {
-    color: var(--icon-color);
+    color: var(--icon-color) !important;
   }  
   .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
-    color: var(--text-color);
+    color: var(--text-color) !important;
   }
   .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon {
-    color: var(--icon-color);
+    color: var(--icon-color) !important;
   }
   .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {// freccetta verso il basso "hover"
     color: var(--icon-color);
   } 
   .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link .p-submenu-icon,
   .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {// freccetta verso il basso "aperto"
-    color:  var(--icon-color);
-    transform: rotate(180deg);
+    color:  var(--icon-color) !important;
+    transform: rotate(180deg) !important;
   }
   .p-menubar .p-submenu-list {//aspetto della sotto lista
  //   padding: 0.25rem 0;
-    background: var(--navbar-color);
-    border: 0 none;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    width: auto;
-    min-width: 8rem;
+    background: var(--navbar-color) !important;
+    border: 0 none !important;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !important;
+    width: auto !important;
+    min-width: 8rem !important;
     border-radius: 50px !important; 
   }
   .p-menubar .p-submenu-list .p-menu-separator {
-    border-top: 1px solid #dee2e6;
-    margin: 0.25rem 0;
+    border-top: 1px solid #dee2e6 !important;
+    margin: 0.25rem 0 !important; 
   }
   .p-menubar .p-submenu-list .p-submenu-icon {
-    font-size: 0.875rem;
+    font-size: 0.875rem !important;
   }
   .p-menubar .p-submenu-list .p-menuitem {
-    margin: 0;
+    margin: 0 !important;
   }
   .p-menubar .p-submenu-list .p-menuitem:last-child {
-    margin: 0;
+    margin: 0 !important;
   }
   .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link {
-    background: var(--navbar-color);
+    background: var(--navbar-color) !important;
   }
   
-//scleta corsi
+  //scleta corsi
 
        //scelta lingua
 .p-dropdown { 
@@ -776,10 +777,13 @@ svg{
   }
 }
 
-
-
-
-
+@media screen and (max-width: 960px) {
+  #headerTop{
+    .p-menubar {
+   
+    }
+  }
+}
 @media screen and (max-width: 768px) {
   #headerTop{
   .p-menubar {

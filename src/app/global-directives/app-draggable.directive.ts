@@ -15,13 +15,21 @@ export class AppDraggableDirective {
     return this.sanitizer.bypassSecurityTrustStyle(`translateX(${this.position.x}px) translateY(${this.position.y}px)`);
   }
 
+  @HostBinding("style.opacity") 
+  get opacity(): SafeStyle{
+    return this.sanitizer.bypassSecurityTrustStyle(`${this.opacityValue}`);
+  }
+
+  // opacity: 0.4;
+
   @HostBinding("class.draggable") 
-  draggable = true;
-  
+  draggable = true;  
 
   private position: position = {x:0, y:0};
 
   private startPosition?: position;
+
+  private opacityValue = 1;
 
   constructor(private sanitizer: DomSanitizer) { }
 
@@ -31,19 +39,20 @@ export class AppDraggableDirective {
       x: event.clientX - this.position.x,
       y: event.clientY -this.position.y
     }
+    this.opacityValue = 0.4;
   }
 
   @HostListener("drag", ["$event"]) 
   onDragMove(event: PointerEvent){
     this.position.x = event.clientX - this.startPosition!.x;
-    this.position.y = event.clientY - this.startPosition!.y;
-
+    this.position.y = event.clientY - this.startPosition!.y;    
   }
 
   @HostListener("dragend", ["$event"]) 
   onDragEnd(event: PointerEvent){    
     this.position.x = event.clientX - this.startPosition!.x;
-    this.position.y = event.clientY - this.startPosition!.y;    
+    this.position.y = event.clientY - this.startPosition!.y;
+    this.opacityValue = 1;    
   }
 
 }

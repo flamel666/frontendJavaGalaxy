@@ -14,6 +14,8 @@ import {DragDropModule} from 'primeng/dragdrop';
 import {SpeedDialModule} from 'primeng/speeddial';
 import {TooltipModule} from 'primeng/tooltip';
 
+import { YouTubePlayerModule } from '@angular/youtube-player';
+
 import { TutorialBodyContentComponent } from './tutorial-body-content/tutorial-body-content.component';
 import { SimpleTemplateContentComponent } from './templates/simple-template-content/simple-template-content.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -49,6 +51,7 @@ import { MessageService } from 'primeng/api';
     DragDropModule,
     TooltipModule,
     SpeedDialModule,
+    YouTubePlayerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

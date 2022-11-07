@@ -111,5 +111,7 @@
       }
     }
   },
-  "defaultProject": "javaGalaxy"
+  "cli": {
+    "analytics": false
+  }
 }

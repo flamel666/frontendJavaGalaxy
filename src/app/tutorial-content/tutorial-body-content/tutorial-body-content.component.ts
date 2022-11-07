@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentRef, ElementRef, OnDestroy, OnInit, QueryList, Renderer2, TemplateRef, Type, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit,  ChangeDetectorRef, Component, ComponentRef,   OnInit, QueryList, Renderer2, TemplateRef, Type, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
@@ -61,7 +61,11 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         console.log("nel subscribe ");
         console.log(response);
         this.pageToShow = response;
-        this.createPage(this.pageToShow);         
+        this.createPage(this.pageToShow);   
+        if(response.videoYouTubeId != undefined)    
+          this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+          else
+        this.chapterJavaService.youTubeVideoChanged("");
       });
     });
 
@@ -79,6 +83,10 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         console.log(response);
         this.pageToShow = response;
         this.createPage(this.pageToShow);        
+        if(response.videoYouTubeId != undefined)    
+          this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+        else
+        this.chapterJavaService.youTubeVideoChanged("");
         //   this.placeholderContainer.createComponent(TabPanelComponent);       
       });
     });

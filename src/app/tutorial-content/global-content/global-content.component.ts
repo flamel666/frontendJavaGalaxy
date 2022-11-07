@@ -9,7 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class GlobalContentComponent implements OnInit {    
 
   constructor(private router: Router) {
-    this.router.events.subscribe((evt) => {//serve ad andare top nella pagina quando termina la navigazione
+    this.router.events.subscribe((evt: any) => {//serve ad andare top nella pagina quando termina la navigazione
       if (!(evt instanceof NavigationEnd)) {//forse dobbiamo metterlo ancora più su
           return;
       }
@@ -18,7 +18,7 @@ export class GlobalContentComponent implements OnInit {
   }
 
   ngOnInit(): void {   
-    this.router.events.subscribe((evt) => {//serve ad andare top nella pagina quando termina la navigazione
+    this.router.events.subscribe((evt: any) => {//serve ad andare top nella pagina quando termina la navigazione
       if (!(evt instanceof NavigationEnd)) {//forse dobbiamo metterlo ancora più su
           return;
       }
