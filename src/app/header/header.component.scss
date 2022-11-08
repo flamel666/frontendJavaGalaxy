@@ -427,7 +427,7 @@
     transition: all .4s ease !important;
   }
 
-  .p-menubar .p-menuitem-link:not(.p-disabled):hover {
+  .p-menubar .p-menuitem-link:not(.p-disabled):hover {//hover menu intestazione
     transition: var(--transition-delay-hover) !important;    
     background-color: var(--navbar-hover-component-color) !important;
   }
@@ -447,7 +447,7 @@
     color: var(--icon-color) !important;
   }
   .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {// freccetta verso il basso "hover"
-    color: var(--icon-color);
+    color: var(--icon-color) !important;
   } 
   .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link .p-submenu-icon,
   .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {// freccetta verso il basso "aperto"
@@ -478,6 +478,10 @@
   }
   .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link {
     background: var(--navbar-color) !important;
+  }
+  
+  .p-menubar .p-ripple:not(.p-disabled):hover {//hover menu intestazione       
+    background-color: var(--navbar-hover-component-color) !important;
   }
   
   //scleta corsi
