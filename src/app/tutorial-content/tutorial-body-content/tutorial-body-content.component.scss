@@ -3,10 +3,232 @@
         font-size: 100px;
         display: none;
     }
+.contentTutorialChapter{
+    padding: 5px;
+    p {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
+    .chapterTitle{
+        font-family: var(--font-family-global);
+        margin-bottom: 25px;
+        font-size: 80px;
+        text-align: center;
+    }
+    .generalSettings{
+        margin-bottom: 10px;
+        font-size: 28px;
+        font-family: var(--font-family-global);
+        line-height: 30px;
+    }
+
+    .imageCourse{
+        width: 80%;/*impostare il max with nelle media query*/
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        border: 1px solid black;
+        margin-bottom: 30px;
+        img {
+            width: 100%;
+            height: auto;
+          }
+        .imageDescription{
+            font-family: var(--font-family-global);
+            font-size: 12px;
+            text-align: left;
+            margin-top: -35px;
+            margin-bottom: 0;
+        }
+    }   
+
+    .evidenceArgument{
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        border: 2px solid black;
+        background-color: rgba(0,0,0,0.05);
+        border-radius: 20px;
+        width: 90%;
+        
+        .contentUsedLegend{    
+            float:left;
+            margin-top: -30px;
+            margin-left: -30px;
+           
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            .iconLegend{
+                width: 100px;
+                height: 100px;
+                border-left: 1px solid black;
+              }
+            .usedLegend{   
+                border: none;      
+                position: relative;
+                left: -5px;
+                top: -5px;
+                    
+             }
+
+     }
+     .evidenceArgumentDescription{
+        text-indent: 10px;
+     }
+     }
+
+    .listSettings{
+        margin-bottom: 25px;
+        margin-top: 25px;
+        margin-left: 7%;
+        li:not(:last-child) { 
+            margin-bottom: 5px;  
+         }
+        
+    }
+
+    .listToListSettings{
+        margin-left: 7%;
+    }
+
+    .greetings{
+        margin-bottom: 25px;
+        margin-top: 35px;
+    }
+
+    .codeblock{
+        width: 90%;            
+        border-left: 7px solid var(--navbar-color);
+        background-color: rgba(124, 119, 119, 0.205);
+        padding-top: 1px;
+        padding-bottom: 1px;
+        overflow: auto;
+        box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.3);
+        
+        ol {     
+            counter-reset: item;   
+            padding-left: 0;    
+            min-width: 600px;
+          }
+          li {    
+            display: block;    
+            margin-left: 2em;    
+          } 
+        
+          li::before {
+            display: inline-block;
+            content: counter(item);
+            counter-increment: item;
+            width: 15px;       
+            margin-left: -15px;   
+            margin:none;   
+          }
+        
+          .singleLi::before{
+            content: "";
+          }
+          .tab1{
+            margin-left: 70px;
+            
+        }
+        .tab2{
+            margin-left: 140px;
+            
+        }
+        .keyword{
+            color: rgba(212, 0, 255, 0.993);/*255, 145, 0, 0.904*/
+        }
+        
+        .className{
+            
+            color: #556ef8;/*rgb(255, 208, 0);#556ef8*//*255, 145, 0, 0.904*/
+        }
+        
+        .methodName{
+            color: rgb(216, 87, 1);/*255, 145, 0, 0.904*/
+        }
+        .stringArgument{
+            color: rgba(42, 146, 1, 0.877);/*255, 145, 0, 0.904*/
+        }
+     }
+    .textFormat{
+        font-size: 20px;
+             
+    }
+    
+      .contentLegend{
+        -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.56); 
+        box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.56);
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 500px;
+        margin-left: 35px;
+        .contentIconLegend{
+            display: flex;
+            border: 1px solid black;
+            .textLegend{
+                padding-top: 35px;
+                padding-left: 25px;               
+            }
+              .iconLegend{
+                width: 100px;
+                height: 100px;
+                border-right: 1px solid black;
+              }
+        }
+        
+    }
+    
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+        .tooltiptext {
+            visibility: hidden;    
+            width: 240px;    
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 20%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            &::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                top: 100%;
+                left: 30%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+                
+              }
+          }
+          &:hover .tooltiptext {
+            content: attr(data-tooltip);
+            visibility: visible;
+            opacity: 1;
+            -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.56); 
+            box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.56);
+          }
+      }  
+     
     .defaultTutorialContent{
     margin-left: 30px;
     margin-right: 20px;
     }
+
+}
 .skeleton{
     margin: 10px 10px !important;
     
@@ -119,3 +341,52 @@ ul.ui-tabview-nav li:first-child span {
     color: red;
   }
 
+ /*
+  @media screen and (max-width: 1200px) {
+
+
+  }
+*/
+@media screen and (max-width: 1024px) {
+    
+}
+
+@media screen and (max-width: 768px) {
+    .tutorialBodyContent{
+       
+    .contentTutorialChapter{
+            .generalSettings{        
+                font-size: 22px !important;       
+            }
+            .imageCourse{
+                width: 90%;                
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tutorialBodyContent{
+       
+        .contentTutorialChapter{
+                .generalSettings{        
+                    font-size: 19px !important;       
+                }
+                .chapterTitle{                  
+                    font-size: 50px;                  
+                }
+                
+                .imageCourse{
+                    width: 99%;
+                    .imageDescription{  
+                        font-size: 9px !important;       
+                    }
+                }
+                .codeblock{
+                    ol{
+                        min-width: 500px;
+                    }
+                }
+            }
+        }
+}

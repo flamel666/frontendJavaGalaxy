@@ -44,7 +44,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "1400kb",
-                  "maximumError": "1.4mb"
+                  "maximumError": "1.5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -111,5 +111,7 @@
       }
     }
   },
-  "defaultProject": "javaGalaxy"
+  "cli": {
+    "analytics": false
+  }
 }

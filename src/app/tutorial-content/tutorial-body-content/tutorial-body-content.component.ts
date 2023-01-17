@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentRef, ElementRef, OnDestroy, OnInit, QueryList, Renderer2, TemplateRef, Type, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit,  ChangeDetectorRef, Component, ComponentRef,   OnInit, QueryList, Renderer2, TemplateRef, Type, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
@@ -61,7 +61,11 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         console.log("nel subscribe ");
         console.log(response);
         this.pageToShow = response;
-        this.createPage(this.pageToShow);        
+        this.createPage(this.pageToShow);   
+        if(response.videoYouTubeId != undefined)    
+          this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+          else
+        this.chapterJavaService.youTubeVideoChanged("");
       });
     });
 
@@ -78,7 +82,11 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         this.defaultContent = [];
         console.log(response);
         this.pageToShow = response;
-        this.createPage(this.pageToShow);
+        this.createPage(this.pageToShow);        
+        if(response.videoYouTubeId != undefined)    
+          this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+        else
+        this.chapterJavaService.youTubeVideoChanged("");
         //   this.placeholderContainer.createComponent(TabPanelComponent);       
       });
     });
@@ -204,17 +212,18 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
  
        
      });*/
-
+/*
     this.defaultContent.push('<ul>')//non funziona spaccando il tag
-    this.defaultContent.push('<li>ciso</li>')
+    this.defaultContent.push('<li id="prova">ciso</li>')
     this.defaultContent.push('<code><span>sono uno span del cazzo</span></code>')
-    this.defaultContent.push('<div class="subBodyContaine"><p>sono un paragrafo nel div</p></div>')
+    this.defaultContent.push('<div class="subBodyContaine" id="prova2" ><p>sono un paragrafo nel div</p></div>')
     this.defaultContent.push('</ul>')
 
     this.defaultContent.push(`<div> <p-tabView> <p-tabPanel header="Header 1">Content 1</p-tabPanel> </p-tabView> </div>`);
     this.defaultContent.push(`<p-tree>
     asd
     </p-tree>`);
+    */
   }
 
   private createPageDefaultTemplate(pageToShow: PageTutorial) {
@@ -249,7 +258,9 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
           this.nestedTabViewContents.set(this.defaultContent.length - 1, el);
         }
       } else {
-
+        console.log("introduzione: tipo: "+el.componentType);
+        console.log("introduzione: class: "+el.componentClassCss);
+        console.log("introduzione: id: "+el.componentIdCss);
         this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id="${el.componentIdCss}">${el.componentContent}</${el.componentType}>`);
 
       }
@@ -376,11 +387,22 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   public previousArgument(): void {
     console.log("previous");
     this.chapterJavaService.previousChapter("1");
+   //if the page offset(y) is greater than 100, go up
+   this.goOnTop();
   }
 
   public nextArgument(): void {
     console.log("next");
     this.chapterJavaService.nextChapter("1");
+    //if the page offset(y) is greater than 100, go up
+    this.goOnTop();
+  }
+
+
+  public goOnTop(): void{
+    if(window.pageYOffset > 100) {
+      window.scrollTo(0, 100)
+    }
   }
 
 }

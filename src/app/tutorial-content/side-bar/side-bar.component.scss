@@ -68,6 +68,7 @@ label{
     .paragraphSidebarContent{        
             visibility: hidden;
             display: none;        
+            font-family: var(--font-family-global);
     }   
   
 }
@@ -117,10 +118,12 @@ label{
         
         .paragraphSidebarChapter{
             font-size: 20px;      
+            
           //  white-space: nowrap ;      
            // display: inline-block; 
         }
         .paragraphSidebarContent{
+            font-family: var(--font-family-global);
             padding-top: 4px;
             width: 180px;
            // display: inline-block;
@@ -133,11 +136,13 @@ label{
         display: flex;
        
         .paragraphSidebarChapter{
+            
             font-size: 20px;   
            // white-space: nowrap ;
            // display: inline-block;
         }  
         .paragraphSidebarContent{
+            font-family: var(--font-family-global);
             padding-top: 4px;
             width: 180px;
         //    display: inline-block;
@@ -229,6 +234,7 @@ label{
         .paragraphSidebarContent{        
                 visibility: visible;
                 display: block;        
+                font-family: var(--font-family-global);
         }   
       
     }

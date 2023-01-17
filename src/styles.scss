@@ -9,7 +9,7 @@
 @import "../src/globalVar.scss";
 @import "../src/app/header/header.component.scss";
 @import "app/tutorial-content/tutorial-body-content/tutorial-body-content.component.scss";
-
+@import "app/tutorial-content/utility-menu/utility-menu.component.scss";
 
 // this is the scss file of one of the 16 free styles of ngprime.
 *{ 
@@ -36,7 +36,7 @@ body {
 //sideBar
 #sidebarGlobal {
   background: transparent;
-
+  font-family: var(--font-family-global);
   .p-tree {
     border: none;
     background: transparent;
@@ -86,11 +86,8 @@ body {
             .paragraphSidebarContent {
               width: 160px;
               padding-top: 4px;
+              font-family: var(--font-family-global);
             }
-
-
-
-
 
           }
 
@@ -104,6 +101,7 @@ body {
           .custom-p-button-linkLeaf:enabled:hover {
             .paragraphSidebarContent {
               text-decoration: underline;
+              font-family: var(--font-family-global);
             }
 
           }
@@ -169,6 +167,7 @@ body {
   .custom-p-button-linkLeaf:enabled:hover {
     .paragraphSidebarContent {
       text-decoration: underline;
+      font-family: var(--font-family-global);
     }
   }
 

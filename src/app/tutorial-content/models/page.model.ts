@@ -10,5 +10,5 @@ export class PageTutorial{
     chapter? : ChaptersCourse;
 	subChapter? : SubChaptersCourse;
     compontentsPage? : Array<ComponentPageTutorial>;
-
+	videoYouTubeId? : string;
 }
