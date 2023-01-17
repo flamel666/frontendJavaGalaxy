@@ -51,7 +51,7 @@ export class TutorialJavaService{
         this.language = language;
         this.programmingLanguage = programmingLanguage;
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<ChaptersCourse[]>("https://javagalazy.sytes.net/java-galaxy/tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
+        return this.httpConnection.get<ChaptersCourse[]>(ip+"tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
     }
 
     public getPageByChapter(chapterId: string):Observable<PageTutorial>{
