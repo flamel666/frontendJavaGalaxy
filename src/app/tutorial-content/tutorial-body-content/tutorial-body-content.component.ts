@@ -212,17 +212,18 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
  
        
      });*/
-
+/*
     this.defaultContent.push('<ul>')//non funziona spaccando il tag
-    this.defaultContent.push('<li>ciso</li>')
+    this.defaultContent.push('<li id="prova">ciso</li>')
     this.defaultContent.push('<code><span>sono uno span del cazzo</span></code>')
-    this.defaultContent.push('<div class="subBodyContaine"><p>sono un paragrafo nel div</p></div>')
+    this.defaultContent.push('<div class="subBodyContaine" id="prova2" ><p>sono un paragrafo nel div</p></div>')
     this.defaultContent.push('</ul>')
 
     this.defaultContent.push(`<div> <p-tabView> <p-tabPanel header="Header 1">Content 1</p-tabPanel> </p-tabView> </div>`);
     this.defaultContent.push(`<p-tree>
     asd
     </p-tree>`);
+    */
   }
 
   private createPageDefaultTemplate(pageToShow: PageTutorial) {
@@ -257,7 +258,9 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
           this.nestedTabViewContents.set(this.defaultContent.length - 1, el);
         }
       } else {
-
+        console.log("introduzione: tipo: "+el.componentType);
+        console.log("introduzione: class: "+el.componentClassCss);
+        console.log("introduzione: id: "+el.componentIdCss);
         this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id="${el.componentIdCss}">${el.componentContent}</${el.componentType}>`);
 
       }

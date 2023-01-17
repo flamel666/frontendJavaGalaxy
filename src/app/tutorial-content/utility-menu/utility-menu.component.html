@@ -26,13 +26,18 @@
         </div>
 
         <div id="contentMenuRight" class="contentMenuRight">
-
+           
+            <button pButton pRipple type="button" class="p-button-danger" (click)="openAndCloseLegend()">
+                <i class="pi pi-book" style="font-size: 1.3rem"></i>
+            </button>
+       
         </div>
     </div>
 
     <div id="youTubeContent" class="youTubeContent">
-        <youtube-player [videoId]="videoId" [height]="300" [width]="630"> </youtube-player>
+        <youtube-player [videoId]="videoId" [height]="height" [width]="width"> </youtube-player>
     </div>
+   
 
 </div>
 

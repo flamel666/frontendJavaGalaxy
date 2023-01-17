@@ -75,7 +75,8 @@ export class SideBarComponent implements OnInit {
       this.nodes = [];
 
       this.chaptersJavaCourse.forEach(el => {
-        console.log(el.id)
+        console.log(el.id);
+        console.log(el.chapterNumber);
 
         this.childrenParam = [];
 
@@ -95,7 +96,8 @@ export class SideBarComponent implements OnInit {
         }
 
         this.nodes.push({
-          key: "" + el.id,
+          key: "" + el.chapterNumber,
+          data: "" + el.id,
           label: el.chapterTitle,
           children: this.childrenParam
         });
@@ -144,6 +146,7 @@ export class SideBarComponent implements OnInit {
   public changeChapter(lable: TreeNode, key: string) {
     console.log('--------------------------------------');
     console.log('scope chapter is ' + lable.key);
+    console.log('scope chapter is ' + lable.key);
     console.log('scope chapter is ' + lable.label);
     console.log('scope chapter is ' + lable.children?.length);
     console.log('scope chapter is ex ' + lable.expanded);
@@ -158,8 +161,8 @@ export class SideBarComponent implements OnInit {
     document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(this.selectedChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(lable.key!)?.classList.add("selectedArgument");
-
-    this.chapterJavaService.changeIdChapter("" + lable?.key);
+      console.log("id del capitolo: "+lable?.data)
+    this.chapterJavaService.changeIdChapter("" + lable?.data);
     //evaluate next chapter
     this.evalueateNextChapters(lable);
     this.evalueatePreviousChapters(this.selectedChapter!);

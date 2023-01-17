@@ -483,11 +483,14 @@ h1 {
   .containerArrow {
     position: absolute;
     bottom: 100px;
-    left:50%;   
     
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 0px;
+    padding-right: 33px;
+   
    }
    
    .arrow {

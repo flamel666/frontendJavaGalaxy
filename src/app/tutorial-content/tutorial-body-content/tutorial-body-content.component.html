@@ -114,7 +114,7 @@
             </div>
         </div>
         <hr>
-
+        <div class="contentTutorialChapter">
         <div *ngFor="let item of defaultContent; let i = index;" class="defaultTutorialContent">
             
             <div class="article" [innerHTML]="item"></div>            
@@ -122,7 +122,7 @@
             <span #tabbedPane id="{{i}}"></span>
            
         </div>
-        
+    </div>
         <hr>
         <div class="buttonNavigate onTheBottom">            
             <div class="contentButtonPrevious">

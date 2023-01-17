@@ -10,12 +10,16 @@ body {
 
     --text-color-body: rgb(255, 255, 255);
 
+    --font-family-global: 'Times New Roman', Times, serif;//Verdana, sans-serif, serif, Arial, Helvetica, 'Times New Roman', Times;
+    font-family: var(--font-family-global);
+
     --navbar-color: #007bb8;// #007bb8
         --font-size: 15px;
         --font-weight: 600;
         --navbar-hover-component-color: #00aaff;//#00618b;
         --transition-delay-hover: 0.5s;
         --logo-url: "../../assets/images/header.component/varie/logo-white.png";
+
 
 
     //sideBar
