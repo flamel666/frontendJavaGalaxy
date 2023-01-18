@@ -379,6 +379,10 @@ div:nth-child(3):before {
 
 }
 @media screen and (max-width: 480px) {
+
+  .ContentToolBar{      
+    margin-left: 45%; 
+  }
  
   @keyframes youTubeOpenwidth {
     0% {

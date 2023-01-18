@@ -361,6 +361,15 @@ ul.ui-tabview-nav li:first-child span {
             .imageCourse{
                 width: 90%;                
             }
+            .contentLegend{                   
+                width: 400px;
+                margin-left: 5px;
+                .contentIconLegend{                       
+                    .textLegend{
+                      //  padding-top: 27px;                                        
+                    }                         
+                }                    
+            }
         }
     }
 }
@@ -386,6 +395,16 @@ ul.ui-tabview-nav li:first-child span {
                     ol{
                         min-width: 500px;
                     }
+                }
+
+                .contentLegend{                   
+                    width: 309px;
+                    margin-left: -10px;
+                    .contentIconLegend{                       
+                        .textLegend{
+                            padding-top: 27px;                                        
+                        }                         
+                    }                    
                 }
             }
         }
