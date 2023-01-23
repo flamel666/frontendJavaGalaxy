@@ -224,7 +224,7 @@
       }  
      
     .defaultTutorialContent{
-    margin-left: 30px;
+    margin-left: 20px;
     margin-right: 20px;
     }
 
@@ -364,11 +364,7 @@ ul.ui-tabview-nav li:first-child span {
             .contentLegend{                   
                 width: 400px;
                 margin-left: 5px;
-                .contentIconLegend{                       
-                    .textLegend{
-                      //  padding-top: 27px;                                        
-                    }                         
-                }                    
+                                
             }
         }
     }
@@ -405,6 +401,10 @@ ul.ui-tabview-nav li:first-child span {
                             padding-top: 27px;                                        
                         }                         
                     }                    
+                }
+
+                .codeblock li{
+                    margin-left: 3px;
                 }
             }
         }

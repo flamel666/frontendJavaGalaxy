@@ -1,10 +1,12 @@
 import { AfterViewInit,  ChangeDetectorRef, Component, ComponentRef,   OnInit, QueryList, Renderer2, TemplateRef, Type, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
 
 
 import { ComponentPageTutorial } from '../models/component-page-tutorial.model';
 import { PageTutorial } from '../models/page.model';
+import { lastChapterSelected } from '../services/last-selected-chapter';
 import { TutorialJavaService } from '../services/tutorial-java.service';
 import { TabPanelComponent } from '../templates/tab-panel/tab-panel.component';
 
@@ -43,7 +45,10 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
   pageToShow?: PageTutorial;
 
-  constructor(private changeDetector:ChangeDetectorRef, private renderer: Renderer2, public chapterJavaService: TutorialJavaService, private viewContainerRef: ViewContainerRef, private sanitizer: DomSanitizer) {
+  lastChapterSelected?: lastChapterSelected = new lastChapterSelected();
+
+  constructor(private changeDetector:ChangeDetectorRef, private renderer: Renderer2, public chapterJavaService: TutorialJavaService, private viewContainerRef: ViewContainerRef, 
+    private sanitizer: DomSanitizer, private cookies: CookieService) {
     
     this.chapterJavaService.idChapterSubChanged$?.subscribe(id => {
       console.log("sono nel body-contet. sotto capitolo cambiato: " + id);
@@ -140,17 +145,48 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     this._gridOptions.set(4, `<${this.p} class="red">tata</${this.p}>`);
     // this.viewContainerRef.createComponent(tab);
 */
-    this.chapterJavaService.getPageByChapter("1").subscribe(response => {
-      this.chapterJavaService.notifyChangeFromTutorialBodyContent("1");
+    let chapter = "1";
+  /*
+    if(this.cookies.check("lastChapterSelected")){      
+      this.lastChapterSelected = JSON.parse(this.cookies.get("lastChapterSelected"));      
+      chapter = ""+this.lastChapterSelected?.chapter;
+    }
+    */
+    //if(this.lastChapterSelected?.subChapter == "0" || this.lastChapterSelected?.subChapter == undefined){
+    this.chapterJavaService.getPageByChapter(chapter).subscribe(response => {
+      this.chapterJavaService.notifyChangeFromTutorialBodyContent(chapter);
       console.log(response);
       this.pageToShow = response;
       this.createPage(this.pageToShow);
-
       /*
       this.pageToShow.compontentsPage?.forEach(el => {
         this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id=""${el.componentIdCss}>${el.componentContent}</${el.componentType}>`);
       });*/
     });
+  /*}  else{
+      this.chapterJavaService.getPageBySubChapter(this.lastChapterSelected?.subChapter!).subscribe(response => {
+        //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
+        this.contentViewContainerRefToClear.forEach((el, c) => {
+          c.clear();
+          el.destroy();
+        })
+        //   this.contentViewContainerRefToClear =[];
+        //console.log("lunghezza poi: "+this.contentViewContainerRefToClear.length);      
+
+        this.tabViewContents = new Map();
+        this.defaultContent = [];
+        console.log("nel subscribe ");
+        console.log(response);
+        this.pageToShow = response;
+        this.createPage(this.pageToShow);   
+        if(response.videoYouTubeId != undefined)    
+          this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+          else
+        this.chapterJavaService.youTubeVideoChanged("");
+      });
+    }*/
+    
+
   }
 
   private createPage(pageToShow: PageTutorial) {
