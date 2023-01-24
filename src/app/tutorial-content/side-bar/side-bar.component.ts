@@ -191,8 +191,7 @@ export class SideBarComponent implements OnInit {
     document.getElementById(lable.key!)?.classList.add("selectedArgument");    
 
     this.chapterJavaService.changeIdSubChapter(key);
-    this.lastChapterSelected!.subChapter = key;
-    this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected));   
+    
     //calcoliamo i nuovi valori
     this.evalueateNextSubChapters(lable!);
     this.evalueatePreviousSubChapters(this.selectedSubChapter!);
@@ -203,6 +202,9 @@ export class SideBarComponent implements OnInit {
       this.evalueatePreviousChapters(this.selectedChapter!);
       document.getElementById(this.selectedChapter?.key!)?.classList.add("selectedArgument");
     }
+    this.lastChapterSelected!.subChapter = key;
+    this.lastChapterSelected!.chapter = this.selectedChapter!.data;
+    this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected));   
   }
   }
 
@@ -210,7 +212,7 @@ export class SideBarComponent implements OnInit {
 
   private initializeChapter(selectedCapId: string) {
     
-    /*
+   /* 
     if(!this.cookies.check("lastChapterSelected")){
         this.lastChapterSelected!.chapter = selectedCapId;
         this.lastChapterSelected!.subChapter = "0";
@@ -218,8 +220,11 @@ export class SideBarComponent implements OnInit {
     }else{
       this.lastChapterSelected = JSON.parse(this.cookies.get("lastChapterSelected"));      
       selectedCapId = ""+this.lastChapterSelected?.chapter;
-    }*/
+    }
 
+    
+    console.log("inizializzo con keya: " + this.lastChapterSelected?.chapter);
+    console.log("inizializzo con keyb: " + this.lastChapterSelected?.subChapter);*/
     console.log("inizializzo con key: " + selectedCapId);
     document.getElementById(selectedCapId)?.classList.add("selectedArgument");
     this.selectedChapter = this.nodes[Number(selectedCapId) - 1];
@@ -241,15 +246,36 @@ export class SideBarComponent implements OnInit {
   }
 
   private initializeSubChapter(actualChapterSelected: TreeNode) {
+    var selectedSubChapter = "1";
+    /*
    if(!(this.lastChapterSelected?.subChapter == "0")){
     setTimeout(() => {     
       document.getElementById(this.lastChapterSelected?.subChapter!)?.classList.add("selectedArgument");     
+     
   }, 0.1);
-   }
+
+    var subChapterFlat = this.lastChapterSelected?.subChapter!;
+    selectedSubChapter = subChapterFlat.substring(subChapterFlat.indexOf(".")+1, subChapterFlat.length);
+    console.log("sottocapitolo: "+selectedSubChapter);
+   }*/
     if (actualChapterSelected.children != undefined) {
+
+      //this.selectedSubChapter = document.getElementById("1.3").;
+    //  console.log("elemento html: "+document.getElementById("1.3"));
+    // console.log("sono dell'if dell'init subchapter: "+actualChapterSelected.children[Number(selectedSubChapter)-1].parent);
+
       this.nextSubChapter = actualChapterSelected.children[0];     
       this.selectedSubChapter = undefined;
       this.previousSubChapter = undefined;
+      
+    //  console.log("sono dell'if dell'init subchapter parent: "+this.selectedSubChapter.parent);
+    //  this.chapterJavaService.changeIdSubChapter(this.selectedSubChapter.key!);
+     
+
+    /*  this.evalueatePreviousSubChapters(this.selectedSubChapter);
+      this.evalueateNextSubChapters(this.selectedSubChapter);
+      console.log("sottocapitolo precedente: "+this.previousSubChapter?.label);
+      console.log("sottocapitolo successivo: "+this.selectedSubChapter.label);*/
     }
   }
 
