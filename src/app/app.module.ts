@@ -48,7 +48,7 @@ import { CountVisitorServiceService } from './global-service/count-visitor-servi
      CubeComponent, MoonSolidComponent, SunGlowComponent, SunSolidComponent, CollapseCanvasComponent, ProvasunComponent
   ],
   imports: [        
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AuthenticationModule,
     TutorialContentModule,
     HomeModule,
