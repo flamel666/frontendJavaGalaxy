@@ -1,5 +1,5 @@
-import { HostListener, NgModule, OnInit, Pipe, PipeTransform } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HostListener, Inject, NgModule, OnInit, Pipe, PipeTransform, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -29,7 +29,16 @@ import * as AOS from 'aos';
 })
 export class HomeModule {
 
-  constructor(){
-    AOS.init({offset: 350});
+  constructor(@Inject(PLATFORM_ID) private platformId: Object){
+    if (isPlatformBrowser(this.platformId)) {
+      // Client only code.
+      AOS.init({offset: 350}); 
+   }
+   
+   if (isPlatformServer(this.platformId)) {
+     // Server only code.
+     
+   }
+    
   }
 }

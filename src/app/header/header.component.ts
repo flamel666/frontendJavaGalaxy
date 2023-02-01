@@ -93,7 +93,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onChange(String: string) {
-    console.log('event :' + String);
+  //  console.log('event :' + String);
     //console.log(event.value);
 }
 

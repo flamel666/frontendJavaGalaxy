@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Inject, NgModule, PLATFORM_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,13 @@ import {FormsModule} from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToggleButtonModule} from 'primeng/togglebutton';
+import {MenubarModule} from 'primeng/menubar';
+
+
+import { HomeModule } from './features/home/home.module';
+
+import { CookieService } from 'ngx-cookie-service';
+import { CountVisitorServiceService } from './global-service/count-visitor-service.service';
 
 import { CubeComponent } from './cube/cube.component';
 import { MoonSolidComponent } from './galaxysolid/moon-solid/moon-solid.component';
@@ -29,10 +36,10 @@ import { SunGlowComponent } from './galaxysolid/sun-glow/sun-glow.component';
 import { SunSolidComponent } from './galaxysolid/sun-solid/sun-solid.component';
 import { CollapseCanvasComponent } from './galaxysolid/collapse-canvas/collapse-canvas.component';
 import { ProvasunComponent } from './galaxysolid/provasun/provasun.component';
-import { CookieService } from 'ngx-cookie-service';
-import {MenubarModule} from 'primeng/menubar';
-import { HomeModule } from './features/home/home.module';
-import { CountVisitorServiceService } from './global-service/count-visitor-service.service';
+import { PreliminaryCollapseComponent } from './galaxysolid/preliminary-collapse/preliminary-collapse.component';
+import { isPlatformBrowser } from '@angular/common';
+
+
 //import { AppDraggableDirective } from './global-directives/app-draggable.directive';
 
 //angularMaterial
@@ -45,15 +52,16 @@ import { CountVisitorServiceService } from './global-service/count-visitor-servi
     AppComponent,
     HeaderComponent,
     FooterComponent,
-     CubeComponent, MoonSolidComponent, SunGlowComponent, SunSolidComponent, CollapseCanvasComponent, ProvasunComponent
+     CubeComponent, MoonSolidComponent, SunGlowComponent, SunSolidComponent, CollapseCanvasComponent, ProvasunComponent, PreliminaryCollapseComponent
   ],
   imports: [        
+   
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AuthenticationModule,
-    TutorialContentModule,
-    HomeModule,
+    TutorialContentModule,       
+    
+    HomeModule, 
     AppRoutingModule,
-    HttpClientModule,
     DropdownModule,
     MenubarModule,
     
@@ -78,8 +86,9 @@ export class AppModule {
 
   private expireDate!: Date;
 
-    constructor(private cookieCreator: CookieService, private counterService: CountVisitorServiceService){   
+    constructor(private cookieCreator: CookieService, private counterService: CountVisitorServiceService, @Inject(PLATFORM_ID) private platformId: Object){   
 
+      if (isPlatformBrowser(this.platformId)) {
       if(!this.cookieCreator.check("visit")){
         this.counterService.incrementVisitour();
         let date = new Date();
@@ -91,16 +100,17 @@ export class AppModule {
         this.cookieCreator.set("visit","visited", date);
        }
 
-       /*
+       
       if(this.cookieCreator.check("EX"))
       this.cookieCreator.set("ALL","cazz");
       else{
         this.expireDate = new Date();
         this.expireDate.setDate(this.expireDate.getDate() + 100)
         this.cookieCreator.set("EX","cazz", this.expireDate);
-      }*/
+      }
     }
 
+  }
 
  }
 

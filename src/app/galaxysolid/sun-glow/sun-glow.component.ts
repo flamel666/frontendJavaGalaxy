@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import * as THREE from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -8,6 +8,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import {EffectPass, GodRaysEffect} from 'postprocessing'
 import { ActiveAnimationSolid } from '../services-solid/active-animation-solid.services';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-sun-glow',
@@ -42,7 +43,8 @@ export class SunGlowComponent implements OnInit, AfterViewInit {
     return this.canvasRef.nativeElement;
   }
 
-  constructor(public animationService: ActiveAnimationSolid) {   
+  constructor(public animationService: ActiveAnimationSolid, @Inject(PLATFORM_ID) private platformId: Object) { 
+    if (isPlatformBrowser(this.platformId)) {  
     this.animationService.startAnimationGlowSun$?.subscribe(start=>{
 
       console.log("nel sun glow: "+start);
@@ -53,6 +55,7 @@ export class SunGlowComponent implements OnInit, AfterViewInit {
       this.removeEclipseAnimation(); 
 
     });
+  }
    }
 
 
@@ -74,12 +77,15 @@ export class SunGlowComponent implements OnInit, AfterViewInit {
   //---------------------------resize event-------------------
 
   ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
     this.createScene();
     this.resize();
     
     if(this.mobileMediaQuery.matches){
       this.bloomPass.radius = 1;
     }
+
+  }
     
   }
 

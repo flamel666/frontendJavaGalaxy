@@ -152,7 +152,13 @@
           "builder": "@nguniversal/builders:prerender",
           "options": {
             "routes": [
-              "/"
+              "/",
+              "/home",
+              "/auth",
+              "/auth/login",
+              "/auth/signin",
+              "/code",
+              "/code/java"
             ]
           },
           "configurations": {
