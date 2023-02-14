@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
 import { ActiveAnimationSolid } from '../galaxysolid/services-solid/active-animation-solid.services';
 import {MenuItem} from 'primeng/api';
+import { isPlatformBrowser } from '@angular/common';
 
 interface Language {
   name: string
@@ -32,19 +33,29 @@ export class HeaderComponent implements OnInit {
   private dropDownHeader!: string;
   private dropDownSubHeader!: string;
 
-  constructor(public translate: TranslateService, public animationService: ActiveAnimationSolid, private cookies: CookieService) {
+  constructor(public translate: TranslateService, public animationService: ActiveAnimationSolid, 
+    private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object) {
     
+     if (isPlatformBrowser(this.platformId)) {
     this.translate.addLangs(['it', 'en']);    
     
-    if(this.cookies.check("LANG")){
+    if(this.cookies.check("LANG")){//console.log("lingua del browser: "+window.navigator.language);
       this.translate.setDefaultLang(this.cookies.get("LANG"));      
       this.selectedLenguage = {name: ''+this.cookies.get("LANG"), code: ''+this.cookies.get("LANG").toUpperCase()};
-    }else{
+    }else{     
+      let browserLang = window.navigator.language;
+      console.log("lang: "+browserLang.substring(0, browserLang.indexOf("-")));
+      //quando avremo caricato le cose in inglese decommentare linee 51/54 ed eliminare linea 49
       this.cookies.set("LANG","it");  
+      /*
+      if(browserLang.substring(0, browserLang.indexOf("-")) == "it")
+        this.cookies.set("LANG","it");  
+      else
+      this.cookies.set("LANG","en");*/
+
       this.translate.setDefaultLang(this.cookies.get("LANG"));  
     }  
     
-
     console.log("thema: "+this.activedThema);
     if(this.cookies.check("THEME")){
       this.setThema(this.cookies.get("THEME"));
@@ -60,8 +71,7 @@ export class HeaderComponent implements OnInit {
       {name: 'it', code:"IT"},
       {name: 'en', code: "EN"},
      
-  ];
-  
+  ];  
  
   this.translate.get("header.menu.header").forEach(e =>{      
     this.dropDownHeader = e;
@@ -72,7 +82,7 @@ export class HeaderComponent implements OnInit {
       this.setLabels();
     });
   });
-    
+}
 
    }  
 

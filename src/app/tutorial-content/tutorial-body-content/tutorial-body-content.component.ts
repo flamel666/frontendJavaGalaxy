@@ -1,5 +1,7 @@
-import { AfterViewInit,  ChangeDetectorRef, Component, ComponentRef,   OnInit, QueryList, Renderer2, TemplateRef, Type, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { isPlatformBrowser, isPlatformServer, JsonPipe, Location } from '@angular/common';
+import { AfterViewInit,  ChangeDetectorRef, Component, ComponentRef,   Inject,   OnInit, PLATFORM_ID, QueryList, Renderer2, TemplateRef, Type, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
 
@@ -48,9 +50,13 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   lastChapterSelected?: lastChapterSelected = new lastChapterSelected();
 
   constructor(private changeDetector:ChangeDetectorRef, private renderer: Renderer2, public chapterJavaService: TutorialJavaService, private viewContainerRef: ViewContainerRef, 
-    private sanitizer: DomSanitizer, private cookies: CookieService) {
-    
+    private sanitizer: DomSanitizer, private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, private route: ActivatedRoute, private location: Location, 
+    private metaService: Meta, private title:Title) {
+      //this.metaService.updateTag({name: 'excerpt', content: "response.chapter?.chapterTitle!"});
+   if(isPlatformBrowser(this.platformId)){
+   
     this.chapterJavaService.idChapterSubChanged$?.subscribe(id => {
+      this.location.replaceState("/code/java/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/it")
       console.log("sono nel body-contet. sotto capitolo cambiato: " + id);
       this.chapterJavaService.getPageBySubChapter(id).subscribe(response => {
         //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
@@ -59,10 +65,12 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
           el.destroy();
         })
         //   this.contentViewContainerRefToClear =[];
-        //console.log("lunghezza poi: "+this.contentViewContainerRefToClear.length);      
+        //console.log("lunghezza poi: "+this.contentViewContainerRefToClear.length);    
+        //this.metaService.updateTag({name: 'excerpt', content: "sto cazzoooooooooo"});
 
         this.tabViewContents = new Map();
         this.defaultContent = [];
+
         console.log("nel subscribe ");
         console.log(response);
         this.pageToShow = response;
@@ -77,6 +85,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     this.chapterJavaService.idChapterChanged$?.subscribe(id => {
       console.log("sono nel body-contet. capitolo cambiato: " + id);
       this.chapterJavaService.getPageByChapter(id).subscribe(response => {
+        this.location.replaceState("/code/java/chapter/"+id+"/lang/it");
         //
         this.contentViewContainerRefToClear.forEach((el, c) => {
           c.clear();
@@ -96,7 +105,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
       });
     });
   
-
+  }
   }
  
  /*
@@ -106,6 +115,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   }*/
  
   ngAfterViewInit() {
+  
     
     
    /*
@@ -145,24 +155,190 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     this._gridOptions.set(4, `<${this.p} class="red">tata</${this.p}>`);
     // this.viewContainerRef.createComponent(tab);
 */
-    let chapter = "1";
+  console.log("location: "+this.route.snapshot);
+  console.log("location: "+this.getUrlPath().includes("subchapter"));
+  
+  let chapter = "1";
+  let subChapter = "";
+  let urlPath = this.getUrlPath();
+
+
+    if(urlPath=="code/java"){
+      console.log("il path è quello base, inizializziamo ad 1");
+       chapter = "1";      
+    } else if(urlPath.includes("subchapter")){
+      console.log("il path iniziale contiene il subchapter");
+      chapter = this.getChapterFromUrlPath();
+      subChapter = this.getSubChapterFromUrlPath();
+    }else{
+      console.log("il path iniziale non contiene subchapter");
+      chapter = this.getChapterFromUrlPath();      
+    }  
+    
   /*
     if(this.cookies.check("lastChapterSelected")){      
       this.lastChapterSelected = JSON.parse(this.cookies.get("lastChapterSelected"));      
       chapter = ""+this.lastChapterSelected?.chapter;
-    }
-    */
+    }*/
+    
     //if(this.lastChapterSelected?.subChapter == "0" || this.lastChapterSelected?.subChapter == undefined){
+      //inizializza la pagina con il primo capitolo
+  if(subChapter == "") {   
     this.chapterJavaService.getPageByChapter(chapter).subscribe(response => {
+      //nel capitolo setto il path se non è specificato nulla e quindi inizializzo al primo
+      this.location.replaceState("/code/java/chapter/"+chapter+"/lang/it");
+      //
+      this.contentViewContainerRefToClear.forEach((el, c) => {
+        c.clear();
+        el.destroy();
+        // el.clear();
+      });
       this.chapterJavaService.notifyChangeFromTutorialBodyContent(chapter);
+      this.tabViewContents = new Map();
+      this.defaultContent = [];
       console.log(response);
       this.pageToShow = response;
-      this.createPage(this.pageToShow);
-      /*
-      this.pageToShow.compontentsPage?.forEach(el => {
-        this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id=""${el.componentIdCss}>${el.componentContent}</${el.componentType}>`);
-      });*/
+      this.createPage(this.pageToShow);    
+      this.updateMetaTag(this.pageToShow, true);
+      
+           
+      if(response.videoYouTubeId != undefined)    
+        this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+      else
+      this.chapterJavaService.youTubeVideoChanged("");
+      //   this.placeholderContainer.createComponent(TabPanelComponent);       
     });
+    }else{
+      this.chapterJavaService.getPageBySubChapter(subChapter).subscribe(response => {
+        //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
+        this.contentViewContainerRefToClear.forEach((el, c) => {
+          c.clear();
+          el.destroy();
+        })
+        //   this.contentViewContainerRefToClear =[];
+        //console.log("lunghezza poi: "+this.contentViewContainerRefToClear.length);      
+        this.chapterJavaService.notifyChangeFromTutorialBodyContentAboutSubChapter(subChapter);
+        this.tabViewContents = new Map();
+        this.defaultContent = [];
+        console.log("nel subscribe ");
+        console.log(response);
+        this.pageToShow = response;
+        this.updateMetaTag(this.pageToShow, false);
+       
+     
+        this.createPage(this.pageToShow);   
+        if(response.videoYouTubeId != undefined)    
+          this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+          else
+        this.chapterJavaService.youTubeVideoChanged("");
+      });      
+    }
+
+    /*if (isPlatformServer(this.platformId)) {
+      if((""+this.route).includes("chapter/1/lang")){
+        this.chapterJavaService.getPageByChapter("1").subscribe(response => {
+          this.chapterJavaService.notifyChangeFromTutorialBodyContent(chapter);
+          console.log(response);
+          this.pageToShow = response;
+          this.createPage(this.pageToShow);
+          this.metaService.updateTag({name: 'excerpt', content: ""+this.pageToShow.chapter?.chapterTitle});
+        });
+      }
+
+    if((""+this.route).includes("1.1")){
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: "+this.route);
+      this.chapterJavaService.getPageBySubChapter("1.1").subscribe(response => {
+            
+        this.contentViewContainerRefToClear.forEach((el, c) => {
+          c.clear();
+          el.destroy();
+        })      
+  
+        this.tabViewContents = new Map();
+        this.defaultContent = [];
+        console.log("nel subscribe ");
+        console.log(response);
+        this.pageToShow = response;
+        this.metaService.updateTag({name: 'excerpt', content: ""+this.pageToShow.chapter?.chapterTitle});
+        this.createPage(this.pageToShow);   
+        if(response.videoYouTubeId != undefined)    
+          this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+          else
+        this.chapterJavaService.youTubeVideoChanged("");
+      });
+    }
+  }
+
+  if (isPlatformServer(this.platformId)) {
+    if((""+this.route).includes("1.2")){
+      console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb: "+this.route);
+      this.chapterJavaService.getPageBySubChapter("1.2").subscribe(response => {
+            
+        this.contentViewContainerRefToClear.forEach((el, c) => {
+          c.clear();
+          el.destroy();
+        })      
+        this.tabViewContents = new Map();
+        this.defaultContent = [];
+        console.log("nel subscribe ");
+        console.log(response);
+        this.pageToShow = response;
+        this.metaService.updateTag({name: 'excerpt', content: "non so cosa sia ma non è introduzione"});
+        this.createPage(this.pageToShow);   
+        if(response.videoYouTubeId != undefined)    
+          this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+          else
+        this.chapterJavaService.youTubeVideoChanged("");
+      });
+    }
+  }
+  */
+/*
+    if (isPlatformServer(this.platformId)) {
+      
+    this.chapterJavaService.getPageBySubChapter("1.1").subscribe(response => {
+      //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
+      this.contentViewContainerRefToClear.forEach((el, c) => {
+        c.clear();
+        el.destroy();
+      })
+      //   this.contentViewContainerRefToClear =[];
+      //console.log("lunghezza poi: "+this.contentViewContainerRefToClear.length);      
+
+      this.tabViewContents = new Map();
+      this.defaultContent = [];
+      console.log("nel subscribe ");
+      console.log(response);
+      this.pageToShow = response;
+      this.createPage(this.pageToShow);   
+      if(response.videoYouTubeId != undefined)    
+        this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+        else
+      this.chapterJavaService.youTubeVideoChanged("");
+    });
+
+    this.chapterJavaService.getPageBySubChapter("1.2").subscribe(response => {
+      //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
+      this.contentViewContainerRefToClear.forEach((el, c) => {
+        c.clear();
+        el.destroy();
+      })
+      //   this.contentViewContainerRefToClear =[];
+      //console.log("lunghezza poi: "+this.contentViewContainerRefToClear.length);      
+
+      this.tabViewContents = new Map();
+      this.defaultContent = [];
+      console.log("nel subscribe ");
+      console.log(response);
+      this.pageToShow = response;
+      this.createPage(this.pageToShow);   
+      if(response.videoYouTubeId != undefined)    
+        this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+        else
+      this.chapterJavaService.youTubeVideoChanged("");
+    });
+  }
+*/
   /*}  else{
       this.chapterJavaService.getPageBySubChapter(this.lastChapterSelected?.subChapter!).subscribe(response => {
         //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
@@ -441,4 +617,66 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     }
   }
 
+  public getUrlPath(): string{
+
+    var b = "{"+this.route+"}";
+   
+    var url = JSON.parse(b.replace('Route(',"").replace(")","")
+     .replace("url","\"url\"")
+     .replace("path","\"path\"")
+     .replace("\'","\"").replace("\'","\"").replace("\'","\"").replace("\'","\""))['url'];
+     
+     return url;
+  }
+
+  public getChapterFromUrlPath(): string{
+    //code/java/chapter/1/lang/it
+    let pathUrl = this.getUrlPath();
+    let chapter = pathUrl.substring(pathUrl.indexOf("chapter/"), pathUrl.length)
+        .replace("chapter/", "").replace("/","£");
+
+    console.log("subString of url for the chapte: "+chapter.substring(0, chapter.indexOf("£")));
+    return chapter.substring(0, chapter.indexOf("£"));
+  }
+
+  public getSubChapterFromUrlPath(): string{
+    let pathUrl = this.getUrlPath();
+    let subChapter = pathUrl.substring(pathUrl.indexOf("subchapter/"), pathUrl.length)
+        .replace("subchapter/", "").replace("/","£");
+
+    console.log("subString of url for the chapte: "+subChapter.substring(0, subChapter.indexOf("£")));
+    return subChapter.substring(0, subChapter.indexOf("£"));
+  }
+
+
+
+private updateMetaTag(pageToShow: PageTutorial, isChapter: boolean):void{
+
+  if(isChapter){
+    this.metaService.updateTag({property: 'og:title', content: ""+pageToShow.chapter?.chapterTitle});
+    this.title.setTitle(""+pageToShow.chapter?.chapterTitle)
+  }else{    
+    this.title.setTitle(""+pageToShow.subChapter?.subChapterTitle)
+    this.metaService.updateTag({property: 'og:title', content: ""+pageToShow.subChapter?.subChapterTitle});
+  }
+  console.log("meta: "+pageToShow.metaTags);
+  if(pageToShow.metaTags != null && pageToShow.metaTags != undefined){
+    pageToShow.metaTags.forEach(meta=>{
+      console.log("meta: "+meta.metaTypeName);
+      if(meta.metaTypeName == "name"){
+        this.metaService.updateTag({name: ''+meta.metaType, content: ""+meta.content});
+      }
+      if(meta.metaTypeName == "property"){
+        this.metaService.updateTag({property: ''+meta.metaType, content: ""+meta.content});
+      }
+      if(meta.metaTypeName == "itemprop"){
+        this.metaService.updateTag({itemprop: ''+meta.metaType, content: ""+meta.content});
+      }
+    })
+  }
+
+ 
 }
+
+}
+

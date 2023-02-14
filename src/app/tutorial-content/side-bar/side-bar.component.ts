@@ -1,8 +1,9 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
+import {  Meta } from '@angular/platform-browser';
 import { MenuItem } from 'primeng/api';
 import { TreeNode } from 'primeng/api';
 import { delay } from 'rxjs';
@@ -46,14 +47,21 @@ export class SideBarComponent implements OnInit {
 
   lastChapterSelected?: lastChapterSelected = new lastChapterSelected();
   constructor(private router: Router, public chapterJavaService: TutorialJavaService, private route: ActivatedRoute,
-    private cookies: CookieService) {
-      
-   this.selectedElementInTheBar ="1";
+    private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, private metaService: Meta) {
+       
+
+    this.selectedElementInTheBar ="1";
 
     this.chapterJavaService.actionFromTutorialBodyContentChanged$?.subscribe(key => {
       console.log("sono nel costruttore della sideBar ");
       this.initializeChapter(key);
     });
+
+    this.chapterJavaService.actionFromTutorialBodyContentAboutSubChapterChanged$?.subscribe(key => {
+      console.log("sono nel costruttore della sideBar per quanto riguarda il cambio del sotto capitolo");
+      this.initializerSubChapterFromUrl(key);
+    });
+
 
     this.chapterJavaService.actionFromTutorialBodyNextContentChanged$?.subscribe(event => {
       console.log("sono nel costruttore della sideBar ");
@@ -63,11 +71,49 @@ export class SideBarComponent implements OnInit {
     this.chapterJavaService.actionFromTutorialBodyPreviousContentChanged$?.subscribe(event => {
       this.previousChapterFromRequestBody();
     })
-
+  
   }
 
   ngOnInit(): void {        
+    if (isPlatformServer(this.platformId)) {
+      this.chapterJavaService.getChapters("java", "it").subscribe(response => {//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
+        console.log(response);
+        this.chaptersJavaCourse = response;
+        this.nodes = [];
+  
+        this.chaptersJavaCourse.forEach(el => {
+          console.log(el.id);
+          console.log(el.chapterNumber);
+  
+          this.childrenParam = [];
+  
+          if (el.subChapters != null) {
+  
+            el.subChapters.forEach(subch => {
+              let child = new Children;
+              child.data = "" + subch.id;
+              child.key = "" + subch.subChapterNumber;
+              child.label = "" + subch.subChapterTitle;
+  
+              this.childrenParam.push(
+                child
+              );
+  
+            });
+          }
+  
+          this.nodes.push({
+            key: "" + el.chapterNumber,
+            data: "" + el.id,
+            label: el.chapterTitle,
+            children: this.childrenParam
+          });
+        });
+        console.log(this.chaptersJavaCourse);
+      });
+     }
    
+    if (isPlatformBrowser(this.platformId)) {
       this.languageCode = this.route.snapshot.paramMap.get('code')!;
       this.language = this.cookies.get("LANG");  
 
@@ -107,7 +153,7 @@ export class SideBarComponent implements OnInit {
       console.log(this.chaptersJavaCourse);
     });
 
-
+  
     /*
         this.nodes = [
           {
@@ -137,8 +183,9 @@ export class SideBarComponent implements OnInit {
 
         }]
       }
+ 
     ]
-
+  }
   }
 
   public navigate() {
@@ -208,7 +255,57 @@ export class SideBarComponent implements OnInit {
   }
   }
 
+  private initializerSubChapterFromUrl(selectedSubCapId: string){
+    //settaggio per selezionare il capitolo
+    let chapterId = selectedSubCapId.substring(0,selectedSubCapId.indexOf("."));
+    document.getElementById(chapterId)?.classList.add("selectedArgument");
+    
+     
+    this.selectedChapter = this.nodes[Number(chapterId) - 1];
+    this.metaService.updateTag({name: 'keywords', content: ""+this.selectedChapter.key+" boh"});
+    if (this.nodes.length > Number(chapterId))
+      this.nextChapter = this.nodes[Number(chapterId)];
+    else
+      this.nextChapter = undefined;
 
+    if((Number(chapterId) - 1) > 0)
+      this.previousChapter = this.nodes[Number(chapterId) - 2];
+    else
+      this.previousChapter = undefined;
+
+      if (this.selectedChapter?.expanded != true) {
+        this.selectedChapter!.expanded = true;
+      }
+
+      //settaggio per selezionare il sotto capitolo
+      let subChapterId = selectedSubCapId.substring(selectedSubCapId.indexOf(".")+1, selectedSubCapId.length);
+
+      console.log("il sub chapterId sottostringa: "+subChapterId);
+      if(this.selectedChapter.children != undefined){
+        if(this.selectedChapter.children?.length >= Number(subChapterId))
+          this.selectedSubChapter = this.selectedChapter.children[Number(subChapterId)-1];
+
+        if((this.selectedChapter.children?.length > 0 && (Number(subChapterId)-1) > 0) && (this.selectedChapter.children?.length >= (Number(subChapterId)-1)))
+          this.previousSubChapter = this.selectedChapter.children[Number(subChapterId)-2];
+          else  
+            this.previousSubChapter = undefined;
+
+        if(this.selectedChapter.children?.length > Number(subChapterId))
+          this.nextSubChapter = this.selectedChapter.children[Number(subChapterId)];
+
+          setTimeout(() => {     
+            document.getElementById(selectedSubCapId)?.classList.add("selectedArgument");     
+           
+        }, 0.1);
+        }
+
+        
+        
+      
+ //     this.nextSubChapter = this.selectedChapter.children[0];           
+    
+
+  }
 
   private initializeChapter(selectedCapId: string) {
     
@@ -236,14 +333,15 @@ export class SideBarComponent implements OnInit {
 
     if (this.selectedChapter?.expanded != true) {
       this.selectedChapter!.expanded = true;
-    }
-   
+    }  
 
     this.initializeSubChapter(this.selectedChapter);
     console.log("capitolo successivo: " + this.nextChapter?.key);
     console.log("sotto capitolo successivo: " + this.nextSubChapter?.key);
     
   }
+
+  
 
   private initializeSubChapter(actualChapterSelected: TreeNode) {
     var selectedSubChapter = "1";
@@ -258,6 +356,7 @@ export class SideBarComponent implements OnInit {
     selectedSubChapter = subChapterFlat.substring(subChapterFlat.indexOf(".")+1, subChapterFlat.length);
     console.log("sottocapitolo: "+selectedSubChapter);
    }*/
+   console.log("nella sideBar = "+actualChapterSelected.children);
     if (actualChapterSelected.children != undefined) {
 
       //this.selectedSubChapter = document.getElementById("1.3").;

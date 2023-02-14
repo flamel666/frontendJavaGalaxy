@@ -782,11 +782,9 @@ svg{
 }
 
 @media screen and (max-width: 960px) {
-  #headerTop{
-    .p-menubar {
-   
-    }
-  }
+  //dovessi aver problema con il .p-menubar quando rimpicciolisci lo schermo
+  //vai nel file theme.css di primeng e modifica la media query del .p-menubar così:
+  //@media screen and (max-width: 1px) {
 }
 @media screen and (max-width: 768px) {
   #headerTop{

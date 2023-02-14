@@ -1,5 +1,6 @@
 import { ChaptersCourse } from "./chapters.model";
 import { ComponentPageTutorial } from "./component-page-tutorial.model";
+import { MetaTag } from "./meta-tag.model";
 import { SubChaptersCourse } from "./sub-chapters.model";
 
 export class PageTutorial{
@@ -11,4 +12,5 @@ export class PageTutorial{
 	subChapter? : SubChaptersCourse;
     compontentsPage? : Array<ComponentPageTutorial>;
 	videoYouTubeId? : string;
+	metaTags? : Array<MetaTag>;
 }

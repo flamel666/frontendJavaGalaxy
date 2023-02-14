@@ -1,5 +1,5 @@
 import { Inject, NgModule, PLATFORM_ID } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -86,10 +86,13 @@ export class AppModule {
 
   private expireDate!: Date;
 
-    constructor(private cookieCreator: CookieService, private counterService: CountVisitorServiceService, @Inject(PLATFORM_ID) private platformId: Object){   
-
+    constructor(private cookieCreator: CookieService, private counterService: CountVisitorServiceService, 
+      @Inject(PLATFORM_ID) private platformId: Object, private metaService: Meta){  
+        
       if (isPlatformBrowser(this.platformId)) {
+        
       if(!this.cookieCreator.check("visit")){
+        
         this.counterService.incrementVisitour();
         let date = new Date();
         console.log("date: "+date);
@@ -102,11 +105,11 @@ export class AppModule {
 
        
       if(this.cookieCreator.check("EX"))
-      this.cookieCreator.set("ALL","cazz");
+      this.cookieCreator.set("ALL","MAZZ");
       else{
         this.expireDate = new Date();
         this.expireDate.setDate(this.expireDate.getDate() + 100)
-        this.cookieCreator.set("EX","cazz", this.expireDate);
+        this.cookieCreator.set("EX","maxx", this.expireDate);
       }
     }
 
@@ -118,3 +121,8 @@ export class AppModule {
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json'); 
 }
+
+/*
+ngOnInit(): void {
+  }
+*/
