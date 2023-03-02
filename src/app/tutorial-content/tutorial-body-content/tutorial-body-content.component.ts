@@ -380,9 +380,8 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
       this.createNestedTabView();
     } else {
       this.createPageDefaultTemplate(pageToShow);
-      this.createNestedTabView();
-     
-     
+      this.createNestedTabView();     
+      //creare il nested per il componente che nasconde il codice per gli esercizi
     }
     /*
     pageToShow.compontentsPage?.forEach(el=>{
@@ -676,6 +675,10 @@ private updateMetaTag(pageToShow: PageTutorial, isChapter: boolean):void{
   }
 
  
+}
+
+public showHide(){
+  console.log("show hide");
 }
 
 }
