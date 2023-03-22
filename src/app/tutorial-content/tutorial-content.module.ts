@@ -25,6 +25,7 @@ import { TabPanelComponent } from './templates/tab-panel/tab-panel.component';
 import { UtilityMenuComponent } from './utility-menu/utility-menu.component';
 import { AppDraggableDirective } from '../global-directives/app-draggable.directive';
 import { MessageService } from 'primeng/api';
+import { HiddenCodeComponent } from './templates/hidden-code/hidden-code.component';
 
 
 
@@ -37,7 +38,8 @@ import { MessageService } from 'primeng/api';
     SimpleTemplateContentComponent,
     TabPanelComponent,
     UtilityMenuComponent,
-    AppDraggableDirective
+    AppDraggableDirective,
+    HiddenCodeComponent
     
   ],
   imports: [

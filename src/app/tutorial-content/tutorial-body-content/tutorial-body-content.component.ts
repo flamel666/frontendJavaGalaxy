@@ -10,6 +10,7 @@ import { ComponentPageTutorial } from '../models/component-page-tutorial.model';
 import { PageTutorial } from '../models/page.model';
 import { lastChapterSelected } from '../services/last-selected-chapter';
 import { TutorialJavaService } from '../services/tutorial-java.service';
+import { HiddenCodeComponent } from '../templates/hidden-code/hidden-code.component';
 import { TabPanelComponent } from '../templates/tab-panel/tab-panel.component';
 
 @Component({
@@ -25,10 +26,15 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('tabbedPane', { read: ViewContainerRef })
   components!: QueryList<ViewContainerRef>;
+
+  @ViewChildren('hiddenCode', { read: ViewContainerRef })
+  componentsHiddenCode!: QueryList<ViewContainerRef>;
  
   //lista delle tab all'interno della pagina che vanno eliminate ad ogni refresch o cambio pagina
   // private contentViewContainerRefToClear: ViewContainerRef[]=[];
   private contentViewContainerRefToClear: Map<ViewContainerRef, ComponentRef<TabPanelComponent>> = new Map();
+
+  private contentViewContainerRefHiddenCodeToClear: Map<ViewContainerRef, ComponentRef<HiddenCodeComponent>> = new Map();
 
   //lista dei tag html presi dal server
   public defaultContent: String[] = [];
@@ -37,6 +43,8 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
   //lista delle tabView che vanno all'interno della pagina
   public nestedTabViewContents: Map<number, ComponentPageTutorial> = new Map();
+
+  public nestedHiddenCodeContents: Map<number, ComponentPageTutorial> = new Map();
 
   public _gridOptions: Map<number, string> = new Map();
 
@@ -54,7 +62,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     private metaService: Meta, private title:Title) {
       //this.metaService.updateTag({name: 'excerpt', content: "response.chapter?.chapterTitle!"});
    if(isPlatformBrowser(this.platformId)){
-   
+    
     this.chapterJavaService.idChapterSubChanged$?.subscribe(id => {
       this.location.replaceState("/code/java/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/it")
       console.log("sono nel body-contet. sotto capitolo cambiato: " + id);
@@ -104,6 +112,8 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         //   this.placeholderContainer.createComponent(TabPanelComponent);       
       });
     });
+
+    
   
   }
   }
@@ -115,9 +125,14 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   }*/
  
   ngAfterViewInit() {
-  
-    
-    
+
+    this.components.changes.subscribe(() => {
+      this.createNestedTabView();
+    });
+   
+    this.componentsHiddenCode.changes.subscribe(() => {
+      this.createNestedHiddenCode();
+    });
    /*
       console.log("ngAfterViewInit");
       this.contentViewContainerRefToClear = new Map();
@@ -149,6 +164,8 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    
+    
     /*
     this.defaultContent.push(`<h1 class="reddo">NGONINIT</h1>`);
     this.defaultContent.push(`<${this.p} class="reddo">ser</${this.p}>`);
@@ -381,6 +398,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     } else {
       this.createPageDefaultTemplate(pageToShow);
       this.createNestedTabView();     
+      this.createNestedHiddenCode();
       //creare il nested per il componente che nasconde il codice per gli esercizi
     }
     /*
@@ -441,6 +459,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     let i = 0;
     console.log("prima del forEach");
     this.nestedTabViewContents = new Map();
+    this.nestedHiddenCodeContents = new Map();
     pageToShow.compontentsPage?.forEach(el => {
 
       //  console.log("cazz " + el.componentType + "  " + el.childComponentsPageTutorialList + " " + el.standAlone + " " + el.parentComponentPageTutorial);
@@ -457,14 +476,20 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
      // this.defaultContent.push(`<span class="provaaa" #tabbedPane></span>`);
       
       //console.log("lunghezza: "+this.defaultContent.length);
+      
       console.log("dentro il foreacjh");
       if (el.childComponentsPageTutorialList!.length > 0) {
         let content = "";
         if (el.componentType != "p-tabView") {
          
-          content = this.createInnestedComponent(el.childComponentsPageTutorialList!);
-          this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id="${el.componentIdCss}">${content}</${el.componentType}>`);
-        } else {
+          if (el.componentType != "hiddenCode"){            
+            content = this.createInnestedComponent(el.childComponentsPageTutorialList!);
+            this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id="${el.componentIdCss}">${content}</${el.componentType}>`);
+          } else {
+            console.log("sto inserendo il primo hidden code per davvero")
+            this.nestedHiddenCodeContents.set(((this.defaultContent.length - 1)+1)*10000, el);
+          }
+          } else {
           console.log("qui c'è una cazzo di tab e dobbiamo fare qualcosa "+this.nestedTabViewContents.size);
           this.nestedTabViewContents.set(this.defaultContent.length - 1, el);
         }
@@ -476,7 +501,10 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
       }
     });
-    
+  //  console.log("sto inserendo il primo hidden code")
+  //  let c = new ComponentPageTutorial;
+ //   this.nestedHiddenCodeContents.set(((this.defaultContent.length - 1)+1)*10000, c);
+   
   }
 
   private createPageTabViewTemplate(pageToShow: PageTutorial) {
@@ -562,7 +590,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     console.log("ngAfterViewInit");
     let indexToBeRemoved: number[] = [];
     this.contentViewContainerRefToClear = new Map();
-    this.components.changes.subscribe(() => {
+  //  this.components.changes.subscribe(() => {
       console.log("sto per partire. pronti...partenza...");
     this.nestedTabViewContents.forEach((tabElement, index) =>{
         console.log("elemento: "+tabElement.componentType!+" index: "+index);
@@ -583,7 +611,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
         })
 
-    });
+  //  });
     indexToBeRemoved.forEach(id=>{
       this.nestedTabViewContents.delete(id);
     });
@@ -591,6 +619,44 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
     
     });   
+    //risolve l'errore NG0100 ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked.
+    this.changeDetector.detectChanges();
+  }
+
+  private createNestedHiddenCode(): void {
+    
+    console.log("create hidden code nested");
+    let indexToBeRemoved: number[] = [];
+    this.contentViewContainerRefHiddenCodeToClear = new Map();
+  //  this.componentsHiddenCode.changes.subscribe(() => {
+      console.log("sto per partire. pronti...partenza...");
+    this.nestedHiddenCodeContents.forEach((HiddenElement, index) =>{
+        console.log("elemento: "+HiddenElement.componentType!+" index: "+index);
+
+        this.componentsHiddenCode.forEach(el => {         
+
+          if (el.element.nativeElement.id == index) {
+
+            let componentRef = el.createComponent(HiddenCodeComponent);          
+
+            let contents: string[] = [];
+           
+            contents.push(HiddenElement.componentType!);            
+            componentRef.instance.createPageHiddenCodeTemplate(HiddenElement);
+            this.contentViewContainerRefHiddenCodeToClear.set(el, componentRef);
+            indexToBeRemoved.push(index);
+          }
+
+        })
+
+    });
+    indexToBeRemoved.forEach(id=>{
+      this.nestedHiddenCodeContents.delete(id);
+    });
+   
+
+    
+  //  });   
     //risolve l'errore NG0100 ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked.
     this.changeDetector.detectChanges();
   }

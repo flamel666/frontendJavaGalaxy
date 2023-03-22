@@ -1,0 +1,86 @@
+.hiddenCodeTemplate{
+
+code{
+    position: relative;
+}
+button {
+	//margin: auto;
+    margin-bottom: 10px;
+	border-radius: 20px;
+	background-color: #667292;
+	box-shadow: 3px 4px 10px #36486b;
+	width: 130px;
+	height: 37px;
+	font-size: 50px;
+	font-family: cambria;
+	color: #bccad6;
+	border: none;
+    cursor: pointer;
+}
+
+button:hover {
+	border: none;
+	background-color: var(--navbar-color);
+	opacity: 1;
+	color: black;
+}
+.buttonShowHide:hover {
+	transition: 0.5s ease-in-out;
+	background: var(--navbar-color);
+   
+}
+
+.buttonShowHide:active {
+    transition: 0.1s ease-in-out;
+    background: #006192;
+}
+
+
+button {
+	--color1: #36486b;
+	--color2: #bccad6;
+	font-family: cambria;
+	text-align: center;
+	font-size: 23px;
+	background: repeating-linear-gradient(
+		45deg,
+		var(--color1),
+		var(--color1) 30px,
+		var(--color2) 30px,
+		var(--color2) 60px
+	);
+	background-clip: text;
+	color: transparent;
+	-webkit-background-clip: text;
+	animation: 40s linear 0s infinite move;
+}
+
+
+
+.glass{
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    margin-left: 2.5%;
+    margin-top: 1%;
+    backdrop-filter: blur(4px) saturate(133%);
+    -webkit-backdrop-filter: blur(4px) saturate(133%);
+    background-color: rgba(17, 25, 40, 0);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);    
+}
+
+.codeBlockHideOver{
+    overflow: hidden !important;
+}
+
+@keyframes move {
+	from {
+		background-position: 0px;
+	}
+
+	to {
+		background-position: 1000px;
+	}
+}
+}

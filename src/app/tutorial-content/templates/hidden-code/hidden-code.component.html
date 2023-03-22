@@ -1,0 +1,22 @@
+<div class="hiddenCodeTemplate">
+    <div class="center">
+        <button class="buttonShowHide" (click)="showHide()">
+            {{buttonText}}
+        </button>
+    </div>
+    <div class="codeblock textFormat codeBlockHideOver" id="codeBlockExercise">
+
+        <code>
+        <div class="glass" id="glassWindow"></div>      
+        <div>
+
+            <ng-container *ngFor="let item of olContents | keyvalue">
+                    <div class="article" [innerHTML]="item.value"></div>   
+            </ng-container>
+    
+    </div>  
+    </code>
+
+    </div>
+
+</div>
