@@ -13,6 +13,7 @@ import {SkeletonModule} from 'primeng/skeleton';
 import {DragDropModule} from 'primeng/dragdrop';
 import {SpeedDialModule} from 'primeng/speeddial';
 import {TooltipModule} from 'primeng/tooltip';
+import { AccordionModule } from 'primeng/accordion';
 
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
@@ -48,7 +49,8 @@ import { HiddenCodeComponent } from './templates/hidden-code/hidden-code.compone
     PanelMenuModule,
     TreeModule,
     ButtonModule,
-    TabViewModule ,
+    TabViewModule,
+    AccordionModule,
     SkeletonModule,
     DragDropModule,
     TooltipModule,

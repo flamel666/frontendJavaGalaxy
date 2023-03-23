@@ -115,7 +115,7 @@ export class UtilityMenuComponent implements OnInit {
   }
 
   public openAndCloseLegend(){
-    
+    document.getElementById("utilitySideBar")?.classList.toggle("utilitySideBarOpen"); 
   }
 
   
