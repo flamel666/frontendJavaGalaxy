@@ -13,6 +13,9 @@ body {
     --font-family-global: 'Times New Roman', Times, serif;//Verdana, sans-serif, serif, Arial, Helvetica, 'Times New Roman', Times;
     font-family: var(--font-family-global);
 
+    --background-color-content-tutorial: rgb(230, 230, 230);//rgb(68,70,84);//rgb(52, 53, 65)
+    --text-color-content-tutorial:black;
+
     --navbar-color: #007bb8;// #007bb8
         --font-size: 15px;
         --font-weight: 600;
@@ -32,6 +35,12 @@ body {
     --geometry-color: rgb(252, 243, 243);
     
     --transition-delay: 1s;
+
+    //code colors
+    --keword-color: rgba(212, 0, 255, 0.993);/*255, 145, 0, 0.904*/
+    --className-color: #556ef8;/*rgb(255, 208, 0);#556ef8*//*255, 145, 0, 0.904*/
+    --methodName-color: rgb(216, 87, 1);/*255, 145, 0, 0.904*/
+    --stringArgument: rgba(42, 146, 1, 0.877);
    
    // background-color: var(--background-color);
     background: url("./assets/images/background/background_galaxy.png") black;
@@ -60,13 +69,16 @@ body.dark {
     --background-color: #121212;
     --background-color-ContentTutorial: rgb(100, 100, 100);
     --component-color: #9511ec; //#3B82F6
-    --text-color: rgb(253, 253, 253);
-    --icon-color:white;
+    --text-color: rgb(198, 218, 227);//rgb(190, 206, 214);//rgb(196, 222, 234);// rgb(219, 203, 203);
+    --icon-color:rgb(219, 203, 203);
 
+    --background-color-content-tutorial: rgb(64, 67, 73);//rgb(68,70,84);//rgb(52, 53, 65)
+    --text-color-content-tutorial:rgb(223, 223, 223);//rgb(209,206,215)
+    //    border: 1px solid rgb(252 253 253); bordi per i bottoni
     --boxshadow-view: 5px;
 
-    --navbar-color: rgb(6, 0, 59);//corrispettivo hex #06003b 
-        --navbar-hover-component-color: #0b0069;
+    --navbar-color: rgb(35, 40, 112);//rgb(21, 27, 112);//rgb(12, 56, 151);// rgb(15, 10, 59);//rgb(6, 0, 59);//corrispettivo hex #06003b 
+        --navbar-hover-component-color: rgb(52, 59, 158);// #231a72;
         --logo-url: "../../assets/images/header.component/varie/logo-white.png";
 
 
@@ -74,6 +86,12 @@ body.dark {
     --icon-hover-side-bar: #272069;
     --box-shadow-color1: rgba(102, 96, 96, 0.3);
     --box-shadow-color2: rgba(102, 96, 96, 0.1);
+
+    //code colors
+    --keword-color: rgba(188, 42, 218, 0.993);/*255, 145, 0, 0.904*/
+    --className-color: #3e57e4;/*rgb(255, 208, 0);#556ef8*//*255, 145, 0, 0.904*/
+    --methodName-color: rgb(218, 110, 38);/*255, 145, 0, 0.904*/
+    --stringArgument: rgba(76, 173, 37, 0.877);
 
     --geometry-color: rgb(73, 73, 73);
     --scroll-bar-color-primary: #00c3ff;

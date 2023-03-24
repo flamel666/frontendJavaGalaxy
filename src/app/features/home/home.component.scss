@@ -374,13 +374,16 @@ h1 {
   //////////////////////schede di presentazione////////////////////////
   /// /*
   .contentImage{
-    position: absolute;
+    shape-outside: circle();
+    position: relative;
+    float: left;
     z-index: 100;  
     width: 105px;
     height: 105px;
     background: white;    
     border-radius: 50px;
-    margin-top: -30px;
+    margin-top: -72px;
+    margin-left: -30px;
     -webkit-box-shadow: 5px 5px 15px 5px #000000; 
     box-shadow: 5px 5px 15px 5px #000000;
     padding-top: 3px;
@@ -391,26 +394,34 @@ h1 {
   }
 
   .contentImageSecond{
-    margin-top: 130px;
+    margin-top: 73px;
     margin-left: -20px;    
   }
   .imageContentThird{
     margin-top: -10%;
-    margin-left: 10px;
+   
   }
   .imageContentFourth{
-    margin-left: 8%;
+   // margin-left: 8%;
+  }
+  .textModify{
+    margin-top: 43px; 
+    padding-right: 35px;
+  }
+  .textModifyAlt{
+    margin-top: 43px; 
+    padding-right: 40px;
   }
 
   .contentImageBottom{
-    margin-left: 83%;
-    margin-top: 115px;
+    margin-left: 92%;
+    margin-top: -55px;
   }
   .adjustTop{
     margin-top: -45px;
   }
   .adjustBottom{
-    margin-top: 130px;
+    margin-top: -47px;
   }
 
   .imgZen{
@@ -615,8 +626,16 @@ h1 {
     .firstSchedes{
       .contentImage{
         margin-left: -20px;
+        margin-top: -101px;
       }
     }
+    .contentImageSecond{
+      margin-top: -80px;
+    }
+    .imageContentThird {
+      
+      margin-top: -103px;
+  }
     .contentSchedes{
     p{    
       font-size:4vw;
@@ -624,7 +643,12 @@ h1 {
     }
     .contentImageBottom{     
       margin-left: 78%;
+      margin-top: -36px;
     }  
+    .adjustBottom {
+      margin-top: -12px !important;
+      margin-left: 85% !important;
+  }
 
     .contentPanicWord{      
       .astroCart{        
@@ -663,9 +687,8 @@ h1 {
       width: 74px;
       height: 74px;
     }
-
-    .contentImageBottom{      
-      margin-top: 125px;
+    .imageContentFourth{
+      margin-top: -48px;
     }
     .adjustBottom{
       margin-top: 135px;
@@ -676,6 +699,11 @@ h1 {
        }
       }
 
+    
+      .textModify, .textModifyAlt{
+        padding-right: 0px !important;
+      }
+      
 
     .contentPanicWord{
       
