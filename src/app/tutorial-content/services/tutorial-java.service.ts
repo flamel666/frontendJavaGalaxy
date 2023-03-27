@@ -15,6 +15,10 @@ export class TutorialJavaService{
 
     private language?: string = "it";//TODO sistemare la faccenda della lingua, che in realtà
     //dovrebbe essere settata prendendo la lingua dal dropdown
+    private actionFromHeaderChangeLanguare? = new Subject<string>();
+    actionFromHeaderChangeLanguareChanged$? = this.actionFromHeaderChangeLanguare?.asObservable();
+
+
     private programmingLanguage?: string;
 
     private actionFromTutorialBodyContent? = new Subject<string>();
@@ -95,5 +99,19 @@ export class TutorialJavaService{
    
     youTubeVideoChanged(idVideo: string){
         this.youtubeVideo?.next(idVideo);
+    }
+
+    changeLanguage(lang : string){
+        console.log("service");
+        this.language = lang;
+        this.actionFromHeaderChangeLanguare?.next(lang);
+    }
+
+    changeLanguageSilent(lang : string){
+        this.language = lang;
+    }
+
+    setDefaultLanguage(lang : string){
+        this.language = lang;
     }
 }

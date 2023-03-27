@@ -4,6 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { ActiveAnimationSolid } from '../galaxysolid/services-solid/active-animation-solid.services';
 import {MenuItem} from 'primeng/api';
 import { isPlatformBrowser } from '@angular/common';
+import { TutorialJavaService } from '../tutorial-content/services/tutorial-java.service';
+import { ActivatedRoute } from '@angular/router';
 
 interface Language {
   name: string
@@ -34,19 +36,22 @@ export class HeaderComponent implements OnInit {
   private dropDownSubHeader!: string;
 
   constructor(public translate: TranslateService, public animationService: ActiveAnimationSolid, 
-    private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object) {
+    private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, public chapterJavaService: TutorialJavaService, private route: ActivatedRoute,
+    ) {
     
      if (isPlatformBrowser(this.platformId)) {
     this.translate.addLangs(['it', 'en']);    
     
     if(this.cookies.check("LANG")){//console.log("lingua del browser: "+window.navigator.language);
       this.translate.setDefaultLang(this.cookies.get("LANG"));      
+      this.chapterJavaService.setDefaultLanguage(this.cookies.get("LANG"));
       this.selectedLenguage = {name: ''+this.cookies.get("LANG"), code: ''+this.cookies.get("LANG").toUpperCase()};
     }else{     
       let browserLang = window.navigator.language;
       console.log("lang: "+browserLang.substring(0, browserLang.indexOf("-")));
       //quando avremo caricato le cose in inglese decommentare linee 51/54 ed eliminare linea 49
       this.cookies.set("LANG","it");  
+      this.chapterJavaService.setDefaultLanguage("it");
       /*
       if(browserLang.substring(0, browserLang.indexOf("-")) == "it")
         this.cookies.set("LANG","it");  
@@ -109,9 +114,17 @@ export class HeaderComponent implements OnInit {
 
 //metodo per il cambio della lingua
 public switchLang(lang: string) {
+  console.log("HEADERlocation: "+this.route.snapshot);
+  console.log("HEADERlocation: "+window.location.href);
   this.translate.use(lang);
   this.cookies.set("LANG",lang);
+  let currentPath = window.location.href;
   
+  if(currentPath.includes("code"))
+    this.chapterJavaService.changeLanguage(lang);
+  else
+    this.chapterJavaService.changeLanguageSilent(lang);
+
   this.translate.get("header.menu.header").forEach(e =>{      
     this.dropDownHeader = e;
 
@@ -170,6 +183,7 @@ onScroll(event: MouseEvent) {
 
 openCloseSideBar(){  
   document.getElementById('collapserSideBar')?.classList.toggle("collapse");
+ 
 }
 
 

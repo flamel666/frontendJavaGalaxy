@@ -188,7 +188,7 @@
   transition: var(--transition-delay);
   background-color: var(--navbar-color);
   border-radius: 50px;
-  width: 70px;
+  width: 73px;
   height: 45px;
   border: none;     
   
@@ -780,6 +780,7 @@ svg{
   //dovessi aver problema con il .p-menubar quando rimpicciolisci lo schermo
   //vai nel file theme.css di primeng e modifica la media query del .p-menubar così:
   //@media screen and (max-width: 1px) {
+    
 }
 @media screen and (max-width: 768px) {
   #headerTop{

@@ -10,6 +10,7 @@ import { ComponentPageTutorial } from '../models/component-page-tutorial.model';
 import { PageTutorial } from '../models/page.model';
 import { lastChapterSelected } from '../services/last-selected-chapter';
 import { TutorialJavaService } from '../services/tutorial-java.service';
+import { UrlPathService } from '../services/url-path.service';
 import { HiddenCodeComponent } from '../templates/hidden-code/hidden-code.component';
 import { TabPanelComponent } from '../templates/tab-panel/tab-panel.component';
 
@@ -59,12 +60,12 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
   constructor(private changeDetector:ChangeDetectorRef, private renderer: Renderer2, public chapterJavaService: TutorialJavaService, private viewContainerRef: ViewContainerRef, 
     private sanitizer: DomSanitizer, private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, private route: ActivatedRoute, private location: Location, 
-    private metaService: Meta, private title:Title) {
+    private metaService: Meta, private title:Title, private urlPathService: UrlPathService) {
       //this.metaService.updateTag({name: 'excerpt', content: "response.chapter?.chapterTitle!"});
    if(isPlatformBrowser(this.platformId)){
     
-    this.chapterJavaService.idChapterSubChanged$?.subscribe(id => {
-      this.location.replaceState("/code/java/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/it")
+    this.chapterJavaService.idChapterSubChanged$?.subscribe(id => {     
+      this.location.replaceState("/code/java/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/"+this.cookies.get("LANG"))
       console.log("sono nel body-contet. sotto capitolo cambiato: " + id);
       this.chapterJavaService.getPageBySubChapter(id).subscribe(response => {
         //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
@@ -93,7 +94,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     this.chapterJavaService.idChapterChanged$?.subscribe(id => {
       console.log("sono nel body-contet. capitolo cambiato: " + id);
       this.chapterJavaService.getPageByChapter(id).subscribe(response => {
-        this.location.replaceState("/code/java/chapter/"+id+"/lang/it");
+        this.location.replaceState("/code/java/chapter/"+id+"/lang/"+this.cookies.get("LANG"));
         //
         this.contentViewContainerRefToClear.forEach((el, c) => {
           c.clear();
@@ -172,12 +173,12 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     this._gridOptions.set(4, `<${this.p} class="red">tata</${this.p}>`);
     // this.viewContainerRef.createComponent(tab);
 */
-  console.log("location: "+this.route.snapshot);
-  console.log("location: "+this.getUrlPath().includes("subchapter"));
+  //console.log("location: "+this.route.snapshot);
+  //console.log("location: "+this.getUrlPath().includes("subchapter"));
   
   let chapter = "1";
   let subChapter = "";
-  let urlPath = this.getUrlPath();
+  let urlPath = this.urlPathService.getUrlPath(window.location.href);
 
 
     if(urlPath=="code/java"){
@@ -185,11 +186,11 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
        chapter = "1";      
     } else if(urlPath.includes("subchapter")){
       console.log("il path iniziale contiene il subchapter");
-      chapter = this.getChapterFromUrlPath();
-      subChapter = this.getSubChapterFromUrlPath();
+      chapter = this.urlPathService.getChapterFromUrlPath(urlPath);
+      subChapter = this.urlPathService.getSubChapterFromUrlPath(urlPath);
     }else{
       console.log("il path iniziale non contiene subchapter");
-      chapter = this.getChapterFromUrlPath();      
+      chapter = this.urlPathService.getChapterFromUrlPath(urlPath);      
     }  
     
   /*
@@ -203,7 +204,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   if(subChapter == "") {   
     this.chapterJavaService.getPageByChapter(chapter).subscribe(response => {
       //nel capitolo setto il path se non è specificato nulla e quindi inizializzo al primo
-      this.location.replaceState("/code/java/chapter/"+chapter+"/lang/it");
+      this.location.replaceState("/code/java/chapter/"+chapter+"/lang/"+this.cookies.get("LANG"));
       //
       this.contentViewContainerRefToClear.forEach((el, c) => {
         c.clear();
@@ -681,7 +682,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
       window.scrollTo(0, 100)
     }
   }
-
+/*
   public getUrlPath(): string{
 
     var b = "{"+this.route+"}";
@@ -712,7 +713,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     console.log("subString of url for the chapte: "+subChapter.substring(0, subChapter.indexOf("£")));
     return subChapter.substring(0, subChapter.indexOf("£"));
   }
-
+*/
 
 
 private updateMetaTag(pageToShow: PageTutorial, isChapter: boolean):void{

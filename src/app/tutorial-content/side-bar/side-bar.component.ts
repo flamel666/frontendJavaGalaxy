@@ -13,6 +13,7 @@ import { Children } from '../models/children.model';
 import { PageTutorial } from '../models/page.model';
 import { lastChapterSelected } from '../services/last-selected-chapter';
 import { TutorialJavaService } from '../services/tutorial-java.service';
+import { UrlPathService } from '../services/url-path.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -47,7 +48,7 @@ export class SideBarComponent implements OnInit {
 
   lastChapterSelected?: lastChapterSelected = new lastChapterSelected();
   constructor(private router: Router, public chapterJavaService: TutorialJavaService, private route: ActivatedRoute,
-    private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, private metaService: Meta) {
+    private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, private metaService: Meta, private urlPathService: UrlPathService) {
        
 
     this.selectedElementInTheBar ="1";
@@ -58,7 +59,7 @@ export class SideBarComponent implements OnInit {
     });
 
     this.chapterJavaService.actionFromTutorialBodyContentAboutSubChapterChanged$?.subscribe(key => {
-      console.log("sono nel costruttore della sideBar per quanto riguarda il cambio del sotto capitolo");
+      console.log("sono nel costruttore della sideBar per quanto riguarda il cambio del sotto capitolo "+key);
       this.initializerSubChapterFromUrl(key);
     });
 
@@ -66,11 +67,42 @@ export class SideBarComponent implements OnInit {
     this.chapterJavaService.actionFromTutorialBodyNextContentChanged$?.subscribe(event => {
       console.log("sono nel costruttore della sideBar ");
       this.nextChapterFromRequestBody();
-    })
+    });
 
     this.chapterJavaService.actionFromTutorialBodyPreviousContentChanged$?.subscribe(event => {
       this.previousChapterFromRequestBody();
-    })
+    });
+
+    this.chapterJavaService.actionFromHeaderChangeLanguareChanged$?.subscribe(event => {
+    //  console.log("js"+window.location.href)
+      console.log("sono nella sidebar, ho cambiato la lingua ");
+      
+  
+      let urlPath = this.urlPathService.getUrlPath(window.location.href);    
+
+      this.initSidebar();
+    
+    if(urlPath=="code/java"){
+      console.log("il path è quello base, inizializziamo ad 1");
+       //chapter = "1";      
+    } else if(urlPath.includes("subchapter")){
+      console.log("il path iniziale contiene il subchapter");
+      let subChapter = this.urlPathService.getSubChapterFromUrlPath(urlPath);
+      
+      this.chapterJavaService.changeIdSubChapter(subChapter);  
+
+    }else{
+      console.log("il path iniziale non contiene subchapter");
+      let chapter = this.urlPathService.getChapterFromUrlPath(urlPath);     
+       
+      this.chapterJavaService.changeIdChapter(chapter); 
+    }  
+
+    window.location.reload();
+
+
+    
+    });
   
   }
 
@@ -113,78 +145,7 @@ export class SideBarComponent implements OnInit {
       });
      }
    
-    if (isPlatformBrowser(this.platformId)) {
-      this.languageCode = this.route.snapshot.paramMap.get('code')!;
-      this.language = this.cookies.get("LANG");  
-
-    this.chapterJavaService.getChapters(this.languageCode, this.language).subscribe(response => {//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
-      console.log(response);
-      this.chaptersJavaCourse = response;
-      this.nodes = [];
-
-      this.chaptersJavaCourse.forEach(el => {
-        console.log(el.id);
-        console.log(el.chapterNumber);
-
-        this.childrenParam = [];
-
-        if (el.subChapters != null) {
-
-          el.subChapters.forEach(subch => {
-            let child = new Children;
-            child.data = "" + subch.id;
-            child.key = "" + subch.subChapterNumber;
-            child.label = "" + subch.subChapterTitle;
-
-            this.childrenParam.push(
-              child
-            );
-
-          });
-        }
-
-        this.nodes.push({
-          key: "" + el.chapterNumber,
-          data: "" + el.id,
-          label: el.chapterTitle,
-          children: this.childrenParam
-        });
-      });
-      console.log(this.chaptersJavaCourse);
-    });
-
-  
-    /*
-        this.nodes = [
-          {
-              key: '0',
-              label: 'Introduction',
-              children: [
-                  {key: '0-0', label: 'What is Angular', data:'https://angular.io', type: 'url'},
-                  {key: '0-1', label: 'Getting Started', data: 'https://angular.io/guide/setup-local', type: 'url'},
-                  {key: '0-2', label: 'Learn and Explore', data:'https://angular.io/guide/architecture', type: 'url'},
-                  {key: '0-3', label: 'Take a Look', data: 'https://angular.io/start', type: 'url'}
-              ]
-          },
-        {
-            key: '1',
-            label: 'sto cazzo',
-            children: [
-    
-            ]
-        }];
-        */
-    this.item = [
-      {
-        label: "capitolo 0",
-        items: [{
-          label: 'introduzione',
-          command: () => this.navigate(),
-
-        }]
-      }
- 
-    ]
+    if (isPlatformBrowser(this.platformId)) {this.initSidebar();
   }
   }
 
@@ -194,8 +155,8 @@ export class SideBarComponent implements OnInit {
 
   public changeChapter(lable: TreeNode, key: string) {
     console.log('--------------------------------------');
-    console.log('scope chapter is ' + lable.key);
-    console.log('scope chapter is ' + lable.key);
+    console.log('scope chapter is key ' + lable.key);
+    console.log('scope chapter is data ' + lable.data);
     console.log('scope chapter is ' + lable.label);
     console.log('scope chapter is ' + lable.children?.length);
     console.log('scope chapter is ex ' + lable.expanded);
@@ -211,7 +172,7 @@ export class SideBarComponent implements OnInit {
     document.getElementById(this.selectedChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(lable.key!)?.classList.add("selectedArgument");
       console.log("id del capitolo: "+lable?.data)
-    this.chapterJavaService.changeIdChapter("" + lable?.data);
+    this.chapterJavaService.changeIdChapter("" + lable?.key);
     this.lastChapterSelected!.chapter = lable?.data;
     this.lastChapterSelected!.subChapter = "0";
     this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected));   
@@ -322,9 +283,13 @@ export class SideBarComponent implements OnInit {
     
     console.log("inizializzo con keya: " + this.lastChapterSelected?.chapter);
     console.log("inizializzo con keyb: " + this.lastChapterSelected?.subChapter);*/
-    console.log("inizializzo con key: " + selectedCapId);
+    console.log("inizializzo con key: " + selectedCapId);     
     document.getElementById(selectedCapId)?.classList.add("selectedArgument");
+    
     this.selectedChapter = this.nodes[Number(selectedCapId) - 1];
+    console.log("node length: " + this.nodes.length);
+    
+    
 
     if (this.nodes.length > 1)
       this.nextChapter = this.nodes[Number(this.selectedChapter!.key)];
@@ -565,6 +530,80 @@ export class SideBarComponent implements OnInit {
   refreshChildSelectedRemoveEffects(event: any){    
     if(event.node.key == this.selectedChapter?.key)
       document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
+  }
+
+  initSidebar(){
+    this.languageCode = this.route.snapshot.paramMap.get('code')!;
+      this.language = this.cookies.get("LANG");  
+
+    this.chapterJavaService.getChapters(this.languageCode, this.language).subscribe(response => {//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
+      console.log(response);
+      this.chaptersJavaCourse = response;
+      this.nodes = [];
+
+      this.chaptersJavaCourse.forEach(el => {
+        console.log(el.id);
+        console.log(el.chapterNumber);
+
+        this.childrenParam = [];
+
+        if (el.subChapters != null) {
+
+          el.subChapters.forEach(subch => {
+            let child = new Children;
+            child.data = "" + subch.id;
+            child.key = "" + subch.subChapterNumber;
+            child.label = "" + subch.subChapterTitle;
+
+            this.childrenParam.push(
+              child
+            );
+
+          });
+        }
+
+        this.nodes.push({
+          key: "" + el.chapterNumber,
+          data: "" + el.id,
+          label: el.chapterTitle,
+          children: this.childrenParam
+        });
+      });
+      console.log(this.chaptersJavaCourse);
+    });
+
+  
+    /*
+        this.nodes = [
+          {
+              key: '0',
+              label: 'Introduction',
+              children: [
+                  {key: '0-0', label: 'What is Angular', data:'https://angular.io', type: 'url'},
+                  {key: '0-1', label: 'Getting Started', data: 'https://angular.io/guide/setup-local', type: 'url'},
+                  {key: '0-2', label: 'Learn and Explore', data:'https://angular.io/guide/architecture', type: 'url'},
+                  {key: '0-3', label: 'Take a Look', data: 'https://angular.io/start', type: 'url'}
+              ]
+          },
+        {
+            key: '1',
+            label: 'sto cazzo',
+            children: [
+    
+            ]
+        }];
+        */
+    this.item = [
+      {
+        label: "capitolo 0",
+        items: [{
+          label: 'introduzione',
+          command: () => this.navigate(),
+
+        }]
+      }
+ 
+    ]
   }
 
 
