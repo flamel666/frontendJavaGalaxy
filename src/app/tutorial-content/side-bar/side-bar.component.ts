@@ -145,7 +145,8 @@ export class SideBarComponent implements OnInit {
       });
      }
    
-    if (isPlatformBrowser(this.platformId)) {this.initSidebar();
+    if (isPlatformBrowser(this.platformId)) {
+      this.initSidebar();
   }
   }
 

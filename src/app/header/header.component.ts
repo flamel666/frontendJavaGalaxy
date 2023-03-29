@@ -117,7 +117,13 @@ public switchLang(lang: string) {
   console.log("HEADERlocation: "+this.route.snapshot);
   console.log("HEADERlocation: "+window.location.href);
   this.translate.use(lang);
+
+  if(document.body.classList.contains("LANG")){
+    this.cookies.delete("LANG");
   this.cookies.set("LANG",lang);
+  }else{
+    this.cookies.set("LANG",lang);
+  }
   let currentPath = window.location.href;
   
   if(currentPath.includes("code"))
@@ -144,6 +150,7 @@ public switchColor(): void{
   console.log("contiene dark: " +document.body.classList.contains("dark"));
   if(document.body.classList.contains("dark")){
     this.animationService.changeTheme("dark");    
+    this.cookies.delete("THEME");
     this.cookies.set("THEME","dark");   
     this.activedThema = true;
     this.logo="-white";
@@ -159,7 +166,12 @@ public switchColor(): void{
 public setThema(thema: string){
 
   document.body.classList.toggle(thema)  
-  this.cookies.set("THEME",thema);  
+  if(document.body.classList.contains("dark")){
+    this.cookies.delete("THEME");
+    this.cookies.set("THEME",thema);  
+  }else{
+    this.cookies.set("THEME",thema);  
+  }
   this.activedThema = (thema=='light' ? false : true);
   if(thema=='light')
     this.logo="";

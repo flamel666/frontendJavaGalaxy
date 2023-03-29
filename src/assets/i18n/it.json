@@ -33,7 +33,16 @@
 
     "ContentBodyTutorial":{
         "buttonPrevious" : "Precedente",
-        "buttonNext": "Successivo"
+        "buttonNext": "Successivo",
+        "legend" :{
+            "header_table" : "Legenda",
+            "important_topic" : "Argomento molto importante",
+            "best_practice" : "Best practice",
+            "complex_topic" : "Concetto complesso",
+            "common_error" : "Errore comune",
+            "trick" : "Trucco"
+
+        }
     }
 
    
