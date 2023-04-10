@@ -2,7 +2,6 @@ import { isPlatformBrowser, isPlatformServer, JsonPipe, Location } from '@angula
 import { AfterViewInit,  ChangeDetectorRef, Component, ComponentRef,   Inject,   OnInit, PLATFORM_ID, QueryList, Renderer2, TemplateRef, Type, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
 
 
@@ -13,6 +12,7 @@ import { TutorialJavaService } from '../services/tutorial-java.service';
 import { UrlPathService } from '../services/url-path.service';
 import { HiddenCodeComponent } from '../templates/hidden-code/hidden-code.component';
 import { TabPanelComponent } from '../templates/tab-panel/tab-panel.component';
+import { ConfigLanguageService } from 'src/app/config-service/config-language.service';
 
 @Component({
   selector: 'app-tutorial-body-content',
@@ -59,13 +59,13 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   lastChapterSelected?: lastChapterSelected = new lastChapterSelected();
 
   constructor(private changeDetector:ChangeDetectorRef, private renderer: Renderer2, public chapterJavaService: TutorialJavaService, private viewContainerRef: ViewContainerRef, 
-    private sanitizer: DomSanitizer, private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, private route: ActivatedRoute, private location: Location, 
-    private metaService: Meta, private title:Title, private urlPathService: UrlPathService) {
+    private sanitizer: DomSanitizer, @Inject(PLATFORM_ID) private platformId: Object, private route: ActivatedRoute, private location: Location, 
+    private metaService: Meta, private title:Title, private urlPathService: UrlPathService, private configLanguageService: ConfigLanguageService) {
       //this.metaService.updateTag({name: 'excerpt', content: "response.chapter?.chapterTitle!"});
    if(isPlatformBrowser(this.platformId)){
     
     this.chapterJavaService.idChapterSubChanged$?.subscribe(id => {     
-      this.location.replaceState("/code/java/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/"+this.cookies.get("LANG"))
+      this.location.replaceState("/code/java/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/"+configLanguageService.getBrowserLanguage())
       console.log("sono nel body-contet. sotto capitolo cambiato: " + id);
       this.chapterJavaService.getPageBySubChapter(id).subscribe(response => {
         //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
@@ -81,7 +81,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         this.defaultContent = [];
 
         console.log("nel subscribe ");
-        console.log(response);
+        //console.log(response);
         this.pageToShow = response;
         this.createPage(this.pageToShow);   
         if(response.videoYouTubeId != undefined)    
@@ -94,7 +94,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     this.chapterJavaService.idChapterChanged$?.subscribe(id => {
       console.log("sono nel body-contet. capitolo cambiato: " + id);
       this.chapterJavaService.getPageByChapter(id).subscribe(response => {
-        this.location.replaceState("/code/java/chapter/"+id+"/lang/"+this.cookies.get("LANG"));
+        this.location.replaceState("/code/java/chapter/"+id+"/lang/"+this.configLanguageService.getBrowserLanguage());
         //
         this.contentViewContainerRefToClear.forEach((el, c) => {
           c.clear();
@@ -176,14 +176,28 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   //console.log("location: "+this.route.snapshot);
   //console.log("location: "+this.getUrlPath().includes("subchapter"));
   
-  let chapter = "1";
-  let subChapter = "";
-  let urlPath = this.urlPathService.getUrlPath(window.location.href);
 
 
+
+  if(isPlatformBrowser(this.platformId)){
+    console.log("-----------------------------BROWSER--------------------------------");
+    let chapter = "1";
+    let subChapter = "";
+    let language = "it";
+    let urlPath = this.urlPathService.getUrlPath(window.location.href);
+  
+    if(urlPath.includes("it"))
+      language = "it";
+    else if(urlPath.includes("en"))
+      language = "en";
+    else
+    language = this.configLanguageService.getBrowserLanguage();
+
+    this.configLanguageService.forceSilecentUpdateLanguage(language);   
+    
     if(urlPath=="code/java"){
       console.log("il path è quello base, inizializziamo ad 1");
-       chapter = "1";      
+        chapter = "1";      
     } else if(urlPath.includes("subchapter")){
       console.log("il path iniziale contiene il subchapter");
       chapter = this.urlPathService.getChapterFromUrlPath(urlPath);
@@ -204,7 +218,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   if(subChapter == "") {   
     this.chapterJavaService.getPageByChapter(chapter).subscribe(response => {
       //nel capitolo setto il path se non è specificato nulla e quindi inizializzo al primo
-      this.location.replaceState("/code/java/chapter/"+chapter+"/lang/"+this.cookies.get("LANG"));
+      this.location.replaceState("/code/java/chapter/"+chapter+"/lang/"+language);
       //
       this.contentViewContainerRefToClear.forEach((el, c) => {
         c.clear();
@@ -229,6 +243,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     }else{
       this.chapterJavaService.getPageBySubChapter(subChapter).subscribe(response => {
         //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
+        this.location.replaceState("/code/java/chapter/"+subChapter.substring(0,subChapter.indexOf("."))+"/subchapter/"+subChapter+"/lang/"+this.configLanguageService.getBrowserLanguage())
         this.contentViewContainerRefToClear.forEach((el, c) => {
           c.clear();
           el.destroy();
@@ -239,7 +254,108 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         this.tabViewContents = new Map();
         this.defaultContent = [];
         console.log("nel subscribe ");
-        console.log(response);
+        //console.log(response);
+        this.pageToShow = response;
+        this.updateMetaTag(this.pageToShow, false);
+       
+     
+        this.createPage(this.pageToShow);   
+        if(response.videoYouTubeId != undefined)    
+          this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+          else
+        this.chapterJavaService.youTubeVideoChanged("");
+      });      
+    }
+  }//BROWSER
+console.log("quasi nel server");
+  if(isPlatformServer(this.platformId)){
+    console.log("quasi nel server");
+    console.log("-----------------SERVER-----------------");
+    let chapter = "1";
+  let subChapter = "";
+  let language = "it";
+  console.log("sto per chiamare il metodo");
+  let urlPath = this.getUrlPath();
+  console.log("urlPath: "+urlPath);
+  console.log("urlPath: "+urlPath.includes("subchapter"));
+
+
+  if(urlPath.includes("it"))
+  language = "it";
+
+  if(urlPath.includes("en"))
+  language = "en";
+
+  this.configLanguageService.forceSilecentUpdateLanguage(language);   
+  this.chapterJavaService.changeSilentLanguageONLYSSRBUILD(language);
+
+    if(urlPath == "code/java"){
+      console.log("il path è quello base, inizializziamo ad 1");
+       chapter = "1";      
+    } else if(urlPath.includes("subchapter")){
+      console.log("il path iniziale contiene il subchapter");
+      chapter = this.getChapterFromUrlPath();
+      subChapter = this.getSubChapterFromUrlPath();
+    }else{
+      console.log("il path iniziale non contiene subchapter");
+      chapter = this.getChapterFromUrlPath();      
+    }  
+
+   
+    
+    console.log("DOPO IL CONTROLLO DELL'URL");
+  /*
+    if(this.cookies.check("lastChapterSelected")){      
+      this.lastChapterSelected = JSON.parse(this.cookies.get("lastChapterSelected"));      
+      chapter = ""+this.lastChapterSelected?.chapter;
+    }*/
+    
+    //if(this.lastChapterSelected?.subChapter == "0" || this.lastChapterSelected?.subChapter == undefined){
+      //inizializza la pagina con il primo capitolo
+  if(subChapter == "") {   
+    this.chapterJavaService.getPageByChapter(chapter).subscribe(response => {
+      //nel capitolo setto il path se non è specificato nulla e quindi inizializzo al primo
+      console.log("CHAPTER CHANGE URL");
+      this.location.replaceState("/code/java/chapter/"+chapter+"/lang/"+language);
+      console.log("CHAPTER AFTER CHANGE URL");
+      //
+      this.contentViewContainerRefToClear.forEach((el, c) => {
+        c.clear();
+        el.destroy();
+        // el.clear();
+      });
+      this.chapterJavaService.notifyChangeFromTutorialBodyContent(chapter);
+      this.tabViewContents = new Map();
+      this.defaultContent = [];
+      console.log(response);
+      this.pageToShow = response;
+      this.createPage(this.pageToShow);    
+      this.updateMetaTag(this.pageToShow, true);
+      
+           
+      if(response.videoYouTubeId != undefined)    
+        this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
+      else
+      this.chapterJavaService.youTubeVideoChanged("");
+      //   this.placeholderContainer.createComponent(TabPanelComponent);       
+    });
+    }else{
+      this.chapterJavaService.getPageBySubChapter(subChapter).subscribe(response => {
+        //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length); 
+        console.log("SUBCHAPTER");     
+        this.contentViewContainerRefToClear.forEach((el, c) => {
+          c.clear();
+          el.destroy();
+        })
+         console.log("AFTER CLEAR AND DESTROY"); 
+        //   this.contentViewContainerRefToClear =[];
+        //console.log("lunghezza poi: "+this.contentViewContainerRefToClear.length);   
+        console.log("NOTIFICATION");    
+        this.chapterJavaService.notifyChangeFromTutorialBodyContentAboutSubChapter(subChapter);
+        this.tabViewContents = new Map();
+        this.defaultContent = [];
+        console.log("nel subscribe ");
+       // console.log(response);
         this.pageToShow = response;
         this.updateMetaTag(this.pageToShow, false);
        
@@ -252,6 +368,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
       });      
     }
 
+  }
     /*if (isPlatformServer(this.platformId)) {
       if((""+this.route).includes("chapter/1/lang")){
         this.chapterJavaService.getPageByChapter("1").subscribe(response => {
@@ -388,9 +505,9 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     // this.defaultContent.push(`<h1 class="reddo">CREATE PAGE</h1>`);
     if (pageToShow.compontentsPage![0].componentType == "p-tabView") {
       pageToShow.compontentsPage?.forEach(e => {
-        console.log("page: " + e.componentType);
+     //   console.log("page: " + e.componentType);
         e.childComponentsPageTutorialList?.forEach(el => {
-          console.log("component: " + el.componentContent);
+        //  console.log("component: " + el.componentContent);
         });
       });
       console.log("finitoooooooooooooooooooooo");
@@ -478,7 +595,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
       
       //console.log("lunghezza: "+this.defaultContent.length);
       
-      console.log("dentro il foreacjh");
+    //  console.log("dentro il foreacjh");
       if (el.childComponentsPageTutorialList!.length > 0) {
         let content = "";
         if (el.componentType != "p-tabView") {
@@ -495,9 +612,9 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
           this.nestedTabViewContents.set(this.defaultContent.length - 1, el);
         }
       } else {
-        console.log("introduzione: tipo: "+el.componentType);
-        console.log("introduzione: class: "+el.componentClassCss);
-        console.log("introduzione: id: "+el.componentIdCss);
+       // console.log("introduzione: tipo: "+el.componentType);
+       // console.log("introduzione: class: "+el.componentClassCss);
+      //  console.log("introduzione: id: "+el.componentIdCss);
         this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id="${el.componentIdCss}">${el.componentContent}</${el.componentType}>`);
 
       }
@@ -546,12 +663,12 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
     console.log("nel metodo");
     components.forEach(el => {
-      console.log("foreach " + content);
+     // console.log("foreach " + content);
       //implementare la ricorsione appena avremo qualcosa da inserire
       if (el.childComponentsPageTutorialList!.length > 0) {
         let subContent: string = "";
-        console.log("figli maggiorni di 0 con boolean:  " + el.standAlone);
-        console.log("tag " + el.componentType);
+     //   console.log("figli maggiorni di 0 con boolean:  " + el.standAlone);
+     //   console.log("tag " + el.componentType);
         /*   if(el.standAlone){//se vero il tag si apre e si chiude con il component    
              subContent = this.createInnestedComponent(el.childComponentsPageTutorialList!);    
              content = content + `<${el.componentType} class="${el.componentClassCss}" id=""${el.componentIdCss}>${subContent}</${el.componentType}>`;          
@@ -568,14 +685,14 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         content = content + `<${el.componentType} class="${el.componentClassCss}" id=""${el.componentIdCss} ${options}>${el.componentContent}</${el.componentType}>`;
       }
     });
-    console.log("nel metodo: " + content);
+    //console.log("nel metodo: " + content);
     return content;
   }
 
   //crea una stringa con le opzioni aggiuntive per il tag che poi verrà inserito nel tag
   private createOptionsTag(component: ComponentPageTutorial): string {
     let options: string = "";
-    console.log("nel metodo option " + component.tagOptions!);
+  //  console.log("nel metodo option " + component.tagOptions!);
     if (component.tagOptions! != undefined)
       if (component.tagOptions!.length > 0) {
         component.tagOptions?.forEach(op => {
@@ -594,7 +711,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   //  this.components.changes.subscribe(() => {
       console.log("sto per partire. pronti...partenza...");
     this.nestedTabViewContents.forEach((tabElement, index) =>{
-        console.log("elemento: "+tabElement.componentType!+" index: "+index);
+      //  console.log("elemento: "+tabElement.componentType!+" index: "+index);
 
         this.components.forEach(el => {         
 
@@ -632,7 +749,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
   //  this.componentsHiddenCode.changes.subscribe(() => {
       console.log("sto per partire. pronti...partenza...");
     this.nestedHiddenCodeContents.forEach((HiddenElement, index) =>{
-        console.log("elemento: "+HiddenElement.componentType!+" index: "+index);
+      //  console.log("elemento: "+HiddenElement.componentType!+" index: "+index);
 
         this.componentsHiddenCode.forEach(el => {         
 
@@ -682,11 +799,13 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
       window.scrollTo(0, 100)
     }
   }
-/*
+
   public getUrlPath(): string{
 
+    console.log("sto per usare route");
+
     var b = "{"+this.route+"}";
-   
+    console.log("ho usato route");
     var url = JSON.parse(b.replace('Route(',"").replace(")","")
      .replace("url","\"url\"")
      .replace("path","\"path\"")
@@ -713,7 +832,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     console.log("subString of url for the chapte: "+subChapter.substring(0, subChapter.indexOf("£")));
     return subChapter.substring(0, subChapter.indexOf("£"));
   }
-*/
+
 
 
 private updateMetaTag(pageToShow: PageTutorial, isChapter: boolean):void{
@@ -728,7 +847,7 @@ private updateMetaTag(pageToShow: PageTutorial, isChapter: boolean):void{
   console.log("meta: "+pageToShow.metaTags);
   if(pageToShow.metaTags != null && pageToShow.metaTags != undefined){
     pageToShow.metaTags.forEach(meta=>{
-      console.log("meta: "+meta.metaTypeName);
+ //     console.log("meta: "+meta.metaTypeName);
       if(meta.metaTypeName == "name"){
         this.metaService.updateTag({name: ''+meta.metaType, content: ""+meta.content});
       }

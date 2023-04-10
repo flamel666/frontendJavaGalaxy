@@ -1,10 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { CookieService } from "ngx-cookie-service";
 import { Observable, Subject } from "rxjs";
+import { CookieService } from 'ngx-cookie-service';
 import { ServiceConfigurationService } from "src/app/config-service/service-configuration.service";
 import { ChaptersCourse } from "../models/chapters.model";
 import { PageTutorial } from "../models/page.model";
+import { ConfigLanguageService } from "src/app/config-service/config-language.service";
 
 
 @Injectable({
@@ -13,7 +14,7 @@ import { PageTutorial } from "../models/page.model";
 
 export class TutorialJavaService{
 
-    private language?: string = "it";//TODO sistemare la faccenda della lingua, che in realtà
+    private language?: string;//TODO sistemare la faccenda della lingua, che in realtà
     //dovrebbe essere settata prendendo la lingua dal dropdown
     private actionFromHeaderChangeLanguare? = new Subject<string>();
     actionFromHeaderChangeLanguareChanged$? = this.actionFromHeaderChangeLanguare?.asObservable();
@@ -45,7 +46,16 @@ export class TutorialJavaService{
     youtubeVideoChanged$? = this.youtubeVideo?.asObservable();
 
 
-    constructor(public httpConnection: HttpClient, public configService: ServiceConfigurationService, private cookies: CookieService){
+    constructor(public httpConnection: HttpClient, public configService: ServiceConfigurationService, 
+        private configLanguageService: ConfigLanguageService){
+            console.log("costruttore service tutorial")
+
+            this.language = configLanguageService.getBrowserLanguage();
+
+            this.configLanguageService.actionForceChangeLanguage$?.subscribe(lang => {
+                console.log("nel subscribe del language");
+                this.changeLanguage(lang);
+            });
     
     }
 
@@ -54,29 +64,34 @@ export class TutorialJavaService{
     }
 
     public notifyChangeFromTutorialBodyContentAboutSubChapter(id : string){
+        console.log("NEL SERVICE PER LA NOTIFICATION");
         this.actionFromTutorialBodyContentAboutSubChapter?.next(id);
     }
 
     //get chapters by programming language and language http://localhost:8080/
-    public getChapters(programmingLanguage: string, language: string):Observable<ChaptersCourse[]>{//79.32.72.214        
-        this.language = language;
+    public getChapters(programmingLanguage: string, languages: string):Observable<ChaptersCourse[]>{//79.32.72.214        
+       // this.language = language;
         this.programmingLanguage = programmingLanguage;
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<ChaptersCourse[]>(ip+"tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+language);
+        return this.httpConnection.get<ChaptersCourse[]>(ip+"tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+this.configLanguageService.getBrowserLanguage());
     }
 
     public getPageByChapter(chapterId: string):Observable<PageTutorial>{
         let ip = this.configService.getIpServer();
         console.log("chapter id is: "+chapterId);     
        
-        return this.httpConnection.get<PageTutorial>(ip+"tutorial/page/course/"+this.programmingLanguage+"/chapter/"+chapterId+"/lang/"+this.language);
+        return this.httpConnection.get<PageTutorial>(ip+"tutorial/page/course/"+this.programmingLanguage+"/chapter/"+chapterId+"/lang/"+this.configLanguageService.getBrowserLanguage());
     }
 
     public getPageBySubChapter(subChapterId: string):Observable<PageTutorial>{        
         let chapter = subChapterId.substring(0,subChapterId.indexOf("."));
         let subChapter = subChapterId.substring(subChapterId.indexOf(".")+1,subChapterId.length);
         let ip = this.configService.getIpServer();
-        return this.httpConnection.get<PageTutorial>(ip+"tutorial/page/course/"+this.programmingLanguage+"/chapter/"+chapter+"/subchapter/"+subChapter+"/lang/"+this.language);
+        console.log("chapter id is: "+chapter); 
+        console.log("subChapter id is: "+subChapter); 
+        console.log("ip id is: "+ip); 
+        console.log("language id is: "+this.language); 
+        return this.httpConnection.get<PageTutorial>(ip+"tutorial/page/course/"+this.programmingLanguage+"/chapter/"+chapter+"/subchapter/"+subChapter+"/lang/"+this.configLanguageService.getBrowserLanguage());
     }
 
     changeIdChapter(id : string){       
@@ -107,11 +122,9 @@ export class TutorialJavaService{
         this.actionFromHeaderChangeLanguare?.next(lang);
     }
 
-    changeLanguageSilent(lang : string){
+    changeSilentLanguageONLYSSRBUILD(lang : string){
+        console.log("service");
         this.language = lang;
     }
 
-    setDefaultLanguage(lang : string){
-        this.language = lang;
-    }
 }

@@ -38,6 +38,7 @@ import { CollapseCanvasComponent } from './galaxysolid/collapse-canvas/collapse-
 import { ProvasunComponent } from './galaxysolid/provasun/provasun.component';
 import { PreliminaryCollapseComponent } from './galaxysolid/preliminary-collapse/preliminary-collapse.component';
 import { isPlatformBrowser } from '@angular/common';
+import { ConfigLanguageService } from './config-service/config-language.service';
 
 
 //import { AppDraggableDirective } from './global-directives/app-draggable.directive';
@@ -89,6 +90,8 @@ export class AppModule {
     constructor(private cookieCreator: CookieService, private counterService: CountVisitorServiceService, 
       @Inject(PLATFORM_ID) private platformId: Object, private metaService: Meta){  
         
+        console.log("--------------------START----------------------------- ");
+
       if (isPlatformBrowser(this.platformId)) {
         
       if(!this.cookieCreator.check("visit")){
@@ -100,7 +103,7 @@ export class AppModule {
         date.setMinutes(59);
         date.setSeconds(59);
         console.log("after set date: "+date);
-        this.cookieCreator.set("visit","visited", date);
+        this.cookieCreator.set("visit","visited", date,  '/' );
        }
 
        
@@ -109,7 +112,7 @@ export class AppModule {
       else{
         this.expireDate = new Date();
         this.expireDate.setDate(this.expireDate.getDate() + 100)
-        this.cookieCreator.set("EX","maxx", this.expireDate);
+        this.cookieCreator.set("EX","maxx", this.expireDate, '/' );
       }
     }
 

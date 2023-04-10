@@ -6,6 +6,7 @@ import {MenuItem} from 'primeng/api';
 import { isPlatformBrowser } from '@angular/common';
 import { TutorialJavaService } from '../tutorial-content/services/tutorial-java.service';
 import { ActivatedRoute } from '@angular/router';
+import { ConfigLanguageService } from '../config-service/config-language.service';
 
 interface Language {
   name: string
@@ -36,47 +37,36 @@ export class HeaderComponent implements OnInit {
   private dropDownSubHeader!: string;
 
   constructor(public translate: TranslateService, public animationService: ActiveAnimationSolid, 
-    private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, public chapterJavaService: TutorialJavaService, private route: ActivatedRoute,
+    private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, public chapterJavaService: TutorialJavaService, 
+    private route: ActivatedRoute, private configLanguageService : ConfigLanguageService
     ) {
     
      if (isPlatformBrowser(this.platformId)) {
-    this.translate.addLangs(['it', 'en']);    
-    
-    if(this.cookies.check("LANG")){//console.log("lingua del browser: "+window.navigator.language);
-      this.translate.setDefaultLang(this.cookies.get("LANG"));      
-      this.chapterJavaService.setDefaultLanguage(this.cookies.get("LANG"));
-      this.selectedLenguage = {name: ''+this.cookies.get("LANG"), code: ''+this.cookies.get("LANG").toUpperCase()};
-    }else{     
-      let browserLang = window.navigator.language;
-      console.log("lang: "+browserLang.substring(0, browserLang.indexOf("-")));
-      //quando avremo caricato le cose in inglese decommentare linee 51/54 ed eliminare linea 49
-      this.cookies.set("LANG","it");  
-      this.chapterJavaService.setDefaultLanguage("it");
-      /*
-      if(browserLang.substring(0, browserLang.indexOf("-")) == "it")
-        this.cookies.set("LANG","it");  
-      else
-      this.cookies.set("LANG","en");*/
+        this.translate.addLangs(['it', 'en']);    
+        console.log("COSTRUTTORE HEADER");
+      let lang = configLanguageService.getBrowserLanguage();
 
-      this.translate.setDefaultLang(this.cookies.get("LANG"));  
-    }  
+      this.selectedLenguage = {name: ''+lang, code: ''+lang.toUpperCase()};
+      this.translate.setDefaultLang(lang);             
+
+      this.languages = [
+        {name: 'it', code:"IT"},
+        {name: 'en', code: "EN"},       
+      ];  
+    
     
     console.log("thema: "+this.activedThema);
     if(this.cookies.check("THEME")){
       this.setThema(this.cookies.get("THEME"));
     }else{
-     this.cookies.set("THEME","light"); 
+     this.cookies.set("THEME","light", { path: '/' }); 
      this.activedThema = false;
      this.logo=""
     }
 
     console.log("thema: "+this.activedThema);
 
-    this.languages = [
-      {name: 'it', code:"IT"},
-      {name: 'en', code: "EN"},
-     
-  ];  
+   
  
   this.translate.get("header.menu.header").forEach(e =>{      
     this.dropDownHeader = e;
@@ -98,8 +88,19 @@ export class HeaderComponent implements OnInit {
       items:[{
         label: this.dropDownSubHeader,
         icon:'fa-brands fa-java',
-        routerLink: "/code/java"        
+        routerLink: "/code/java"
+       /* items:[{
+          label: this.dropDownSubHeader,
+          icon:'fa-brands fa-java',
+          routerLink: "/code/java",
+        },
+        {
+          label: "spring boot",
+          icon:'fa-brands fa-java',
+          routerLink: "/code/java",
+        }]*/       
       }]
+       
     }];
    }
 
@@ -116,20 +117,20 @@ export class HeaderComponent implements OnInit {
 public switchLang(lang: string) {
   console.log("HEADERlocation: "+this.route.snapshot);
   console.log("HEADERlocation: "+window.location.href);
+
   this.translate.use(lang);
 
-  if(document.body.classList.contains("LANG")){
-    this.cookies.delete("LANG");
-  this.cookies.set("LANG",lang);
-  }else{
-    this.cookies.set("LANG",lang);
-  }
   let currentPath = window.location.href;
-  
+
   if(currentPath.includes("code"))
+    this.configLanguageService.forcePropagateUpdateLanguage(lang);
+  else  
+    this.configLanguageService.forceSilecentUpdateLanguage(lang);
+  
+ /* if(currentPath.includes("code"))
     this.chapterJavaService.changeLanguage(lang);
   else
-    this.chapterJavaService.changeLanguageSilent(lang);
+    this.chapterJavaService.changeLanguageSilent(lang);*/
 
   this.translate.get("header.menu.header").forEach(e =>{      
     this.dropDownHeader = e;
@@ -151,13 +152,13 @@ public switchColor(): void{
   if(document.body.classList.contains("dark")){
     this.animationService.changeTheme("dark");    
     this.cookies.delete("THEME");
-    this.cookies.set("THEME","dark");   
+    this.cookies.set("THEME","dark", { path: '/' });   
     this.activedThema = true;
     this.logo="-white";
   }
   else{
     this.animationService.changeTheme("light");    
-    this.cookies.set("THEME","light");
+    this.cookies.set("THEME","light", { path: '/' });
     this.activedThema = false;
     this.logo="";
   }
@@ -168,9 +169,9 @@ public setThema(thema: string){
   document.body.classList.toggle(thema)  
   if(document.body.classList.contains("dark")){
     this.cookies.delete("THEME");
-    this.cookies.set("THEME",thema);  
+    this.cookies.set("THEME",thema, { path: '/' });  
   }else{
-    this.cookies.set("THEME",thema);  
+    this.cookies.set("THEME",thema, { path: '/' });  
   }
   this.activedThema = (thema=='light' ? false : true);
   if(thema=='light')

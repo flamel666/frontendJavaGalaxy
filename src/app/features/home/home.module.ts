@@ -35,10 +35,10 @@ export class HomeModule {
       AOS.init({offset: 350}); 
    }
    
-   if (isPlatformServer(this.platformId)) {
+   /*if (isPlatformServer(this.platformId)) {
      // Server only code.
      
-   }
+   }*/
     
   }
 }
