@@ -6,6 +6,7 @@ import { ServiceConfigurationService } from "src/app/config-service/service-conf
 import { ChaptersCourse } from "../models/chapters.model";
 import { PageTutorial } from "../models/page.model";
 import { ConfigLanguageService } from "src/app/config-service/config-language.service";
+import { Courses } from "../models/courses.model";
 
 
 @Injectable({
@@ -71,19 +72,20 @@ export class TutorialJavaService{
     //get chapters by programming language and language http://localhost:8080/
     public getChapters(programmingLanguage: string, languages: string):Observable<ChaptersCourse[]>{//79.32.72.214        
        // this.language = language;
-        this.programmingLanguage = programmingLanguage;
+      //  this.programmingLanguage = programmingLanguage;
+      //  console.log("CHAPTERSSSSSS programming language is: "+this.programmingLanguage); 
         let ip = this.configService.getIpServer();
         return this.httpConnection.get<ChaptersCourse[]>(ip+"tutorial/chapters/langcode/"+programmingLanguage+"/lang/"+this.configLanguageService.getBrowserLanguage());
     }
 
-    public getPageByChapter(chapterId: string):Observable<PageTutorial>{
+    public getPageByChapter(chapterId: string, programmingLanguage: string):Observable<PageTutorial>{
         let ip = this.configService.getIpServer();
         console.log("chapter id is: "+chapterId);     
-       
-        return this.httpConnection.get<PageTutorial>(ip+"tutorial/page/course/"+this.programmingLanguage+"/chapter/"+chapterId+"/lang/"+this.configLanguageService.getBrowserLanguage());
+       // console.log("CHAPTER programming language is: "+this.programmingLanguage); 
+        return this.httpConnection.get<PageTutorial>(ip+"tutorial/page/course/"+programmingLanguage+"/chapter/"+chapterId+"/lang/"+this.configLanguageService.getBrowserLanguage());
     }
 
-    public getPageBySubChapter(subChapterId: string):Observable<PageTutorial>{        
+    public getPageBySubChapter(subChapterId: string, programmingLanguage: string):Observable<PageTutorial>{        
         let chapter = subChapterId.substring(0,subChapterId.indexOf("."));
         let subChapter = subChapterId.substring(subChapterId.indexOf(".")+1,subChapterId.length);
         let ip = this.configService.getIpServer();
@@ -91,7 +93,13 @@ export class TutorialJavaService{
         console.log("subChapter id is: "+subChapter); 
         console.log("ip id is: "+ip); 
         console.log("language id is: "+this.language); 
-        return this.httpConnection.get<PageTutorial>(ip+"tutorial/page/course/"+this.programmingLanguage+"/chapter/"+chapter+"/subchapter/"+subChapter+"/lang/"+this.configLanguageService.getBrowserLanguage());
+      //  console.log("SUB CHAPTER programming language is: "+this.programmingLanguage); 
+        return this.httpConnection.get<PageTutorial>(ip+"tutorial/page/course/"+programmingLanguage+"/chapter/"+chapter+"/subchapter/"+subChapter+"/lang/"+this.configLanguageService.getBrowserLanguage());
+    }
+
+    public getCourses(): Observable<Courses[]>{
+        let ip = this.configService.getIpServer();
+        return this.httpConnection.get<Courses[]>(ip+"tutorial/page/courses");
     }
 
     changeIdChapter(id : string){       

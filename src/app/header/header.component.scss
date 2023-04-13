@@ -149,26 +149,33 @@
       }
       .p-menubar .p-submenu-list {//aspetto della sotto lista
      //   padding: 0.25rem 0;
+        margin-left: 18px;
         background: var(--navbar-color);
-        border: 0 none;
+        border: 1px solid white;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         width: auto;
         min-width: 8rem;
-        border-radius: 50px !important; 
-        /*.p-submenu-list{
-          quando aggiusteremo il menù per avere varie scelte decommentare il docide 
-          border-radius: 0 10px 10px 0 !important;
+        border-radius: 5px !important; 
+        li{
+          //margin-top: -10px !important;
+          a{
+            border-radius: 0px !important;
+            .p-menuitem-text{
+              white-space: nowrap;
+            }
+          }
+        }
+        .p-submenu-list{
+        //  quando aggiusteremo il menù per avere varie scelte decommentare il docide 
+          //margin-left: 0px;
+          box-shadow: -4px 1px 12px -2px var(--navbar-hover-component-color);
+          border-radius: 2px 10px 10px 2px !important;
           margin-left: -5px;
           border: 1px solid white;
           //height: 30px;
           overflow: hidden;
-          li{
-            //margin-top: -10px !important;
-            a{
-              border-radius: 0px !important;
-            }
-          }
-        }*/
+         
+        }
       }
       .p-menubar .p-submenu-list .p-menu-separator {
         border-top: 1px solid #dee2e6;

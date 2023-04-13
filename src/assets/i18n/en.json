@@ -7,7 +7,10 @@
         "about": "About me",
         "menu": {
             "header": "Courses",
-            "subItem": "Java"
+            "javaBasic": "Basic Java",
+            "javaAdvanced": "Advanced Java",
+            "java": "Java",
+            "database": "Database"
         }
     },
 

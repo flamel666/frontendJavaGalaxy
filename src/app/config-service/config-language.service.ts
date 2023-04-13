@@ -20,6 +20,8 @@ export class ConfigLanguageService {
     if(isPlatformBrowser(this.platformId)){
       let language = "";
       let urlPath = this.urlPathService.getUrlPath(window.location.href);
+      console.log("SERVICE LANGUAGE: "+urlPath);
+      console.log("SERVICE LANGUAGE: "+urlPath.includes("code"));
       if(urlPath.includes("code")){
 
         if(urlPath.includes("it"))
@@ -29,16 +31,24 @@ export class ConfigLanguageService {
         language = "en";
 
       } else {
-      language = window.navigator.language;
+        console.log("else statement");
+        //vediamo se c'è il cockie e nel caso usiamo quella lingua
+        let cockieLang = this.getCoockiesLanguage();
+        if(cockieLang == "NONE"){
+          console.log("Nessun cockie per la lingua, la prendo dal browser");
+          language = window.navigator.language;
+        } else
+          language = cockieLang;
     }
 
-    if(language.includes("it") || language.includes("IT")){
+    if(language.includes("it") || language.includes("IT")){    
       this.browserLanguage = "it";
     } else {
+     
       this.browserLanguage = "en";
     }
   
-   
+    console.log("language attuale prima dei coockies: "+this.browserLanguage);
     this.updateCoockiesLanguage(this.browserLanguage);
     console.log("language attuale: "+this.browserLanguage);
   }
@@ -59,16 +69,23 @@ export class ConfigLanguageService {
 
     if(this.cookies.check("LANG")){   
 
-      let lang = this.cookies.get("LANG");
+    // let lang = this.cookies.get("LANG");
       this.cookies.delete("LANG");
-      this.cookies.set("LANG", lang, { path: '/' });
+      this.cookies.set("LANG", language, { path: '/' });
       
-      this.browserLanguage = lang;
+   //   this.browserLanguage = lang;
 
     }else{
       this.cookies.set("LANG",language);
     }
 
+  }
+
+  private getCoockiesLanguage(): string{
+    if(this.cookies.check("LANG"))
+      return this.cookies.get("LANG");
+    else
+      return "NONE";
   }
 
   forceSilecentUpdateLanguage(language: string): void{
@@ -79,6 +96,8 @@ export class ConfigLanguageService {
       this.cookies.set("LANG",language, { path: '/' });
     }
   }
+
+
 
   forcePropagateUpdateLanguage(language: string): void{
     console.log("forzo propagazione");

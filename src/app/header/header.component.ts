@@ -7,6 +7,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { TutorialJavaService } from '../tutorial-content/services/tutorial-java.service';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigLanguageService } from '../config-service/config-language.service';
+import { json } from 'express';
 
 interface Language {
   name: string
@@ -67,41 +68,100 @@ export class HeaderComponent implements OnInit {
     console.log("thema: "+this.activedThema);
 
    
- 
+    
   this.translate.get("header.menu.header").forEach(e =>{      
     this.dropDownHeader = e;
 
-    this.translate.get("header.menu.subItem").forEach(e =>{
+   /* this.translate.get("header.menu.subItem").forEach(e =>{
      
       this.dropDownSubHeader = e;
-      this.setLabels();
-    });
+     // this.setLabels();
+    });*/
+  });
+
+
+  chapterJavaService.getCourses().subscribe(reponse => {
+    let courses: MenuItem[] = [];
+   
+    let counterSubCorses: number = 0;
+    let counterCorses: number = 0;
+    let separator: MenuItem;
+    separator = {} as MenuItem;
+    separator.separator = true;
+    counterCorses = reponse.length;
+      reponse.forEach(async course =>{
+        let courseItem: MenuItem = {};
+
+        let nameCourse = course.courseName;
+            if(course.translateCourse != undefined){
+              const n = await this.getTranslateLabel(course.translateCourse);
+              nameCourse = n;
+            }
+
+        courseItem.label = nameCourse;
+        courseItem.icon = course.iconCourse;
+        courseItem.styleClass = course.translateCourse;
+        courseItem.disabled = !course.activeCourse;
+        let subCourseItem: MenuItem = {};
+        
+        if(course.subCourses?.length != undefined && course.subCourses?.length > 0){
+          courseItem.items = [];
+          counterSubCorses = course.subCourses.length;
+          course.subCourses.forEach(async subCoruse =>{
+            let nameSubCourse = subCoruse.subCourseName;
+            if(subCoruse.translateSubCourse != undefined){
+              const n2 = await this.getTranslateLabel(subCoruse.translateSubCourse);
+              nameSubCourse = n2
+            }
+            
+            subCourseItem.label = nameSubCourse;
+            subCourseItem.icon = subCoruse.iconSubCourse;
+            subCourseItem.routerLink = "/code/"+nameSubCourse;
+            subCourseItem.styleClass = subCoruse.translateSubCourse;
+            subCourseItem.disabled = !subCoruse.activeSubCourse;
+
+            courseItem.items?.push(subCourseItem);
+            if((counterSubCorses-1)>0) {
+              courseItem.items?.push(separator);
+              counterSubCorses--;
+            }
+            subCourseItem = {};
+
+          });
+        }
+       
+        courses.push(courseItem);
+        if((counterCorses-1)>0) {
+          courses.push(separator);
+          counterCorses--;
+        }
+      });
+
+      this.setLabels(courses);
   });
 }
 
    }  
 
-   private setLabels(){
-    this.items =[{
+   private setLabels(courses: MenuItem[]){
+
+    this.items = [{
       label: ''+this.dropDownHeader,
-      icon:'pi pi-fw pi-book',      
-      items:[{
-        label: this.dropDownSubHeader,
-        icon:'fa-brands fa-java',
-        routerLink: "/code/java"
-       /* items:[{
-          label: this.dropDownSubHeader,
-          icon:'fa-brands fa-java',
-          routerLink: "/code/java",
-        },
-        {
-          label: "spring boot",
-          icon:'fa-brands fa-java',
-          routerLink: "/code/java",
-        }]*/       
-      }]
-       
+      icon:'pi pi-fw pi-book', 
+      items: courses,
+      styleClass: "header"
     }];
+    
+   }
+
+   private async getTranslateLabel(label: string): Promise<string>{
+    let labelTranslated : string = "";
+    await this.translate.get("header.menu."+label).forEach(e =>{
+      console.log("tradotto: "+e);
+      labelTranslated = e;   
+    });
+
+    return labelTranslated;
    }
 
   ngOnInit(): void {    
@@ -125,22 +185,101 @@ public switchLang(lang: string) {
   if(currentPath.includes("code"))
     this.configLanguageService.forcePropagateUpdateLanguage(lang);
   else  
-    this.configLanguageService.forceSilecentUpdateLanguage(lang);
-  
- /* if(currentPath.includes("code"))
-    this.chapterJavaService.changeLanguage(lang);
-  else
-    this.chapterJavaService.changeLanguageSilent(lang);*/
+    this.configLanguageService.forceSilecentUpdateLanguage(lang);  
 
+  let myItem: MenuItem[] = Object.assign([], this.items);
+
+  myItem.forEach(async item =>{
+    console.log("sto per tradurre: "+item.label);
+    console.log("sto per tradurre con style: "+item.styleClass);
+    
+    const value = await this.getTranslateLabel(item.styleClass!);
+    item.label = value;
+
+    if(item.items?.length != undefined && item.items?.length > 0){
+      item.items.forEach(async subItem => {
+        
+        console.log("sto per tradurre: "+subItem.label);
+        console.log("sto per tradurre con style: "+subItem.styleClass);
+        if(subItem.styleClass != undefined){
+          const value2 = await this.getTranslateLabel(subItem.styleClass!);
+          subItem.label = value2;
+          if(subItem.items?.length != undefined && subItem.items?.length > 0){
+            subItem.items.forEach(async subSubItem => {
+              if(subSubItem.styleClass != undefined){
+              const value2 = await this.getTranslateLabel(subSubItem.styleClass!);
+              subSubItem.label = value2;
+              subSubItem.routerLink = "/code/"+subSubItem.label;
+              }
+            });
+          }
+        }
+      });
+    }
+    
+   /*await this.translate.get("header.menu."+item.styleClass!).forEach(e =>{
+      console.log("tradotto: "+e);
+      s = e;
+      item.label = s;
+      
+    //  this.setLabels();
+    });*/
+
+
+  
+    //  item.label = "s";    
+     
+    this.updateItem(myItem);
+ ///  item.label = s;//this.getTranslateLabel(item.styleClass!);
+   
+  });
+  console.log("assegno");
+ // this.items = [];
+ // this.items = myItem;
+ // this.items.forEach(item =>{
+
+  //  item.label = "nameCourse";
+   /* console.log("translate: "+item.styleClass);
+    console.log("translate: "+this.getTranslateLabel(item.styleClass!));
+    let nameCourse = item.label;
+    if(item.styleClass != undefined)
+      nameCourse = this.getTranslateLabel(item.styleClass);
+    item.label = nameCourse;
+
+    if(item.items?.length != undefined && item.items?.length > 0){
+      item.items.forEach(subItem =>{
+        let nameSubCourse = subItem.label;
+        if(subItem.styleClass != undefined)
+          nameSubCourse = this.getTranslateLabel(subItem.styleClass);
+        subItem.label = nameSubCourse;
+
+        if(subItem.items?.length != undefined && subItem.items?.length > 0){
+          subItem.items.forEach(subSubItem =>{
+            let nameSubSubCourse = subSubItem.label;
+            if(subSubItem.styleClass != undefined)
+            nameSubSubCourse = this.getTranslateLabel(subSubItem.styleClass);
+              subSubItem.label = nameSubSubCourse;
+          })
+
+        }
+
+      });
+    }*/
+ // });
+/*
   this.translate.get("header.menu.header").forEach(e =>{      
     this.dropDownHeader = e;
 
     this.translate.get("header.menu.subItem").forEach(e =>{
      
       this.dropDownSubHeader = e;
-      this.setLabels();
+    //  this.setLabels();
     });
-  });
+  });*/
+}
+
+private updateItem(myItem: MenuItem[]): void{
+  this.items = myItem;
 }
 
 public switchColor(): void{

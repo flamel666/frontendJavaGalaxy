@@ -77,15 +77,23 @@ export class SideBarComponent implements OnInit {
       this.previousChapterFromRequestBody();
     });
 
-    this.chapterJavaService.actionFromHeaderChangeLanguareChanged$?.subscribe(event => {
+    this.chapterJavaService.actionFromHeaderChangeLanguareChanged$?.subscribe(async event => {
     //  console.log("js"+window.location.href)
       console.log("sono nella sidebar, ho cambiato la lingua "+this.configLanguageService.getBrowserLanguage());
+      console.log("sono nella sidebar, ho cambiato la lingua "+this.urlPathService.getCourseFromUrl(window.location.href));
       
- 
-      let urlPath = this.urlPathService.getUrlPath(window.location.href);   
-      this.location.replaceState(urlPath.substring(0, urlPath.length-2)+this.configLanguageService.getBrowserLanguage());
-      console.log("sono nella sidebar, ho cambiato la lingua "+urlPath.substring(0, urlPath.length-2)); 
+      const oldCourseUrl = this.urlPathService.getCourseFromUrl(window.location.href);
+      const newCourse = await this.urlPathService.getTranslateCourseFromUrl(window.location.href);
 
+      console.log("sono nella sidebar, ho cambiato la lingua tradotto: "+newCourse);
+      let urlPath = this.urlPathService.getUrlPath(window.location.href);   
+      console.log("sono nella sidebar, ho cambiato la lingua tradotto: "+urlPath)
+
+
+
+      this.location.replaceState(urlPath.substring(0, urlPath.length-2).replace(oldCourseUrl, newCourse)+this.configLanguageService.getBrowserLanguage());
+      console.log("sono nella sidebar, ho cambiato la lingua "+urlPath.substring(0, urlPath.length-2)); 
+     
       window.location.reload();
 
 
@@ -96,8 +104,10 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit(): void {        
     if (isPlatformServer(this.platformId)) {
-      
-      this.chapterJavaService.getChapters("java", "it").subscribe(response => {//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
+      let languageCode = this.route.snapshot.paramMap.get('code')!;
+       console.log("CODICE PRESO DAI PARAMETRI: "+this.languageCode );
+       console.log("lingua: "+this.configLanguageService.getBrowserLanguage());
+      this.chapterJavaService.getChapters(languageCode, "").subscribe(response => {//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
       //  console.log(response);
         this.chaptersJavaCourse = response;
         this.nodes = [];
@@ -522,9 +532,12 @@ export class SideBarComponent implements OnInit {
       document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
   }
 
-  initSidebar(){
+   initSidebar(){
     this.languageCode = this.route.snapshot.paramMap.get('code')!;
-
+   // const newCourse = await this.urlPathService.getTranslateCourseFromUrl(window.location.href);
+    console.log("CODICE PRESO DAI PARAMETRI: "+this.languageCode );
+  //  console.log("recuperato da url: "+newCourse );
+    console.log("lingua: "+this.configLanguageService.getBrowserLanguage());
     this.chapterJavaService.getChapters(this.languageCode, "").subscribe(response => {//modificare il service per passargli il linguaggio di programmazione per recuperare i capitoli
       //console.log(response);
       this.chaptersJavaCourse = response;
