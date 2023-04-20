@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { GlobalContentComponent } from './global-content/global-content.component';
+import { CoursesDispatcherComponent } from './courses-dispatcher/courses-dispatcher.component';
 
 
 
 const routes: Routes = [
-  /*  {
-      path: 'code/java',
-      component: GlobalContentComponent
-    },*/
+    {
+      path: 'code/lang/:lang',
+      component: CoursesDispatcherComponent
+    },
     {
       path: 'code/:code',
       component: GlobalContentComponent

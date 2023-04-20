@@ -252,8 +252,9 @@ hr {
         background-color: var(--navbar-color);    
         transition: var(--transition-delay);   
         color: var(--text-color);
-        border: 1px solid white;
-        
+        border: 1px solid var(--button-tutorial-navigate-border);
+        box-shadow: -6px 8px 10px var(--button-tutorial-navigate-first-shadow-color),
+                0px 2px 2px var(--button-tutorial-navigate-second-shadow-color);       
        }
     
       .p-button:enabled:hover {
@@ -265,12 +266,14 @@ hr {
       .p-button:enabled:focus {    
         outline: 0 none !important;
       outline-offset: 0 !important;
-      box-shadow: none !important;  
+     
+      //box-shadow: none !important;  
       }
       
       .p-button:enabled:active{    
         color: rgb(19, 223, 63);   
         background-color: var(--navbar-color) !important; 
+        box-shadow: -6px 8px 10px rgb(81 41 10 / 10%), 0px 2px 2px rgb(81 41 10 / 10%);
       }
 }
 

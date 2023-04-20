@@ -10,7 +10,10 @@
             "javaBasic": "Java base",
             "javaAdvanced": "Java avanzato",
             "java": "Java",
-            "database": "Database"
+            "database": "Database",
+            "javaBasicDescription": "Nel corso 'Java base' verranno trattati i concetti fondamentali del linguaggio Java e della programmazione ad oggetti. Il corso è adatto sia ai principianti sia a chi vuole consolidare le proprie conoscenze di Java. Questo corso è caratterizzato da un approccio pratico e orientato al progetto.",
+            "javaAdvancedDescription": "Il corso 'Java avanzato' è pensato per chi vuole portare le proprie competenze ad un livello superiore, trattando argomenti più avanzati come la programmazione multi-thread, i design pattern, la sicurezza, i framework più utilizzati, come Hibernate e JPA, e la realizzazione di progetti complessi. Alla fine del corso, gli studenti saranno programmatori Java altamente qualificati.",
+            "subCourseComingSoon": "Prossimamente"
         }
     },
 

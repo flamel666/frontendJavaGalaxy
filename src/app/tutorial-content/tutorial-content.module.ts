@@ -27,6 +27,7 @@ import { UtilityMenuComponent } from './utility-menu/utility-menu.component';
 import { AppDraggableDirective } from '../global-directives/app-draggable.directive';
 import { MessageService } from 'primeng/api';
 import { HiddenCodeComponent } from './templates/hidden-code/hidden-code.component';
+import { CoursesDispatcherComponent } from './courses-dispatcher/courses-dispatcher.component';
 
 
 
@@ -40,7 +41,8 @@ import { HiddenCodeComponent } from './templates/hidden-code/hidden-code.compone
     TabPanelComponent,
     UtilityMenuComponent,
     AppDraggableDirective,
-    HiddenCodeComponent
+    HiddenCodeComponent,
+    CoursesDispatcherComponent
     
   ],
   imports: [

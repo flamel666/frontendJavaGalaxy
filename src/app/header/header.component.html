@@ -18,7 +18,7 @@
     <a class="aboutLink" href="javascript:void(0)" [routerLink] = "['/code/postgres']"> {{'header.about' | translate}}</a>
     -->
     <!--scelta corsi-->
-    <p-menubar [model]="items" [autoDisplay]= 'true'>
+    <p-menubar [model]="items" [autoDisplay]= 'false'>
        
     </p-menubar>
 
@@ -91,7 +91,7 @@
         <a href="javascript:void(0)" style="cursor: default;">
             <img class="logo-mini" src="assets/images/header.component/varie/logo-naked.png" />
         </a>
-        <p-menubar [model]="items">
+        <p-menubar [model]="items" [autoDisplay]= 'false'>
         </p-menubar>
 
         <p-dropdown id="dropdownLanguage" [options]="languages" [(ngModel)]="selectedLenguage" optionLabel="name"

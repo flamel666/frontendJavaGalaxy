@@ -15,6 +15,9 @@ export class ConfigLanguageService {
   private actionForceChangeLanguage? = new Subject<string>();
   actionForceChangeLanguage$? = this.actionForceChangeLanguage?.asObservable();
 
+  private actionForceChangeLanguageForDispacherPage = new Subject<string>();
+  actionForceChangeLanguageForDispacherPage$? = this.actionForceChangeLanguageForDispacherPage?.asObservable();
+
   constructor(private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, private urlPathService: UrlPathService) { 
     console.log("COSTRUTTORE SERVICE LANGUAGE");
     if(isPlatformBrowser(this.platformId)){
@@ -95,6 +98,8 @@ export class ConfigLanguageService {
       this.cookies.delete("LANG");
       this.cookies.set("LANG",language, { path: '/' });
     }
+
+    this.actionForceChangeLanguageForDispacherPage?.next(language);
   }
 
 

@@ -99,6 +99,7 @@ export class TutorialJavaService{
 
     public getCourses(): Observable<Courses[]>{
         let ip = this.configService.getIpServer();
+        console.log("PRENDO TUTTI I CORSI");
         return this.httpConnection.get<Courses[]>(ip+"tutorial/page/courses");
     }
 

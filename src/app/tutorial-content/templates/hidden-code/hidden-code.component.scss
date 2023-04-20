@@ -8,7 +8,7 @@ button {
     margin-bottom: 10px;
 	border-radius: 20px;
 	background-color: #667292;
-	box-shadow: 3px 4px 10px #36486b;
+	box-shadow: var(--box-shadow-inset-unset) 3px 4px 10px var(--box-shadow-button-color);
 	width: 130px;
 	height: 37px;
 	font-size: 50px;

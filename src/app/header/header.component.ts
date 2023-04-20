@@ -101,6 +101,8 @@ export class HeaderComponent implements OnInit {
         courseItem.label = nameCourse;
         courseItem.icon = course.iconCourse;
         courseItem.styleClass = course.translateCourse;
+        courseItem.routerLink = "/code/lang/"+configLanguageService.getBrowserLanguage();
+        console.log("Router link: "+courseItem.routerLink);
         courseItem.disabled = !course.activeCourse;
         let subCourseItem: MenuItem = {};
         
@@ -181,9 +183,14 @@ public switchLang(lang: string) {
   this.translate.use(lang);
 
   let currentPath = window.location.href;
-
-  if(currentPath.includes("code"))
+  console.log("HEADERlocation code: "+currentPath.includes("code/lang"));
+  console.log("HEADERlocation code: "+!(currentPath.includes("code/lang")));
+  console.log("HEADERlocation home: "+currentPath.includes("home"));
+  console.log("HEADERlocation home: "+!(currentPath.includes("home")));
+  if(!(currentPath.includes("code/lang")) && !(currentPath.includes("home"))){
+    console.log("--------------FORZO-----------------");
     this.configLanguageService.forcePropagateUpdateLanguage(lang);
+  }
   else  
     this.configLanguageService.forceSilecentUpdateLanguage(lang);  
 
@@ -195,12 +202,14 @@ public switchLang(lang: string) {
     
     const value = await this.getTranslateLabel(item.styleClass!);
     item.label = value;
-
+  
+    console.log("Router link after change: "+item.routerLink);
     if(item.items?.length != undefined && item.items?.length > 0){
       item.items.forEach(async subItem => {
         
         console.log("sto per tradurre: "+subItem.label);
         console.log("sto per tradurre con style: "+subItem.styleClass);
+        subItem.routerLink = "/code/lang/"+this.configLanguageService.getBrowserLanguage();
         if(subItem.styleClass != undefined){
           const value2 = await this.getTranslateLabel(subItem.styleClass!);
           subItem.label = value2;

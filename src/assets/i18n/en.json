@@ -10,7 +10,10 @@
             "javaBasic": "Basic Java",
             "javaAdvanced": "Advanced Java",
             "java": "Java",
-            "database": "Database"
+            "database": "Database",
+            "javaBasicDescription": "In the 'Basic Java' course, we will cover the fundamental concepts of the Java language and object-oriented programming. The course is suitable for both beginners and those who want to consolidate their knowledge of Java. This course is characterized by a practical and project-oriented approach.",
+            "javaAdvancedDescription": "The 'Advanced Java' course is designed for those who want to bring their skills to the next level, covering more advanced topics such as multi-thread programming, design patterns, security, the most commonly used frameworks such as Hibernate and JPA, and the development of complex projects. At the end of the course, students will be highly qualified Java programmers.",
+            "subCourseComingSoon": "Coming soon"
         }
     },
 
