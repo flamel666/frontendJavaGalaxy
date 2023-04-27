@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit, Pipe, PipeTransform, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfigLanguageService } from 'src/app/config-service/config-language.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,7 @@ import { Component, HostListener, OnInit, Pipe, PipeTransform, ViewEncapsulation
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { 
+  constructor(private router: Router, private configLanguageService: ConfigLanguageService) { 
     
   }
 
@@ -25,6 +27,10 @@ export class HomeComponent implements OnInit {
     if(window.pageYOffset < 50)    
     document.getElementById('containerArrow')!.style.display = 'block';
    
+  }
+
+  public goToCourses(): void{
+    this.router.navigate(["/code/lang/"+this.configLanguageService.getBrowserLanguage()]);
   }
   
 }

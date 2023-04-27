@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   
@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {//questo va messo sempre alla fine 
     path: "**",//se vado su una pagina che non esiste allora mi dirotta su home
-    redirectTo: 'home' //magari usarlo per un errore 404 custom
+    redirectTo: 'home'//magari usarlo per un errore 404 custom
   }
 ];
 
@@ -32,4 +32,11 @@ const routes: Routes = [
 })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  /*  public pattero: string = "/";
+    constructor(private router: Router){
+      console.log("COSTRUTTORE ROUTER "+window.location.href);
+      if(window.location.href.toString().includes("sto"))
+      this.router.navigate(["/code/lang/it"]);
+    }*/
+ }

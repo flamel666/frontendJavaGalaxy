@@ -46,6 +46,8 @@ body {
     --stringArgument: rgba(42, 146, 1, 0.877);
     --background-color-content-courses: rgb(230, 230, 230, 0.9);
 
+    --link-color: #0000EE;
+
     //template hidden
     --box-shadow-inset-unset: ;
     --box-shadow-button-color: #36486b;
@@ -55,6 +57,10 @@ body {
     transition: var(--transition-delay);
   
     overflow-x: hidden;
+
+    //footer
+
+    --wave-url-png: url("./assets/images/footer.component/wave-light.png");
 }
 
 /////////////////////////////scroll bar
@@ -107,6 +113,8 @@ body.dark {
     --stringArgument: rgba(76, 173, 37, 0.877);
     --background-color-content-courses: rgb(64, 67, 73, 0.9);
 
+    --link-color: #2d8ec7;
+
     //template hidden
     --box-shadow-inset-unset: inset;
     --box-shadow-button-color: #6d7b97;
@@ -115,7 +123,9 @@ body.dark {
     --scroll-bar-color-primary: #00c3ff;
     --scroll-bar-color-secondary: rgb(2, 16, 212);
     transition: var(--transition-delay);
-    
+
+    //footer
+    --wave-url-png: url("./assets/images/footer.component/wave-dark.png");
 }
 
 

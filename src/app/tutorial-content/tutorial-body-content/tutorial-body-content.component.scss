@@ -24,6 +24,9 @@
         font-size: 28px;
         font-family: var(--font-family-global);
         line-height: 30px;
+        a{
+            color: var(--link-color);
+        }
     }
 
     .imageCourse{
@@ -79,6 +82,9 @@
      }
      .evidenceArgumentDescription{
         text-indent: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 25px;
      }
      }
 
