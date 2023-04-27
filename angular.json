@@ -133,17 +133,19 @@
             }
           },
           "defaultConfiguration": "production"
-        },
+        },        
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
               "browserTarget": "javaGalaxy:build:development",
-              "serverTarget": "javaGalaxy:server:development"
+              "__serverTarget": "javaGalaxy:server:development",
+              "prerenderTarget": "app:prerender:production"
             },
             "production": {
               "browserTarget": "javaGalaxy:build:production",
-              "serverTarget": "javaGalaxy:server:production"
+              "__serverTarget": "javaGalaxy:server:production",
+              "prerenderTarget": "app:prerender:production"
             }
           },
           "defaultConfiguration": "development"

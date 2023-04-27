@@ -62,7 +62,9 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     private sanitizer: DomSanitizer, @Inject(PLATFORM_ID) private platformId: Object, private route: ActivatedRoute, private location: Location, 
     private metaService: Meta, private title:Title, private urlPathService: UrlPathService, private configLanguageService: ConfigLanguageService) {
       //this.metaService.updateTag({name: 'excerpt', content: "response.chapter?.chapterTitle!"});
-   if(isPlatformBrowser(this.platformId)){
+   console.log("COSTRUTTOREEEEEEEEEEEEEEEEEEEE");
+   
+      if(isPlatformBrowser(this.platformId)){
     
     this.chapterJavaService.idChapterSubChanged$?.subscribe(id => {     
       this.location.replaceState("/code/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/"+configLanguageService.getBrowserLanguage())
@@ -83,7 +85,9 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
         console.log("nel subscribe ");
         //console.log(response);
+
         this.pageToShow = response;
+        this.title.setTitle(""+response.subChapter?.subChapterTitle)
         this.createPage(this.pageToShow);   
         if(response.videoYouTubeId != undefined)    
           this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
@@ -107,6 +111,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
         this.defaultContent = [];
         console.log(response);
         this.pageToShow = response;
+        this.title.setTitle(""+response.chapter?.chapterTitle)
         this.createPage(this.pageToShow);        
         if(response.videoYouTubeId != undefined)    
           this.chapterJavaService.youTubeVideoChanged(response.videoYouTubeId);
