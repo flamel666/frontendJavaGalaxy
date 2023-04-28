@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import * as THREE from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -41,12 +42,14 @@ export class SunSolidComponent implements OnInit, AfterViewInit {
     return this.canvasRef.nativeElement;
   }
 
-  constructor(public animationService: ActiveAnimationSolid) { 
+  constructor(public animationService: ActiveAnimationSolid, @Inject(PLATFORM_ID) private platformId: Object) { 
  
   }
   
   ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) { 
     this.createScene();
+    }
   }
 
   ngOnInit(): void {

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ViewContainerRef } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { PreliminaryCollapseComponent } from '../preliminary-collapse/preliminary-collapse.component';
 
 @Component({
   selector: 'app-collapse-canvas',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollapseCanvasComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private viewContainerRef: ViewContainerRef) { 
+    if (isPlatformBrowser(this.platformId)) {
+      // Client only code.
+      this.viewContainerRef.createComponent(PreliminaryCollapseComponent);
+   }
+   
+   if (isPlatformServer(this.platformId)) {
+     // Server only code.
+     
+   }
+  }
 
   ngOnInit(): void {
   }

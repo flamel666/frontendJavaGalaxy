@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { Inject, NgModule, PLATFORM_ID } from '@angular/core';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,13 @@ import {FormsModule} from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToggleButtonModule} from 'primeng/togglebutton';
+import {MenubarModule} from 'primeng/menubar';
+
+
+import { HomeModule } from './features/home/home.module';
+
+import { CookieService } from 'ngx-cookie-service';
+import { CountVisitorServiceService } from './global-service/count-visitor-service.service';
 
 import { CubeComponent } from './cube/cube.component';
 import { MoonSolidComponent } from './galaxysolid/moon-solid/moon-solid.component';
@@ -29,10 +36,11 @@ import { SunGlowComponent } from './galaxysolid/sun-glow/sun-glow.component';
 import { SunSolidComponent } from './galaxysolid/sun-solid/sun-solid.component';
 import { CollapseCanvasComponent } from './galaxysolid/collapse-canvas/collapse-canvas.component';
 import { ProvasunComponent } from './galaxysolid/provasun/provasun.component';
-import { CookieService } from 'ngx-cookie-service';
-import {MenubarModule} from 'primeng/menubar';
-import { HomeModule } from './features/home/home.module';
-import { CountVisitorServiceService } from './global-service/count-visitor-service.service';
+import { PreliminaryCollapseComponent } from './galaxysolid/preliminary-collapse/preliminary-collapse.component';
+import { isPlatformBrowser } from '@angular/common';
+import { ConfigLanguageService } from './config-service/config-language.service';
+
+
 //import { AppDraggableDirective } from './global-directives/app-draggable.directive';
 
 //angularMaterial
@@ -45,15 +53,16 @@ import { CountVisitorServiceService } from './global-service/count-visitor-servi
     AppComponent,
     HeaderComponent,
     FooterComponent,
-     CubeComponent, MoonSolidComponent, SunGlowComponent, SunSolidComponent, CollapseCanvasComponent, ProvasunComponent
+     CubeComponent, MoonSolidComponent, SunGlowComponent, SunSolidComponent, CollapseCanvasComponent, ProvasunComponent, PreliminaryCollapseComponent
   ],
   imports: [        
-    BrowserModule,
+   
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AuthenticationModule,
-    TutorialContentModule,
-    HomeModule,
+    TutorialContentModule,       
+    
+    HomeModule, 
     AppRoutingModule,
-    HttpClientModule,
     DropdownModule,
     MenubarModule,
     
@@ -78,9 +87,15 @@ export class AppModule {
 
   private expireDate!: Date;
 
-    constructor(private cookieCreator: CookieService, private counterService: CountVisitorServiceService){   
+    constructor(private cookieCreator: CookieService, private counterService: CountVisitorServiceService, 
+      @Inject(PLATFORM_ID) private platformId: Object, private metaService: Meta){  
+        
+        console.log("--------------------START----------------------------- ");
 
+      if (isPlatformBrowser(this.platformId)) {
+        
       if(!this.cookieCreator.check("visit")){
+        
         this.counterService.incrementVisitour();
         let date = new Date();
         console.log("date: "+date);
@@ -88,19 +103,20 @@ export class AppModule {
         date.setMinutes(59);
         date.setSeconds(59);
         console.log("after set date: "+date);
-        this.cookieCreator.set("visit","visited", date);
+        this.cookieCreator.set("visit","visited", date,  '/' );
        }
 
-       /*
+       
       if(this.cookieCreator.check("EX"))
-      this.cookieCreator.set("ALL","cazz");
+      this.cookieCreator.set("ALL","MAZZ");
       else{
         this.expireDate = new Date();
         this.expireDate.setDate(this.expireDate.getDate() + 100)
-        this.cookieCreator.set("EX","cazz", this.expireDate);
-      }*/
+        this.cookieCreator.set("EX","maxx", this.expireDate, '/' );
+      }
     }
 
+  }
 
  }
 
@@ -108,3 +124,8 @@ export class AppModule {
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json'); 
 }
+
+/*
+ngOnInit(): void {
+  }
+*/

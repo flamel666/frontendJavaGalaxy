@@ -13,6 +13,10 @@ body {
     --font-family-global: 'Times New Roman', Times, serif;//Verdana, sans-serif, serif, Arial, Helvetica, 'Times New Roman', Times;
     font-family: var(--font-family-global);
 
+    --background-color-content-tutorial: rgb(230, 230, 230);//rgb(68,70,84);//rgb(52, 53, 65)
+    
+    --text-color-content-tutorial:black;
+
     --navbar-color: #007bb8;// #007bb8
         --font-size: 15px;
         --font-weight: 600;
@@ -20,8 +24,10 @@ body {
         --transition-delay-hover: 0.5s;
         --logo-url: "../../assets/images/header.component/varie/logo-white.png";
 
-
-
+    --button-tutorial-navigate-border: rgb(81 41 10 / 90%);//rgba(171 95 37 / 70%);
+    --button-tutorial-navigate-first-shadow-color: rgb(81 41 10 / 30%);//rgba(193 105 37 / 30%);
+    --button-tutorial-navigate-second-shadow-color: rgb(81 41 10 / 90%);//rgba(171 95 37 / 40%);
+    --border-menu-color: white;
     //sideBar
     --icon-hover-side-bar: #58c4fa;
     --box-shadow-color1: rgba(0, 0, 0, 0.3);
@@ -32,12 +38,29 @@ body {
     --geometry-color: rgb(252, 243, 243);
     
     --transition-delay: 1s;
+
+    //code colors
+    --keword-color: rgba(212, 0, 255, 0.993);/*255, 145, 0, 0.904*/
+    --className-color: #556ef8;/*rgb(255, 208, 0);#556ef8*//*255, 145, 0, 0.904*/
+    --methodName-color: rgb(216, 87, 1);/*255, 145, 0, 0.904*/
+    --stringArgument: rgba(42, 146, 1, 0.877);
+    --background-color-content-courses: rgb(230, 230, 230, 0.9);
+
+    --link-color: #0000EE;
+
+    //template hidden
+    --box-shadow-inset-unset: ;
+    --box-shadow-button-color: #36486b;
    
    // background-color: var(--background-color);
     background: url("./assets/images/background/background_galaxy.png") black;
     transition: var(--transition-delay);
   
     overflow-x: hidden;
+
+    //footer
+
+    --wave-url-png: url("./assets/images/footer.component/wave-light.png");
 }
 
 /////////////////////////////scroll bar
@@ -60,26 +83,49 @@ body.dark {
     --background-color: #121212;
     --background-color-ContentTutorial: rgb(100, 100, 100);
     --component-color: #9511ec; //#3B82F6
-    --text-color: rgb(253, 253, 253);
-    --icon-color:white;
+    --text-color: rgb(198, 218, 227);//rgb(190, 206, 214);//rgb(196, 222, 234);// rgb(219, 203, 203);
+    --icon-color:rgb(219, 203, 203);
 
+    --background-color-content-tutorial: rgb(64, 67, 73);//rgb(68,70,84);//rgb(52, 53, 65)
+    
+    --text-color-content-tutorial:rgb(223, 223, 223);//rgb(209,206,215)
+    //    border: 1px solid rgb(252 253 253); bordi per i bottoni
     --boxshadow-view: 5px;
 
-    --navbar-color: rgb(6, 0, 59);//corrispettivo hex #06003b 
-        --navbar-hover-component-color: #0b0069;
+    --navbar-color: rgb(35, 40, 112);//rgb(21, 27, 112);//rgb(12, 56, 151);// rgb(15, 10, 59);//rgb(6, 0, 59);//corrispettivo hex #06003b 
+        --navbar-hover-component-color: rgb(52, 59, 158);// #231a72;
         --logo-url: "../../assets/images/header.component/varie/logo-white.png";
 
+    --border-button-tutorial-navigate: rgb(60 47 38 / 90%);
+    --button-tutorial-navigate-first-shadow-color: rgb(60 47 38 / 30%);
+    --button-tutorial-navigate-second-shadow-color: rgb(60 47 38 / 30%);
+    --border-menu-color: rgb(206, 197, 197);
 
     //sideBar
     --icon-hover-side-bar: #272069;
     --box-shadow-color1: rgba(102, 96, 96, 0.3);
     --box-shadow-color2: rgba(102, 96, 96, 0.1);
 
+    //code colors
+    --keword-color: rgba(188, 42, 218, 0.993);/*255, 145, 0, 0.904*/
+    --className-color: #3e57e4;/*rgb(255, 208, 0);#556ef8*//*255, 145, 0, 0.904*/
+    --methodName-color: rgb(218, 110, 38);/*255, 145, 0, 0.904*/
+    --stringArgument: rgba(76, 173, 37, 0.877);
+    --background-color-content-courses: rgb(64, 67, 73, 0.9);
+
+    --link-color: #2d8ec7;
+
+    //template hidden
+    --box-shadow-inset-unset: inset;
+    --box-shadow-button-color: #6d7b97;
+
     --geometry-color: rgb(73, 73, 73);
     --scroll-bar-color-primary: #00c3ff;
     --scroll-bar-color-secondary: rgb(2, 16, 212);
     transition: var(--transition-delay);
-    
+
+    //footer
+    --wave-url-png: url("./assets/images/footer.component/wave-dark.png");
 }
 
 

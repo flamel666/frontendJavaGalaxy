@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import * as THREE from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { isPlatformBrowser } from '@angular/common';
 
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
@@ -60,17 +61,19 @@ private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
     return this.canvasRef.nativeElement;
   }
 
-  constructor(public animationService: ActiveAnimationSolid, private cookies: CookieService) {     
+  constructor(public animationService: ActiveAnimationSolid, private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object) {     
+    
+    if (isPlatformBrowser(this.platformId)) {
     this.animationService.themeChanged$?.subscribe(theme=>{
       this.requestTheme = theme;
 
-      this.activeChooseTheme(theme);
-     
-      
+      this.activeChooseTheme(theme);     
     });
+  }
   }
 
   ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
     this.createScene();
        
     if(this.cookies.check("THEME")){      
@@ -86,7 +89,7 @@ private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
       }
     }
     }
-    
+  }
   }
 
   ngOnInit(): void {

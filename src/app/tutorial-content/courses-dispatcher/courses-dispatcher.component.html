@@ -1,0 +1,32 @@
+<div id="courses-countainer">
+    <ng-container *ngFor="let course of modelCourse; let i = index;">
+        <div class="container-course"> 
+            <h1>{{'header.menu.'+modelCourse[i].translateCourse | translate }}</h1>           
+                <ng-container *ngFor="let subCourse of modelCourse[i].subCourse; let i = index;">
+                    <div id="{{i}}" class="course">
+                        <span class="comingSoonSubCourseSpan" *ngIf="!(subCourse.isActive!)">
+                            {{'header.menu.subCourseComingSoon' | translate }}</span>
+                        <div class="course-icon">
+                            <i class="fa-brands fa-java fa-lg"></i>
+                        </div>
+                        <div class="course-description">                            
+                            <h2>{{'header.menu.'+subCourse.translateSubCourse | translate }}</h2>                            
+                            <p class="descriptionCourse" >
+                                {{'header.menu.'+subCourse.translateSubCourse+'Description' | translate }}
+                                </p>
+                                <div class="buttonContainer">
+                                    <p-button class="buttonPrevious" (click)="navigateToCourse(subCourse)" [disabled] = "!(subCourse.isActive!)">    
+                                        <p>        
+                                        {{'welcome.linkStart' | translate }}
+                                    </p>                           
+                                    </p-button>
+                                </div>
+                                
+                        </div>  
+                       
+                    </div>   
+                </ng-container>      
+            
+        </div>
+    </ng-container>
+

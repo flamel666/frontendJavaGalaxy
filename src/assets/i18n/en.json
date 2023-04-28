@@ -7,7 +7,13 @@
         "about": "About me",
         "menu": {
             "header": "Courses",
-            "subItem": "Java"
+            "javaBasic": "Basic Java",
+            "javaAdvanced": "Advanced Java",
+            "java": "Java",
+            "database": "Database",
+            "javaBasicDescription": "In the 'Basic Java' course, we will cover the fundamental concepts of the Java language and object-oriented programming. The course is suitable for both beginners and those who want to consolidate their knowledge of Java. This course is characterized by a practical and project-oriented approach.",
+            "javaAdvancedDescription": "The 'Advanced Java' course is designed for those who want to bring their skills to the next level, covering more advanced topics such as multi-thread programming, design patterns, security, the most commonly used frameworks such as Hibernate and JPA, and the development of complex projects. At the end of the course, students will be highly qualified Java programmers.",
+            "subCourseComingSoon": "Coming soon"
         }
     },
 
@@ -18,12 +24,30 @@
 
     "welcome":{
         "title": "DON'T PANIC",
-        "linkStart": "Let's start"
+        "linkStart": "Let's start",
+        "messageOneLeft" : "Are you already a developer and want to learn a new language?",
+        "messageOneRight" : "Do you want to become a developer and don't know where to start?",
+        "messageTwoLeft" : "Do you want to learn the technologies needed to build your own applications?",
+        "messageTwoRight" : "Do you want to learn the techniques and methodologies used in the world of work?",
+        "messageThreeLeft" : "Here we will use and discuss the techniques, configurations, and methods used in the real world",
+        "messageThreeRight" : "Here you will find everything you need to bring your ideas to life",
+        "messageFour" : "I don't want to lie to you...",
+        "messageFive" : "...it won't be easy, it will take study and hard work...",
+        "messageSix" : "I will follow you step by step, brick by brick, we will use concrete examples and carry out a complete 360-degree project...",
+        "messageSeven" : "...results will come soon, don't worry, and they will be fantastic! Let's not waste time and let's get started!"
     },
 
     "ContentBodyTutorial":{
         "buttonPrevious" : "Previous",
-        "buttonNext": "Next"
+        "buttonNext": "Next",
+        "legend" :{
+            "header_table" : "Legend",
+            "important_topic" : "Very important topic",
+            "best_practice" : "Best practice",
+            "complex_topic" : "Complex concept",
+            "common_error" : "Common mistake",
+            "trick" : "Trick"
+        }
     }
 
   

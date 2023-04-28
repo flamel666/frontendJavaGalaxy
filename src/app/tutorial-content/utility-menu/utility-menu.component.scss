@@ -226,6 +226,10 @@ div:nth-child(3):before {
   .p-button:hover{
     background-color: rgba(23, 161, 23, 0.973);
   }
+  .p-button:active {
+    transition: 0.1s ease-in-out;
+    background-color: rgba(23, 161, 23, 0.788);
+}
 }
 
 .contentMenuLeftOpen{
@@ -253,6 +257,79 @@ div:nth-child(3):before {
   display: block;
   animation: youTubeOpenheight 1s ease-in forwards,
               youTubeOpenwidth 1s 1s ease-in forwards;
+}
+
+.utilitySideBar{
+//  background-color: blue;
+  //background: blue;
+  background: rgba(0, 123, 184, 0.2);
+  width: 0;
+  height: 100%;
+  right: 0;
+  top: 130px;
+  border-radius: 10px;
+  max-height: 1000px;
+  position: fixed;   
+  z-index: 100;
+  transition: all .4s ease;
+}
+
+.utilitySideBarOpen{
+  width: 300px;
+}
+
+.p-accordion-header-link{
+  background-color: var(--navbar-color) !important;
+  //background: var(--navbar-color); //colore delle celle  
+  transition: var(--transition-delay);
+  color:var(--text-color) !important;
+  outline: 0 none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;  
+}
+.p-accordion-header-link:hover{  
+  background: var(--navbar-hover-component-color) !important;
+  color:var(--text-color) !important;
+}
+
+.p-accordion-content{
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: 468px;
+
+}
+
+.contentLegend{
+  background-color: var(--background-color-content-tutorial);
+  transition: var(--transition-delay);
+  color:var(--text-color-content-tutorial);
+  
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.56); 
+  box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.56);
+ // margin-top: 20px;
+ // margin-bottom: 20px;
+  width: 290px;
+  margin-left: -19px;
+  margin-top: -15px;
+ // margin-left: 35px;
+  .generalSettings{        
+    font-size: 22px !important;       
+}
+  .contentIconLegend{
+      display: flex;
+      border: 1px solid black;
+     
+      .textLegend{        
+          padding-left: 25px;  
+          margin: auto 0;      
+      }
+        .iconLegend{
+          width: 100px;
+          height: 100px;
+          border-right: 1px solid black;
+        }
+  }
+  
 }
 
 @keyframes youTubeOpenwidth {

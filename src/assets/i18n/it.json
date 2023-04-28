@@ -7,7 +7,13 @@
         "about": "Su di me",
         "menu": {
             "header": "Corsi",
-            "subItem": "Java"
+            "javaBasic": "Java base",
+            "javaAdvanced": "Java avanzato",
+            "java": "Java",
+            "database": "Database",
+            "javaBasicDescription": "Nel corso 'Java base' verranno trattati i concetti fondamentali del linguaggio Java e della programmazione ad oggetti. Il corso è adatto sia ai principianti sia a chi vuole consolidare le proprie conoscenze di Java. Questo corso è caratterizzato da un approccio pratico e orientato al progetto.",
+            "javaAdvancedDescription": "Il corso 'Java avanzato' è pensato per chi vuole portare le proprie competenze ad un livello superiore, trattando argomenti più avanzati come la programmazione multi-thread, i design pattern, la sicurezza, i framework più utilizzati, come Hibernate e JPA, e la realizzazione di progetti complessi. Alla fine del corso, gli studenti saranno programmatori Java altamente qualificati.",
+            "subCourseComingSoon": "Prossimamente"
         }
     },
 
@@ -18,12 +24,31 @@
 
     "welcome":{
         "title": "NIENTE PANICO",
-        "linkStart": "Iniziamo"
+        "linkStart": "Iniziamo",
+        "messageOneLeft" : "Sei già uno sviluppatore e vuoi imparare un nuovo linguaggio?",
+        "messageOneRight" : "Vuoi diventare uno sviluppatore e non sai da dove iniziare?",
+        "messageTwoLeft" : "Vuoi imparare le tecnologie necessarie per costruire le tue applicazioni?",
+        "messageTwoRight" : "Vuoi imparare le tecniche e le metodologie utilizzate nel mondo del lavoro?",
+        "messageThreeLeft" : "Quì useremo e parleremo delle tecniche, delle configurazioni e dei metodi usati nel mondo reale",
+        "messageThreeRight" : "Quì troverai tutto il necessario per concretizzare le tue idee",
+        "messageFour" : "Non voglio mentirti...",
+        "messageFive" : "...non sarà semplice, ci vorranno studio e duro lavoro...",
+        "messageSix" : "Ti seguirò passo dopo passo, mattone dopo mattone, useremo esempi concreti e porteremo avanti un progetto completo a 360°...",
+        "messageSeven" : "...i risultati arriveranno presto, non temere, e saranno fantastici! Non perdiamo tempo ed iniziamo!"
     },
 
     "ContentBodyTutorial":{
         "buttonPrevious" : "Precedente",
-        "buttonNext": "Successivo"
+        "buttonNext": "Successivo",
+        "legend" :{
+            "header_table" : "Legenda",
+            "important_topic" : "Argomento molto importante",
+            "best_practice" : "Best practice",
+            "complex_topic" : "Concetto complesso",
+            "common_error" : "Errore comune",
+            "trick" : "Trucco"
+
+        }
     }
 
    

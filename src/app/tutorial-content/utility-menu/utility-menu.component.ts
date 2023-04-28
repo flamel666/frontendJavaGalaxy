@@ -1,10 +1,11 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import {  MessageService } from 'primeng/api';
 import { TutorialJavaService } from '../services/tutorial-java.service';
 import { fromEvent, Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 
 import { media } from '../services/media-query.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-utility-menu',
@@ -25,8 +26,8 @@ export class UtilityMenuComponent implements OnInit {
 
   private lastScroll =0;
 
-  constructor(private messageService: MessageService, public chapterJavaService: TutorialJavaService) { 
-   
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private messageService: MessageService, public chapterJavaService: TutorialJavaService) { 
+    if (isPlatformBrowser(this.platformId)) {
     media('(max-width: 2024px) and (min-width: 769px)').subscribe((matches) =>{
       console.log("1024px= "+matches) 
       if(!this.created && !matches){
@@ -85,6 +86,7 @@ export class UtilityMenuComponent implements OnInit {
       }
     });
   }
+  }
 
   
 
@@ -113,7 +115,7 @@ export class UtilityMenuComponent implements OnInit {
   }
 
   public openAndCloseLegend(){
-    
+    document.getElementById("utilitySideBar")?.classList.toggle("utilitySideBarOpen"); 
   }
 
   

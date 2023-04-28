@@ -1,5 +1,7 @@
 <!--<app-provasun></app-provasun>-->
+<!---->
 <app-collapse-canvas></app-collapse-canvas>
+
 <div class="headerTopp" id="headerTop">
 
     <div class="switchSideBar">
@@ -16,8 +18,8 @@
     <a class="aboutLink" href="javascript:void(0)" [routerLink] = "['/code/postgres']"> {{'header.about' | translate}}</a>
     -->
     <!--scelta corsi-->
-    <p-menubar [model]="items" styleClas="boh" >
-
+    <p-menubar [model]="items" [autoDisplay]= 'false'>
+       
     </p-menubar>
 
     <!--
@@ -50,7 +52,7 @@
         <!--<label id="labelLanguage" for="float-input">{{'header.cambioLingua' | translate}}:</label>-->
         <div class="switchThema">
             <p-dropdown id="dropdownLanguage" [options]="languages" [(ngModel)]="selectedLenguage" optionLabel="name"
-                (onChange)="switchLang(selectedLenguage.name)" [disabled]="true">
+                (onChange)="switchLang(selectedLenguage.name)" [virtualScroll]="true"><!--[disabled]="true"-->
                 <ng-template id="element" pTemplate="selectedItem">
                     <div class="country-item country-item-value" *ngIf="selectedLenguage">
                         <img id="dropdownLanguage-flag-selected"
@@ -89,11 +91,11 @@
         <a href="javascript:void(0)" style="cursor: default;">
             <img class="logo-mini" src="assets/images/header.component/varie/logo-naked.png" />
         </a>
-        <p-menubar [model]="items">
+        <p-menubar [model]="items" [autoDisplay]= 'false'>
         </p-menubar>
 
         <p-dropdown id="dropdownLanguage" [options]="languages" [(ngModel)]="selectedLenguage" optionLabel="name"
-            (onChange)="switchLang(selectedLenguage.name)" [disabled]="true">
+            (onChange)="switchLang(selectedLenguage.name)">
             <ng-template id="element" pTemplate="selectedItem">
                 <div class="country-item country-item-value" *ngIf="selectedLenguage">
                     <img id="dropdownLanguage-flag-selected"

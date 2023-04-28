@@ -13,6 +13,7 @@ import {SkeletonModule} from 'primeng/skeleton';
 import {DragDropModule} from 'primeng/dragdrop';
 import {SpeedDialModule} from 'primeng/speeddial';
 import {TooltipModule} from 'primeng/tooltip';
+import { AccordionModule } from 'primeng/accordion';
 
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
@@ -25,6 +26,8 @@ import { TabPanelComponent } from './templates/tab-panel/tab-panel.component';
 import { UtilityMenuComponent } from './utility-menu/utility-menu.component';
 import { AppDraggableDirective } from '../global-directives/app-draggable.directive';
 import { MessageService } from 'primeng/api';
+import { HiddenCodeComponent } from './templates/hidden-code/hidden-code.component';
+import { CoursesDispatcherComponent } from './courses-dispatcher/courses-dispatcher.component';
 
 
 
@@ -37,7 +40,9 @@ import { MessageService } from 'primeng/api';
     SimpleTemplateContentComponent,
     TabPanelComponent,
     UtilityMenuComponent,
-    AppDraggableDirective
+    AppDraggableDirective,
+    HiddenCodeComponent,
+    CoursesDispatcherComponent
     
   ],
   imports: [
@@ -46,7 +51,8 @@ import { MessageService } from 'primeng/api';
     PanelMenuModule,
     TreeModule,
     ButtonModule,
-    TabViewModule ,
+    TabViewModule,
+    AccordionModule,
     SkeletonModule,
     DragDropModule,
     TooltipModule,
