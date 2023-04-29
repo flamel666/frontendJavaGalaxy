@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "java-galaxy"
+  },
+  "targets": {
+    "java-galaxy": {
+      "hosting": {
+        "javaGalaxy": [
+          "java-galaxy"
+        ]
+      }
+    }
   }
 }

@@ -4,6 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "javaGalaxy": {
+      
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -28,7 +29,9 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/sitemap.xml",
+              "src/robots.txt"
             ],
             "styles": [
               "./node_modules/aos/dist/aos.css",
@@ -102,8 +105,7 @@
               "src/assets"
             ],
             "styles": [
-              
-              "src/styles.scss"                        
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -133,7 +135,7 @@
             }
           },
           "defaultConfiguration": "production"
-        },        
+        },
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
@@ -144,7 +146,7 @@
             },
             "production": {
               "browserTarget": "javaGalaxy:build:production",
-              "__serverTarget": "javaGalaxy:server:production",
+              
               "prerenderTarget": "app:prerender:production"
             }
           },
@@ -154,19 +156,15 @@
           "builder": "@nguniversal/builders:prerender",
           "options": {
             "routes": [
-              "/home",       
-
-              "/code/lang/it",    
-              "/code/lang/en",   
-              
+              "/home",
+              "/code/lang/it",
+              "/code/lang/en",
               "/code/Java%20base/chapter/1/lang/it",
               "/code/Java%20base/chapter/1/subchapter/1.1/lang/it",
               "/code/Java%20base/chapter/1/subchapter/1.2/lang/it",
               "/code/Java%20base/chapter/1/subchapter/1.3/lang/it",
               "/code/Java%20base/chapter/1/subchapter/1.4/lang/it",
               "/code/Java%20base/chapter/1/subchapter/1.5/lang/it",
-              
-              
               "/code/Basic%20Java/chapter/1/lang/en",
               "/code/Basic%20Java/chapter/1/subchapter/1.1/lang/en",
               "/code/Basic%20Java/chapter/1/subchapter/1.2/lang/en",
@@ -177,7 +175,7 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "javaGalaxy:build:production",
+              "browserTarget": "javaGalaxy:build:production",             
               "serverTarget": "javaGalaxy:server:production"
             },
             "development": {
@@ -186,6 +184,17 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": true,
+            "ssr": false,
+            "browserTarget": "javaGalaxy:build:production",
+            "firebaseProject": "java-galaxy",
+            "firebaseHostingSite": "java-galaxy",            
+            "prerenderTarget": "javaGalaxy:prerender:production"              
+          }
         }
       }
     }
