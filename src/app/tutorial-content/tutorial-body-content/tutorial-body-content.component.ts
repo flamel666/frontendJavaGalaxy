@@ -82,7 +82,8 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
    
       if(isPlatformBrowser(this.platformId)){
     
-    this.chapterJavaService.idChapterSubChanged$?.subscribe(id => {     
+    this.chapterJavaService.idChapterSubChanged$?.subscribe(id => { 
+          console.log("COOOOODE: "+this.urlPathService.getCourseFromUrl(window.location.href));
       this.location.replaceState("/code/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/"+configLanguageService.getBrowserLanguage())
       console.log("sono nel body-contet. sotto capitolo cambiato: " + id);
       let programmingLanguage = this.route.snapshot.paramMap.get('code');

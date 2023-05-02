@@ -52,19 +52,19 @@ export class UrlPathService {
     let course = this.getCourseFromUrl(url);
     let trans = "";
     switch(course){
-      case "Java%20base":
-      case "Basic%20Java":
+      case "Java-base":
+      case "Basic-Java":
         trans = "javaBasic";
         break;
-      case "Java%20avanzato":
-      case "Advanced%20Java":
+      case "Java-avanzato":
+      case "Advanced-Java":
         trans = "javaAdvanced";
         break;
     }
   
     const response = await this.getTranslateLabel(trans);
    
-    return response;
+    return response.replace(" ", "-");
   }
 
   private async getTranslateLabel(label: string): Promise<string>{

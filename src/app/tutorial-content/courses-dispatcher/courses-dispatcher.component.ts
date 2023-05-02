@@ -114,10 +114,10 @@ export class CoursesDispatcherComponent implements OnInit {
 
   public async navigateToCourse(subCourse: ModelSubCourse) : Promise<void>{
 
-    const endPoint = await this.getTranslateLabel(subCourse.translateSubCourse!)
+    const endPoint = await this.getTranslateLabel(subCourse.translateSubCourse!);
 
-    console.log("/code/"+endPoint);
-    this.router.navigate(["/code/"+endPoint]);
+    console.log("/code/"+endPoint.replace(" ", "-"));
+    this.router.navigate(["/code/"+endPoint.replace(" ", "-")]);
   }
 
   private async getTranslateLabel(label: string): Promise<string>{
