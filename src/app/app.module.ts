@@ -38,8 +38,6 @@ import { CollapseCanvasComponent } from './galaxysolid/collapse-canvas/collapse-
 import { ProvasunComponent } from './galaxysolid/provasun/provasun.component';
 import { PreliminaryCollapseComponent } from './galaxysolid/preliminary-collapse/preliminary-collapse.component';
 import { isPlatformBrowser } from '@angular/common';
-import { ConfigLanguageService } from './config-service/config-language.service';
-
 
 //import { AppDraggableDirective } from './global-directives/app-draggable.directive';
 
@@ -58,6 +56,7 @@ import { ConfigLanguageService } from './config-service/config-language.service'
   imports: [        
    
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    
     AuthenticationModule,
     TutorialContentModule,       
     
@@ -80,7 +79,7 @@ import { ConfigLanguageService } from './config-service/config-language.service'
     }),
     
   ],
-  providers: [CookieService],
+  providers: [CookieService], 
   bootstrap: [AppComponent]
 })
 export class AppModule {

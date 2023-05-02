@@ -13,6 +13,8 @@ import { UrlPathService } from '../services/url-path.service';
 import { HiddenCodeComponent } from '../templates/hidden-code/hidden-code.component';
 import { TabPanelComponent } from '../templates/tab-panel/tab-panel.component';
 import { ConfigLanguageService } from 'src/app/config-service/config-language.service';
+import { ChaptersCourse } from '../models/chapters.model';
+import { SubChaptersCourse } from '../models/sub-chapters.model';
 
 @Component({
   selector: 'app-tutorial-body-content',
@@ -63,6 +65,20 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     private metaService: Meta, private title:Title, private urlPathService: UrlPathService, private configLanguageService: ConfigLanguageService) {
       //this.metaService.updateTag({name: 'excerpt', content: "response.chapter?.chapterTitle!"});
    console.log("COSTRUTTOREEEEEEEEEEEEEEEEEEEE");
+
+   if(isPlatformServer(this.platformId)){
+//chapter?.chapterTitle
+    let chapter: ChaptersCourse = new ChaptersCourse;
+    chapter.chapterTitle="sto cazzoooooo";
+    let page: PageTutorial = new PageTutorial;
+    page.chapter = chapter;
+    this.updateMetaTag(page, true);
+
+    let sub: SubChaptersCourse = new SubChaptersCourse;
+    sub.subChapterTitle = "boooooh";
+    page.subChapter = sub;
+  this.updateMetaTag(page, true);
+   }
    
       if(isPlatformBrowser(this.platformId)){
     
@@ -341,7 +357,7 @@ console.log("quasi nel server");
       console.log(response);
       this.pageToShow = response;
       this.createPage(this.pageToShow);    
-      this.updateMetaTag(this.pageToShow, true);
+     // this.updateMetaTag(this.pageToShow, true);
       
            
       if(response.videoYouTubeId != undefined)    
@@ -369,7 +385,7 @@ console.log("quasi nel server");
         console.log("nel subscribe ");
        // console.log(response);
         this.pageToShow = response;
-        this.updateMetaTag(this.pageToShow, false);
+      //  this.updateMetaTag(this.pageToShow, false);
        
      
         this.createPage(this.pageToShow);   
