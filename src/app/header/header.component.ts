@@ -8,6 +8,7 @@ import { TutorialJavaService } from '../tutorial-content/services/tutorial-java.
 import { ActivatedRoute } from '@angular/router';
 import { ConfigLanguageService } from '../config-service/config-language.service';
 import { json } from 'express';
+import { Platform } from '@angular/cdk/platform';
 
 interface Language {
   name: string
@@ -39,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(public translate: TranslateService, public animationService: ActiveAnimationSolid, 
     private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, public chapterJavaService: TutorialJavaService, 
-    private route: ActivatedRoute, private configLanguageService : ConfigLanguageService
+    private route: ActivatedRoute, private configLanguageService : ConfigLanguageService, private platform: Platform
     ) {
     
      if (isPlatformBrowser(this.platformId)) {
@@ -104,6 +105,10 @@ export class HeaderComponent implements OnInit {
         courseItem.routerLink = "/code/lang/"+configLanguageService.getBrowserLanguage();
         console.log("Router link: "+courseItem.routerLink);
         courseItem.disabled = !course.activeCourse;
+        
+        courseItem.command = (event: any) => {
+          this.touchScreenDetec();
+        }
         let subCourseItem: MenuItem = {};
         
         if(course.subCourses?.length != undefined && course.subCourses?.length > 0){
@@ -118,10 +123,14 @@ export class HeaderComponent implements OnInit {
             
             subCourseItem.label = nameSubCourse;
             subCourseItem.icon = subCoruse.iconSubCourse;
-            subCourseItem.routerLink = "/code/"+nameSubCourse;
+            subCourseItem.routerLink = "/code/"+nameSubCourse?.replace(" ", "-");
             subCourseItem.styleClass = subCoruse.translateSubCourse;
             subCourseItem.disabled = !subCoruse.activeSubCourse;
-
+            subCourseItem.command = (event: any) => {
+              this.closeSideBar();
+            }
+           
+              
             courseItem.items?.push(subCourseItem);
             if((counterSubCorses-1)>0) {
               courseItem.items?.push(separator);
@@ -218,7 +227,7 @@ public switchLang(lang: string) {
               if(subSubItem.styleClass != undefined){
               const value2 = await this.getTranslateLabel(subSubItem.styleClass!);
               subSubItem.label = value2;
-              subSubItem.routerLink = "/code/"+subSubItem.label;
+              subSubItem.routerLink = "/code/"+subSubItem.label.replace(" ", "-");
               }
             });
           }
@@ -343,10 +352,22 @@ onScroll(event: MouseEvent) {
 }
 
 openCloseSideBar(){  
+  
   document.getElementById('collapserSideBar')?.classList.toggle("collapse");
  
 }
 
+
+touchScreenDetec(){
+  let isTouchDevice = this.platform.isBrowser && navigator.maxTouchPoints > 0;
+
+  if(isTouchDevice)
+    this.closeSideBar();
+}
+
+closeSideBar(){
+  document.getElementById('collapserSideBar')?.classList.add("collapse");
+}
 
 
 }
