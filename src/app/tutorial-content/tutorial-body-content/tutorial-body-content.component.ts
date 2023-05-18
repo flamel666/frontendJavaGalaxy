@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 
 import { ComponentPageTutorial } from '../models/component-page-tutorial.model';
 import { PageTutorial } from '../models/page.model';
-import { lastChapterSelected } from '../services/last-selected-chapter';
+import { LastChapterSelected } from '../services/last-selected-chapter';
 import { TutorialJavaService } from '../services/tutorial-java.service';
 import { UrlPathService } from '../services/url-path.service';
 import { HiddenCodeComponent } from '../templates/hidden-code/hidden-code.component';
@@ -58,7 +58,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
 
   pageToShow?: PageTutorial;
 
-  lastChapterSelected?: lastChapterSelected = new lastChapterSelected();
+  lastChapterSelected?: LastChapterSelected = new LastChapterSelected();
 
   constructor(private changeDetector:ChangeDetectorRef, private renderer: Renderer2, public chapterJavaService: TutorialJavaService, private viewContainerRef: ViewContainerRef, 
     private sanitizer: DomSanitizer, @Inject(PLATFORM_ID) private platformId: Object, private route: ActivatedRoute, private location: Location, 
@@ -593,6 +593,7 @@ console.log("quasi nel server");
     console.log("prima del forEach");
     this.nestedTabViewContents = new Map();
     this.nestedHiddenCodeContents = new Map();
+    let idHiddenCodeChild = 0; 
     pageToShow.compontentsPage?.forEach(el => {
 
       //  console.log("cazz " + el.componentType + "  " + el.childComponentsPageTutorialList + " " + el.standAlone + " " + el.parentComponentPageTutorial);
@@ -610,19 +611,23 @@ console.log("quasi nel server");
       
       //console.log("lunghezza: "+this.defaultContent.length);
       
-    //  console.log("dentro il foreacjh");
+    //  console.log("dentro il foreacjh");         
+      
       if (el.childComponentsPageTutorialList!.length > 0) {
         let content = "";
         if (el.componentType != "p-tabView") {
          
-          if (el.componentType != "hiddenCode"){            
+          if (el.componentType != "hiddenCode"){             
             content = this.createInnestedComponent(el.childComponentsPageTutorialList!);
             this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id="${el.componentIdCss}">${content}</${el.componentType}>`);
-          } else {
-            console.log("sto inserendo il primo hidden code per davvero")
-            this.nestedHiddenCodeContents.set(((this.defaultContent.length - 1)+1)*10000, el);
+          } else {            
+            el.childComponentsPageTutorialList?.forEach(child => { //TODO prendo l'id del figlio di hiddenCode così da non farlo renderizzare nella pagina html fuori da suo padre
+              //modificarlo prendendo una lista di di              
+              idHiddenCodeChild = child.id!;
+            })
+            this.nestedHiddenCodeContents.set(((this.defaultContent.length - 1)+1)*10000, el);            
           }
-          } else {
+          } else {            
           console.log("qui c'è una cazzo di tab e dobbiamo fare qualcosa "+this.nestedTabViewContents.size);
           this.nestedTabViewContents.set(this.defaultContent.length - 1, el);
         }
@@ -630,7 +635,10 @@ console.log("quasi nel server");
        // console.log("introduzione: tipo: "+el.componentType);
        // console.log("introduzione: class: "+el.componentClassCss);
       //  console.log("introduzione: id: "+el.componentIdCss);
-        this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id="${el.componentIdCss}">${el.componentContent}</${el.componentType}>`);
+     
+        if(el.id != idHiddenCodeChild){          
+          this.defaultContent.push(`<${el.componentType} class="${el.componentClassCss}" id="${el.componentIdCss}">${el.componentContent}</${el.componentType}>`);
+        }
 
       }
     });

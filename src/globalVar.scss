@@ -44,7 +44,9 @@ body {
     --className-color: #556ef8;/*rgb(255, 208, 0);#556ef8*//*255, 145, 0, 0.904*/
     --methodName-color: rgb(216, 87, 1);/*255, 145, 0, 0.904*/
     --stringArgument: rgba(42, 146, 1, 0.877);
+    --comment-single-line: rgb(63, 66, 63);
     --background-color-content-courses: rgb(230, 230, 230, 0.9);
+    
 
     --link-color: #0000EE;
 
@@ -111,6 +113,7 @@ body.dark {
     --className-color: #3e57e4;/*rgb(255, 208, 0);#556ef8*//*255, 145, 0, 0.904*/
     --methodName-color: rgb(218, 110, 38);/*255, 145, 0, 0.904*/
     --stringArgument: rgba(76, 173, 37, 0.877);
+    --comment-single-line: rgb(192, 182, 182);
     --background-color-content-courses: rgb(64, 67, 73, 0.9);
 
     --link-color: #2d8ec7;

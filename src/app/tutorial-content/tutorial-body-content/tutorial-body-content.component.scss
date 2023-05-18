@@ -109,6 +109,9 @@
 
     .codeblock{
         width: 90%;            
+        margin-top: 40px;
+        margin-bottom: 60px;
+        margin-left: 20px;
         border-left: 7px solid var(--navbar-color);
         background-color: rgba(124, 119, 119, 0.205);
         padding-top: 1px;
@@ -117,23 +120,37 @@
         box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.3);
         
         ol {     
+            list-style: none; 
+            list-style-type: decimal;
+            list-style-position: outside !important;
+            
             counter-reset: item;   
-            padding-left: 0;    
-            min-width: 600px;
+        //    padding-left: 0;    
+         //   min-width: 600px;
           }
           li {    
+            margin-top: 8px;
             display: block;    
-            margin-left: 2em;    
+            margin-left: 2em;   
+            position: relative; 
+            .singleComment{
+                color:var(--comment-single-line);
+            }
           } 
         
           li::before {
             display: inline-block;
-            content: counter(item);
             counter-increment: item;
-            width: 15px;       
-            margin-left: -15px;   
-            margin:none;   
+            content: counter(item);
+            position: absolute;
+           // width: -50px;       
+            //margin-left: -20px;   
+           // margin:none;   
+            right: 100%;
+            margin-right: 10px;
+            top: 0;
           }
+          
         
           .singleLi::before{
             content: "";
@@ -161,6 +178,8 @@
         .stringArgument{
             color: rgba(42, 146, 1, 0.877);/*255, 145, 0, 0.904*/
         }
+
+       
      }
     .textFormat{
         font-size: 20px;

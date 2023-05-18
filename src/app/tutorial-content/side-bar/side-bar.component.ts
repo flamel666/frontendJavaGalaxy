@@ -11,7 +11,7 @@ import { delay } from 'rxjs';
 import { ChaptersCourse } from "../models/chapters.model";
 import { Children } from '../models/children.model';
 import { PageTutorial } from '../models/page.model';
-import { lastChapterSelected } from '../services/last-selected-chapter';
+import { LastChapterSelected } from '../services/last-selected-chapter';
 import { TutorialJavaService } from '../services/tutorial-java.service';
 import { UrlPathService } from '../services/url-path.service';
 import { ConfigLanguageService } from 'src/app/config-service/config-language.service';
@@ -47,12 +47,14 @@ export class SideBarComponent implements OnInit {
   previousSubChapter?: TreeNode = undefined;
   nextSubChapter?: TreeNode = undefined;
 
-  lastChapterSelected?: lastChapterSelected = new lastChapterSelected();
+  lastChapterSelected?: LastChapterSelected = new LastChapterSelected();
   constructor(private router: Router, public chapterJavaService: TutorialJavaService, private route: ActivatedRoute,
     private cookies: CookieService, @Inject(PLATFORM_ID) private platformId: Object, private metaService: Meta, private urlPathService: UrlPathService, 
     private location: Location, private configLanguageService: ConfigLanguageService) {
-       console.log("------------------COSTRUTTORE SIDE BAR-----------------------")
-
+       console.log("------------------COSTRUTTORE SIDE BAR-----------------------");
+        if(this.cookies.check("lastChapterSelected"))
+       this.lastChapterSelected = JSON.parse(this.cookies.get("lastChapterSelected")); 
+       console.log("------------------COSTRUTTORE SIDE BAR-----------------------"+JSON.stringify(this.lastChapterSelected));
     this.selectedElementInTheBar ="1";
 
     this.chapterJavaService.actionFromTutorialBodyContentChanged$?.subscribe(key => {
@@ -173,9 +175,13 @@ export class SideBarComponent implements OnInit {
     document.getElementById(lable.key!)?.classList.add("selectedArgument");
       console.log("id del capitolo: "+lable?.data)
     this.chapterJavaService.changeIdChapter("" + lable?.key);
+
     this.lastChapterSelected!.chapter = lable?.data;
     this.lastChapterSelected!.subChapter = "0";
+    this.lastChapterSelected!.chapterIndex = this.nodes.indexOf(lable);
+    
     this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected), { path: '/' });   
+
     //evaluate next chapter
     this.evalueateNextChapters(lable);
     this.evalueatePreviousChapters(this.selectedChapter!);
@@ -212,6 +218,8 @@ export class SideBarComponent implements OnInit {
     }
     this.lastChapterSelected!.subChapter = key;
     this.lastChapterSelected!.chapter = this.selectedChapter!.data;
+    this.lastChapterSelected!.chapterIndex = this.nodes.indexOf(this.selectedChapter!);
+    this.lastChapterSelected!.subChapterIndex = this.selectedChapter!.children?.indexOf(lable);
     this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected), { path: '/' });   
   }
   }
@@ -354,8 +362,12 @@ export class SideBarComponent implements OnInit {
       //this.nextSubChapter.key.substring(key.indexOf(".")+1,key.length)
       this.chapterJavaService.changeIdSubChapter(""+this.nextSubChapter.key);      
       document.getElementById(this.nextSubChapter?.key!)?.classList.add("selectedArgument");
-
+      console.log("next chapter: "+this.nextChapter);
       this.lastChapterSelected!.subChapter = this.nextSubChapter.key;
+      this.lastChapterSelected!.chapter = this.nextChapter != undefined ? this.nextChapter.key : this.selectedChapter?.data;
+      this.lastChapterSelected!.chapterIndex = this.nodes.indexOf(this.nextChapter != undefined ? this.nextChapter : this.selectedChapter!);
+      this.lastChapterSelected!.subChapterIndex = this.nextChapter != undefined ? this.nextChapter!.children?.indexOf(this.nextSubChapter) : this.selectedChapter!.children?.indexOf(this.nextSubChapter!);
+      console.log("")
       this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected), { path: '/' });   
       //evaluete new subChapters
       this.evalueateNextSubChapters(this.nextSubChapter);
@@ -365,8 +377,10 @@ export class SideBarComponent implements OnInit {
       document.getElementById(this.selectedChapter?.key!)?.classList.remove("selectedArgument");
       this.chapterJavaService.changeIdChapter(this.nextChapter.key!);      
       document.getElementById(this.nextChapter?.key!)?.classList.add("selectedArgument");
-      this.lastChapterSelected!.chapter =this.nextChapter.key;
+
+      this.lastChapterSelected!.chapter = this.nextChapter != undefined ? this.nextChapter.key : this.selectedChapter?.data;
       this.lastChapterSelected!.subChapter = "0";
+      this.lastChapterSelected!.chapterIndex = this.nodes.indexOf(this.nextChapter != undefined ? this.nextChapter : this.selectedChapter!);
       this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected), { path: '/' });   
 
       this.evalueateNextChapters(this.nextChapter);
@@ -386,6 +400,9 @@ export class SideBarComponent implements OnInit {
       document.getElementById(this.previousSubChapter?.key!)?.classList.add("selectedArgument");
 
       this.lastChapterSelected!.subChapter = this.previousSubChapter?.key!;
+      this.lastChapterSelected!.chapter = this.previousChapter != undefined ? this.previousChapter!.data : this.selectedChapter!.data;
+      this.lastChapterSelected!.chapterIndex = this.nodes.indexOf(this.previousChapter != undefined ? this.previousChapter! : this.selectedChapter!);      
+      this.lastChapterSelected!.subChapterIndex = this.previousChapter != undefined ? this.previousChapter!.children?.indexOf(this.previousSubChapter) : this.selectedChapter!.children?.indexOf(this.selectedSubChapter!);
       this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected), { path: '/' });   
       //evaluete new subChapterss
       this.evalueatePreviousSubChapters(this.previousSubChapter);
@@ -397,8 +414,9 @@ export class SideBarComponent implements OnInit {
 
       if(this.previousChapter.children == undefined || this.previousChapter.children.length == 0){
         this.chapterJavaService.changeIdChapter(this.previousChapter.key!);
-        this.lastChapterSelected!.chapter = this.previousChapter?.key!;
+        this.lastChapterSelected!.chapter = this.previousChapter != undefined ? this.previousChapter!.data : this.selectedChapter!.data;
         this.lastChapterSelected!.subChapter = "0";        
+        this.lastChapterSelected!.chapterIndex = this.nodes.indexOf(this.previousChapter != undefined ? this.previousChapter! : this.selectedChapter!);  
         this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected), { path: '/' });   
         this.evalueatePreviousChapters(this.previousChapter);
         this.evalueateNextChapters(this.selectedChapter!);
@@ -410,6 +428,9 @@ export class SideBarComponent implements OnInit {
         this.chapterJavaService.changeIdSubChapter(selectedSubChapter.key!);
         document.getElementById(selectedSubChapter?.key!)?.classList.add("selectedArgument");
         this.lastChapterSelected!.subChapter = this.selectedSubChapter?.key!;
+        this.lastChapterSelected!.chapter = this.selectedChapter!.data;
+        this.lastChapterSelected!.chapterIndex = this.nodes.indexOf(this.selectedChapter!);
+        this.lastChapterSelected!.subChapterIndex = this.selectedChapter != undefined ? this.selectedChapter!.children?.indexOf(this.selectedSubChapter!) : -1;
         this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected), { path: '/' });   
         this.evalueatePreviousSubChapters(selectedSubChapter);
         this.evalueateNextSubChapters(this.selectedSubChapter!);
