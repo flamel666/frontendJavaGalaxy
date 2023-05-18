@@ -26,7 +26,7 @@
         "title": "DON'T PANIC",
         "linkStart": "Let's start",
         "messageOneLeft" : "Are you already a developer and want to learn a new language?",
-        "messageOneRight" : "Do you want to become a developer and don't know where to start?",
+        "messageOneRight" : "Do you want to be a developer and don't know where to start?",
         "messageTwoLeft" : "Do you want to learn the technologies needed to build your own applications?",
         "messageTwoRight" : "Do you want to learn the techniques and methodologies used in the world of work?",
         "messageThreeLeft" : "Here we will use and discuss the techniques, configurations, and methods used in the real world",
@@ -34,7 +34,7 @@
         "messageFour" : "I don't want to lie to you...",
         "messageFive" : "...it won't be easy, it will take study and hard work...",
         "messageSix" : "I will follow you step by step, brick by brick, we will use concrete examples and carry out a complete 360-degree project...",
-        "messageSeven" : "...results will come soon, don't worry, and they will be fantastic! Let's not waste time and let's get started!"
+        "messageSeven" : "...results will come soon, don't worry, and they will be fantastic! Don't not waste time and let's get started!"
     },
 
     "ContentBodyTutorial":{
