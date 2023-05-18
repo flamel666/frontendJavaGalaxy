@@ -11,6 +11,7 @@ export class HiddenCodeComponent implements OnInit {
 
   public buttonText: string = "Mostra";
   public olContents: String[] = [];
+  public idGlass: string = "";
 
   constructor() { }
 
@@ -20,7 +21,7 @@ export class HiddenCodeComponent implements OnInit {
   public createPageHiddenCodeTemplate(componentPage: ComponentPageTutorial) {
 
     componentPage.childComponentsPageTutorialList?.forEach(subElement => {
-
+      this.idGlass = ""+subElement.id;
       this.olContents.push(`<${subElement.componentType} class="${subElement.componentClassCss}" 
       id="${subElement.componentIdCss}">${subElement.componentContent}</${subElement.componentType}>`);
        
@@ -28,17 +29,16 @@ export class HiddenCodeComponent implements OnInit {
    
   }
 
-  public showHide() : void{
-    
+  public showHide(id: string) : void{    
     if(this.buttonText == "Mostra"){
       this.buttonText = "Nascondi";
-      document.getElementById("glassWindow")?.classList.remove("glass");
-      document.getElementById("codeBlockExercise")?.classList.remove("codeBlockHideOver");
+      document.getElementById("glassWindow"+id)?.classList.remove("glass");
+      document.getElementById("codeBlockExercise"+id)?.classList.remove("codeBlockHideOver");
 
     } else {
       this.buttonText = "Mostra";
-      document.getElementById("glassWindow")?.classList.add("glass");
-      document.getElementById("codeBlockExercise")?.classList.add("codeBlockHideOver");
+      document.getElementById("glassWindow"+id)?.classList.add("glass");
+      document.getElementById("codeBlockExercise"+id)?.classList.add("codeBlockHideOver");
     }
   }
 

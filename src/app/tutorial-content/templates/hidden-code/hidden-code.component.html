@@ -1,13 +1,13 @@
 <div class="hiddenCodeTemplate">
     <div class="center">
-        <button class="buttonShowHide" (click)="showHide()">
+        <button class="buttonShowHide" (click)="showHide(idGlass)">
             {{buttonText}}
         </button>
     </div>
-    <div class="codeblock textFormat codeBlockHideOver" id="codeBlockExercise">
+    <div class="codeblock textFormat codeBlockHideOver" id="{{'codeBlockExercise' + idGlass}}">
 
         <code>
-        <div class="glass" id="glassWindow"></div>      
+        <div class="glass" id="{{'glassWindow' + idGlass}}"></div>      
         <div>
 
             <ng-container *ngFor="let item of olContents | keyvalue">
