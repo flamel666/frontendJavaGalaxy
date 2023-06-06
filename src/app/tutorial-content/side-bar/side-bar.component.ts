@@ -25,7 +25,7 @@ export class SideBarComponent implements OnInit {
 
   private languageCode?: string;
   private language?: string;
-
+  private windowBrowserWidthCollapseSideBar: number = 768;
   //current selected chapter or subchapter 
   private selectedElementInTheBar?:string;
 
@@ -162,13 +162,18 @@ export class SideBarComponent implements OnInit {
     console.log('scope chapter is ' + lable.label);
     console.log('scope chapter is ' + lable.children?.length);
     console.log('scope chapter is ex ' + lable.expanded);
-    console.log('--------------------------------------');
+    console.log('--------------------------------------\n '+window.innerWidth);
 
     if (lable.expanded != true) {
       lable.expanded = true;
     }
 
     if(this.selectedElementInTheBar != lable.key){
+      
+      if(window.innerWidth <= this.windowBrowserWidthCollapseSideBar)
+      setTimeout( () => { //close the menu after choise
+        document.getElementById("burger")?.click(); }, 100 );
+
       this.selectedElementInTheBar = lable.key;
     document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(this.selectedChapter?.key!)?.classList.remove("selectedArgument");
@@ -185,8 +190,10 @@ export class SideBarComponent implements OnInit {
     //evaluate next chapter
     this.evalueateNextChapters(lable);
     this.evalueatePreviousChapters(this.selectedChapter!);
-    this.initializeSubChapter(this.selectedChapter!);
+    this.initializeSubChapter(this.selectedChapter!);    
+     
     }
+
   }
 
   public changeSubChapter(lable: TreeNode, key: string) {
@@ -201,6 +208,11 @@ export class SideBarComponent implements OnInit {
 
     if(this.selectedElementInTheBar != lable.key){
       this.selectedElementInTheBar = lable.key;
+
+      if(window.innerWidth <= this.windowBrowserWidthCollapseSideBar)
+      setTimeout( () => { //close the menu after choise
+        document.getElementById("burger")?.click(); }, 100 );
+
     document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(lable.key!)?.classList.add("selectedArgument");    
 
@@ -221,6 +233,7 @@ export class SideBarComponent implements OnInit {
     this.lastChapterSelected!.chapterIndex = this.nodes.indexOf(this.selectedChapter!);
     this.lastChapterSelected!.subChapterIndex = this.selectedChapter!.children?.indexOf(lable);
     this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected), { path: '/' });   
+
   }
   }
 
@@ -629,5 +642,15 @@ export class SideBarComponent implements OnInit {
     ]
   }
 
+  public openCloseSidebar(): void{
 
+    var element = <HTMLInputElement> document.getElementById("burger");
+    var isChecked = element.checked;
+   
+    if(isChecked){
+      document.getElementById("tree")?.classList.add("marginSubChapterNumberRedux");
+    } else {
+      document.getElementById("tree")?.classList.remove("marginSubChapterNumberRedux");
+    }
+  }
 }

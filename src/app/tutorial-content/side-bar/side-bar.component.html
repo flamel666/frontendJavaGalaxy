@@ -1,6 +1,6 @@
 
 <div class="sidebarConteiner">
-    <input type="checkbox" id="burger">
+    <input type="checkbox" id="burger" (click)="openCloseSidebar()">
     <label for="burger" *ngIf="nodes.length>0"> 
      <i  id="burgerMenuClosed">
         <i class="fa-solid fa-angle-left" ></i>
@@ -18,7 +18,7 @@
                 <div class="skeleton"><p-skeleton idth="99%" height="4rem" borderRadius="16px" ></p-skeleton></div>
             </div>
             
-            <p-tree [value]="nodes" *ngIf="nodes.length>0" (onNodeExpand)="refreshChildSelectedAddedEffects($event)" (onNodeCollapse)="refreshChildSelectedRemoveEffects($event)">
+            <p-tree id="tree" [value]="nodes" *ngIf="nodes.length>0" (onNodeExpand)="refreshChildSelectedAddedEffects($event)" (onNodeCollapse)="refreshChildSelectedRemoveEffects($event)">
                
                 <p-skeleton width="10rem" height="4rem" borderRadius="16px"></p-skeleton>
                 <ng-template let-node pTemplate="url" >       

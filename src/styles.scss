@@ -39,6 +39,15 @@ body {
 #sidebarGlobal {
   background: transparent;
   font-family: var(--font-family-global);
+
+  .marginSubChapterNumberRedux{
+    .p-treenode {
+      .p-treenode-children {
+    .p-tree-toggler {
+      width: 13px !important;
+    }}}
+  }
+
   .p-tree {
     border: none;
     background: transparent;
@@ -65,11 +74,11 @@ body {
       .p-treenode-children {
         //background: white;
         margin-left: -5px;
-
+        
         .p-tree-toggler {
-          width: 25px !important;
+         // width: 13px !important;
         }
-
+      
         .p-treenode {
           border: 1px solid black;
           background: white;
