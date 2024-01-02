@@ -1,6 +1,6 @@
 
 <div class="sidebarConteiner">
-    <input type="checkbox" id="burger">
+    <input type="checkbox" id="burger" (click)="openCloseSidebar()">
     <label for="burger" *ngIf="nodes.length>0"> 
      <i  id="burgerMenuClosed">
         <i class="fa-solid fa-angle-left" ></i>
@@ -18,10 +18,11 @@
                 <div class="skeleton"><p-skeleton idth="99%" height="4rem" borderRadius="16px" ></p-skeleton></div>
             </div>
             
-            <p-tree [value]="nodes" *ngIf="nodes.length>0" (onNodeExpand)="refreshChildSelectedAddedEffects($event)" (onNodeCollapse)="refreshChildSelectedRemoveEffects($event)">
+            <p-tree id="tree" [value]="nodes" *ngIf="nodes.length>0" (onNodeExpand)="refreshChildSelectedAddedEffects($event)" (onNodeCollapse)="refreshChildSelectedRemoveEffects($event)">
                
                 <p-skeleton width="10rem" height="4rem" borderRadius="16px"></p-skeleton>
                 <ng-template let-node pTemplate="url" >       
+                  
                     <p-button styleClass="p-button-link custom-p-button-linkLeaf"  (click)="changeSubChapter(node, node.key)">
                      <p class="paragraphSidebar" id="{{node.key}}">
                         <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
@@ -31,8 +32,13 @@
                     </p-button>
                 </ng-template>
 
-                <ng-template let-node pTemplate="default" >   
-                    <p-button  styleClass="p-button-link custom-p-button-link" (click)="changeChapter(node, node.key)">
+                <ng-template let-node pTemplate="default" >          
+                    <span style="position: relative;">
+                    <img id="logoImg" src="assets/images/header.component/varie/logo-mini.png" *ngIf="node.leaf" width="100px" style="position: absolute;
+                        top: -60px;
+                        left: -88px;"/>
+                     </span>      
+                    <p-button  styleClass="p-button-link custom-p-button-link" (click)="changeChapter(node, node.key)">                                               
                         <p class="paragraphSidebarOrphanNode" id="{{node.key}}">
                         <span class="paragraphSidebarChapter">{{node.key}}</span>&nbsp;
                         <span class="paragraphSidebarContent">{{node.label}}</span>   

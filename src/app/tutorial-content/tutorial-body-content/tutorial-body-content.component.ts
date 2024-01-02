@@ -69,8 +69,8 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
       if(isPlatformBrowser(this.platformId)){
     
     this.chapterJavaService.idChapterSubChanged$?.subscribe(id => { 
-          console.log("COOOOODE: "+this.urlPathService.getCourseFromUrl(window.location.href));
-      this.location.replaceState("/code/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/"+configLanguageService.getBrowserLanguage())
+          console.log("COOOOODE: "+this.urlPathService.getCourseFromUrl(window.location.href));          
+      this.location.replaceState("/"+this.urlPathService.getTargetPrefixUrl(window.location.href)+"/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+id.substring(0,id.indexOf("."))+"/subchapter/"+id+"/lang/"+configLanguageService.getBrowserLanguage())
       console.log("sono nel body-contet. sotto capitolo cambiato: " + id);
       let programmingLanguage = this.route.snapshot.paramMap.get('code');
       this.chapterJavaService.getPageBySubChapter(id, programmingLanguage!).subscribe(response => {
@@ -103,7 +103,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
       console.log("sono nel body-contet. capitolo cambiato: " + id);
       let programmingLanguage = this.route.snapshot.paramMap.get('code');
       this.chapterJavaService.getPageByChapter(id, programmingLanguage!).subscribe(response => {
-        this.location.replaceState("/code/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+id+"/lang/"+this.configLanguageService.getBrowserLanguage());
+        this.location.replaceState("/"+this.urlPathService.getTargetPrefixUrl(window.location.href)+"/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+id+"/lang/"+this.configLanguageService.getBrowserLanguage());
         //
         this.contentViewContainerRefToClear.forEach((el, c) => {
           c.clear();
@@ -195,13 +195,12 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     let subChapter = "";
     let language = "it";
     let urlPath = this.urlPathService.getUrlPath(window.location.href);
-  
-    if(urlPath.includes("it"))
+    if(urlPath.includes("/it"))
       language = "it";
-    else if(urlPath.includes("en"))
+    else if(urlPath.includes("/en"))
       language = "en";
     else
-    language = this.configLanguageService.getBrowserLanguage();
+      language = this.configLanguageService.getBrowserLanguage();
 
     this.configLanguageService.forceSilecentUpdateLanguage(language);   
     !urlPath.includes("chapter")
@@ -229,7 +228,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
     let programmingLanguage = this.route.snapshot.paramMap.get('code');
     this.chapterJavaService.getPageByChapter(chapter, programmingLanguage!).subscribe(response => {
       //nel capitolo setto il path se non è specificato nulla e quindi inizializzo al primo
-      this.location.replaceState("/code/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+chapter+"/lang/"+language);
+      this.location.replaceState("/"+this.urlPathService.getTargetPrefixUrl(window.location.href)+"/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+chapter+"/lang/"+language);
       //
       this.contentViewContainerRefToClear.forEach((el, c) => {
         c.clear();
@@ -255,7 +254,7 @@ export class TutorialBodyContentComponent implements OnInit, AfterViewInit {
       let programmingLanguage = this.route.snapshot.paramMap.get('code');
       this.chapterJavaService.getPageBySubChapter(subChapter, programmingLanguage!).subscribe(response => {
         //  console.log("lunghezza prima: "+this.contentViewContainerRefToClear.length);      
-        this.location.replaceState("/code/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+subChapter.substring(0,subChapter.indexOf("."))+"/subchapter/"+subChapter+"/lang/"+this.configLanguageService.getBrowserLanguage())
+        this.location.replaceState("/"+this.urlPathService.getTargetPrefixUrl(window.location.href)+"/"+this.urlPathService.getCourseFromUrl(window.location.href)+"/chapter/"+subChapter.substring(0,subChapter.indexOf("."))+"/subchapter/"+subChapter+"/lang/"+this.configLanguageService.getBrowserLanguage())
         this.contentViewContainerRefToClear.forEach((el, c) => {
           c.clear();
           el.destroy();
@@ -330,7 +329,7 @@ console.log("quasi nel server");
     this.chapterJavaService.getPageByChapter(chapter, programmingLanguage!).subscribe(response => {
       //nel capitolo setto il path se non è specificato nulla e quindi inizializzo al primo
       console.log("CHAPTER CHANGE URL");
-      this.location.replaceState("/code/"+programmingLanguage+"/chapter/"+chapter+"/lang/"+language);
+      this.location.replaceState("/"+this.urlPathService.getTargetPrefixUrl(window.location.href)+"/"+programmingLanguage+"/chapter/"+chapter+"/lang/"+language);
       console.log("CHAPTER AFTER CHANGE URL");
       //
       this.contentViewContainerRefToClear.forEach((el, c) => {
@@ -860,7 +859,7 @@ console.log("quasi nel server");
     //code/java/chapter/1/lang/it
     let pathUrl = this.getUrlPath();
 
-    let course =  pathUrl.substring(pathUrl.indexOf("code/"), pathUrl.length).replace("code/", "").replace("/","£");
+    let course =  pathUrl.substring(pathUrl.indexOf(this.urlPathService.getTargetPrefixUrl(window.location.href)+"/"), pathUrl.length).replace(this.urlPathService.getTargetPrefixUrl(window.location.href)+"/", "").replace("/","£");
 
     console.log("subString of url for the chapte: "+course.substring(0, course.indexOf("£")));    
     

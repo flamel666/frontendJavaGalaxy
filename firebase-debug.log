@@ -1,0 +1,31 @@
+[debug] [2023-05-18T14:27:12.413Z] ----------------------------------------------------------------------
+[debug] [2023-05-18T14:27:12.418Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Caiella\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-05-18T14:27:12.419Z] CLI Version:   11.29.1
+[debug] [2023-05-18T14:27:12.420Z] Platform:      win32
+[debug] [2023-05-18T14:27:12.421Z] Node Version:  v16.14.0
+[debug] [2023-05-18T14:27:12.423Z] Time:          Thu May 18 2023 16:27:12 GMT+0200 (Ora legale dell’Europa centrale)
+[debug] [2023-05-18T14:27:12.424Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-05-18T14:27:12.433Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-05-18T14:27:12.673Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-05-18T14:27:12.674Z] > authorizing via signed-in user (marcus.kaio3@gmail.com)
+[debug] [2023-05-18T14:27:12.675Z] [iam] checking project java-galaxy for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-05-18T14:27:12.677Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/java-galaxy:testIamPermissions [none]
+[debug] [2023-05-18T14:27:12.678Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/java-galaxy:testIamPermissions x-goog-quota-user=projects/java-galaxy
+[debug] [2023-05-18T14:27:12.678Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/java-galaxy:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-05-18T14:27:13.086Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-05-18T14:27:13.086Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-05-18T14:27:13.593Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/java-galaxy:testIamPermissions 200
+[debug] [2023-05-18T14:27:13.594Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/java-galaxy:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-05-18T14:27:13.597Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/java-galaxy [none]
+[debug] [2023-05-18T14:27:14.001Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/java-galaxy 200
+[debug] [2023-05-18T14:27:14.002Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/java-galaxy {"projectId":"java-galaxy","projectNumber":"549927288205","displayName":"java-galaxy","name":"projects/java-galaxy","resources":{"hostingSite":"java-galaxy"},"state":"ACTIVE","etag":"1_8de27818-8d09-43b8-93fe-192c7176316c"}
+[debug] [2023-05-18T14:27:55.055Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/java-galaxy/sites pageToken=&pageSize=10
+[debug] [2023-05-18T14:27:56.222Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/java-galaxy/sites 200
+[debug] [2023-05-18T14:27:56.223Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/java-galaxy/sites {"sites":[{"name":"projects/java-galaxy/sites/java-galaxy","defaultUrl":"https://java-galaxy.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2023-05-18T14:27:56.228Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/java-galaxy/sites 
+[debug] [2023-05-18T14:27:57.269Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/java-galaxy/sites 200
+[debug] [2023-05-18T14:27:57.270Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/java-galaxy/sites {"sites":[{"name":"projects/java-galaxy/sites/java-galaxy","defaultUrl":"https://java-galaxy.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2023-05-18T14:27:57.272Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/java-galaxy/webApps/-/config [none]
+[debug] [2023-05-18T14:27:57.952Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/java-galaxy/webApps/-/config 200
+[debug] [2023-05-18T14:27:57.953Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/java-galaxy/webApps/-/config {"projectId":"java-galaxy","storageBucket":"java-galaxy.appspot.com","apiKey":"AIzaSyApiYqrBAEW-gLjfbXWzQ7XkR7Ik1_fY0o","authDomain":"java-galaxy.firebaseapp.com","messagingSenderId":"549927288205"}

@@ -43,6 +43,7 @@
 
 label{
     #burgerMenuClosed{
+        border: 1px solid #9f9e9e;
         position: absolute;
         cursor: pointer;
         background: #042331;
@@ -90,8 +91,7 @@ label{
     left: 81px;
     i{
         transform: rotate(180deg);
-    }
-       
+    }       
 }
 
 .listCap{
@@ -118,7 +118,8 @@ label{
         
         .paragraphSidebarChapter{
             font-size: 20px;      
-            
+           
+           // line-height: 50px;
           //  white-space: nowrap ;      
            // display: inline-block; 
         }
@@ -138,6 +139,9 @@ label{
         .paragraphSidebarChapter{
             
             font-size: 20px;   
+            display: inline-flex;
+            align-items: center;
+           // line-height: 50px;
            // white-space: nowrap ;
            // display: inline-block;
         }  
@@ -250,6 +254,7 @@ label{
 
     label{
         #burgerMenuClosed{
+            padding-top: 8px !important;
             transition: none;
             position: absolute;
             cursor: pointer;

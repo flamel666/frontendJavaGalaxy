@@ -17,7 +17,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 30px;
-  color: #000;
+  color: #000000;
   text-transform: uppercase;
   font-size: 30px;
   font-weight: 900;
@@ -153,10 +153,10 @@ h1 {
 .pippo { font-size: 200px; }
 
 .imagePanic{   
-    width: 400px;
-    height: 400px;  
-    margin-bottom: 100px;
-
+    width: 250px;
+    height: 250px;  
+    margin-top: -54px;
+    margin-left: -148px;
 }
 
 .astro{   
@@ -175,8 +175,8 @@ h1 {
   padding: none;
   z-index: -1000;
   .astro{
-    margin-top: -300px;
-    margin-left: -50%;
+    margin-top: -270px;
+    margin-left: -40%;
     width: 550px;
     height: 550px;
     animation: slideUpAndDown 4s ease-in-out infinite;
@@ -190,7 +190,17 @@ h1 {
 
 }
 
+.contentLogoPollice{
+  position: absolute;
+  z-index: -1;
+//  margin-left: 37%;  
+//  margin-top: 50px;
+}
+
 .contentPanicWord{
+  position: relative;
+  z-index: 10;
+  color: black !important;
   text-align: center;
   .astroCart{
     width: 250px;
@@ -208,7 +218,7 @@ h1 {
 
 .contentLink{
    // margin-top: 100px;
-    margin-bottom: 300px;
+    margin-bottom: -120px;
     margin-left: 500px;    
   // margin-right: -100px;
 }
@@ -229,7 +239,7 @@ h1 {
     font-size: 45px;
     position: relative;
     display: inline-block;
-    padding: 30px 61px;
+    padding: 30px 107px;
     border-radius: 4px;
     color: var(--text-color-body);
     text-decoration: none;
@@ -387,15 +397,17 @@ h1 {
     -webkit-box-shadow: 5px 5px 15px 5px #000000; 
     box-shadow: 5px 5px 15px 5px #000000;
     padding-top: 3px;
+    background-color: var(--background-color-ContentTutorial);    
   }
   .imgCard{    
     width: 99px;
     height: 99px;     
+    //filter: drop-shadow(0.28rem 0.25rem 0.4rem rgba(0, 0, 0, 0.3));
   }
 
   .contentImageSecond{
-    margin-top: 73px;
-    margin-left: -20px;    
+    margin-top: 65px;
+    margin-left: -62px;    
   }
   .imageContentThird{
     margin-top: -10%;
@@ -467,10 +479,10 @@ h1 {
   }
 
   .withBody{
-    background-color: rgb(241, 237, 237);
+    background-color: var(--background-color-ContentTutorial);
     
     border: 1px solid var(--navbar-color);
-    color: black;
+    color: var(--text-color);
     border-radius: 30px;
     -webkit-box-shadow: 2px 2px var(--boxshadow-view) -5px #f7e7b3; 
     box-shadow: 2px 2px var(--boxshadow-view) -5px #f7e7b3;
@@ -601,6 +613,16 @@ h1 {
 
   }
 */
+
+@media screen and (max-height: 700px) {
+  .firstSchedes{
+    margin-top: -90px;
+  }
+
+  .contentAstronauts{
+    margin-right: -40px; 
+  }
+}
   @media screen and (max-width: 1024px) {
     .reversed{
       flex-direction: column-reverse;     
@@ -631,10 +653,10 @@ h1 {
     }
     .contentImageSecond{
       margin-top: -80px;
+      margin-left: -26px;
     }
-    .imageContentThird {
-      
-      margin-top: -103px;
+    .imageContentThird {      
+      margin-top: -72px;
   }
     .contentSchedes{
     p{    
@@ -674,6 +696,12 @@ h1 {
       margin-left: 0px; 
     }
 
+    .imagePanic{   
+      width: 80px;
+      height: 80px;  
+      margin-top: -15px;
+      margin-left: 5px;
+  }
   }
 
   @media screen and (max-width: 480px) {
@@ -695,7 +723,7 @@ h1 {
     }
     .contentSchedes{
       p{    
-        font-size:6vw;
+        font-size:9vw;
        }
       }
 
@@ -741,6 +769,6 @@ h1 {
       padding-top: 15px;
     }
 
-
+ 
 
   }

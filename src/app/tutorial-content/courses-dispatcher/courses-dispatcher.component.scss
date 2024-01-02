@@ -57,6 +57,7 @@
 
             .course-icon{
                 width: 100px;
+                overflow: hidden;
              //   padding-top: 50%;
                 border-right: 1px solid black;
                 //padding-top: 18%;
@@ -97,7 +98,7 @@
                     background-color: var(--navbar-color);    
                     transition: var(--transition-delay);   
                     color: var(--text-color);
-                    border: 1px solid var(--button-tutorial-navigate-border);
+                    border: 1px solid #9f9e9e; //var(--button-tutorial-navigate-border);
                     box-shadow: -6px 8px 10px var(--button-tutorial-navigate-first-shadow-color),
                             0px 2px 2px var(--button-tutorial-navigate-second-shadow-color);     
                     width: 80% !important;

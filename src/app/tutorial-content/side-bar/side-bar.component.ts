@@ -25,7 +25,7 @@ export class SideBarComponent implements OnInit {
 
   private languageCode?: string;
   private language?: string;
-
+  private windowBrowserWidthCollapseSideBar: number = 768;
   //current selected chapter or subchapter 
   private selectedElementInTheBar?:string;
 
@@ -85,7 +85,10 @@ export class SideBarComponent implements OnInit {
       console.log("sono nella sidebar, ho cambiato la lingua "+this.urlPathService.getCourseFromUrl(window.location.href));
       
       const oldCourseUrl = this.urlPathService.getCourseFromUrl(window.location.href);
+      console.log("old: "+oldCourseUrl);
       const newCourse = await this.urlPathService.getTranslateCourseFromUrl(window.location.href);
+
+      console.log("new: "+newCourse);
 
       console.log("sono nella sidebar, ho cambiato la lingua tradotto: "+newCourse);
       let urlPath = this.urlPathService.getUrlPath(window.location.href);   
@@ -162,13 +165,18 @@ export class SideBarComponent implements OnInit {
     console.log('scope chapter is ' + lable.label);
     console.log('scope chapter is ' + lable.children?.length);
     console.log('scope chapter is ex ' + lable.expanded);
-    console.log('--------------------------------------');
+    console.log('--------------------------------------\n '+window.innerWidth);
 
     if (lable.expanded != true) {
       lable.expanded = true;
     }
 
     if(this.selectedElementInTheBar != lable.key){
+      
+      if(window.innerWidth <= this.windowBrowserWidthCollapseSideBar)
+      setTimeout( () => { //close the menu after choise
+        document.getElementById("burger")?.click(); }, 100 );
+
       this.selectedElementInTheBar = lable.key;
     document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(this.selectedChapter?.key!)?.classList.remove("selectedArgument");
@@ -185,8 +193,10 @@ export class SideBarComponent implements OnInit {
     //evaluate next chapter
     this.evalueateNextChapters(lable);
     this.evalueatePreviousChapters(this.selectedChapter!);
-    this.initializeSubChapter(this.selectedChapter!);
+    this.initializeSubChapter(this.selectedChapter!);    
+     
     }
+
   }
 
   public changeSubChapter(lable: TreeNode, key: string) {
@@ -201,6 +211,11 @@ export class SideBarComponent implements OnInit {
 
     if(this.selectedElementInTheBar != lable.key){
       this.selectedElementInTheBar = lable.key;
+
+      if(window.innerWidth <= this.windowBrowserWidthCollapseSideBar)
+      setTimeout( () => { //close the menu after choise
+        document.getElementById("burger")?.click(); }, 100 );
+
     document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
     document.getElementById(lable.key!)?.classList.add("selectedArgument");    
 
@@ -221,6 +236,7 @@ export class SideBarComponent implements OnInit {
     this.lastChapterSelected!.chapterIndex = this.nodes.indexOf(this.selectedChapter!);
     this.lastChapterSelected!.subChapterIndex = this.selectedChapter!.children?.indexOf(lable);
     this.cookies.set("lastChapterSelected", JSON.stringify(this.lastChapterSelected), { path: '/' });   
+
   }
   }
 
@@ -567,7 +583,7 @@ export class SideBarComponent implements OnInit {
       this.chaptersJavaCourse.forEach(el => {
         console.log(el.id);
         console.log(el.chapterNumber);
-
+        console.log("è linkato: "+el.linked);
         this.childrenParam = [];
 
         if (el.subChapters != null) {
@@ -577,7 +593,7 @@ export class SideBarComponent implements OnInit {
             child.data = "" + subch.id;
             child.key = "" + subch.subChapterNumber;
             child.label = "" + subch.subChapterTitle;
-
+            
             this.childrenParam.push(
               child
             );
@@ -589,8 +605,10 @@ export class SideBarComponent implements OnInit {
           key: "" + el.chapterNumber,
           data: "" + el.id,
           label: el.chapterTitle,
-          children: this.childrenParam
+          children: this.childrenParam,
+          leaf: el.linked
         });
+        console.log("è linkato: "+el.linked);
       });
       //console.log(this.chaptersJavaCourse);
     });
@@ -629,5 +647,15 @@ export class SideBarComponent implements OnInit {
     ]
   }
 
+  public openCloseSidebar(): void{
 
+    var element = <HTMLInputElement> document.getElementById("burger");
+    var isChecked = element.checked;
+   
+    if(isChecked){
+      document.getElementById("tree")?.classList.add("marginSubChapterNumberRedux");
+    } else {
+      document.getElementById("tree")?.classList.remove("marginSubChapterNumberRedux");
+    }
+  }
 }

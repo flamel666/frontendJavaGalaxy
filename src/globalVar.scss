@@ -13,9 +13,9 @@ body {
     --font-family-global: 'Times New Roman', Times, serif;//Verdana, sans-serif, serif, Arial, Helvetica, 'Times New Roman', Times;
     font-family: var(--font-family-global);
 
-    --background-color-content-tutorial: rgb(230, 230, 230);//rgb(68,70,84);//rgb(52, 53, 65)
+    --background-color-content-tutorial: rgb(245 245 250);//rgb(68,70,84);//rgb(52, 53, 65)
     
-    --text-color-content-tutorial:black;
+    --text-color-content-tutorial:rgb(31, 31, 41);
 
     --navbar-color: #007bb8;// #007bb8
         --font-size: 15px;
@@ -59,6 +59,9 @@ body {
     transition: var(--transition-delay);
   
     overflow-x: hidden;
+
+    //utility menu
+    --background--utility-menu: #4d99bb;
 
     //footer
 
@@ -126,6 +129,9 @@ body.dark {
     --scroll-bar-color-primary: #00c3ff;
     --scroll-bar-color-secondary: rgb(2, 16, 212);
     transition: var(--transition-delay);
+
+     //utility menu
+     --background--utility-menu: #2b5d73;
 
     //footer
     --wave-url-png: url("./assets/images/footer.component/wave-dark.png");

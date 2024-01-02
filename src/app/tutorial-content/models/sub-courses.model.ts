@@ -5,4 +5,5 @@ export class SubCourses{
     translateSubCourse?: string;
     iconSubCourse?: string;
     activeSubCourse? : boolean;
+    prefixUrl?: string;
 }

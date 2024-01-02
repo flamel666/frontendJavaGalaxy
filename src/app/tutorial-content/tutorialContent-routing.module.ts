@@ -16,13 +16,25 @@ const routes: Routes = [
       component: GlobalContentComponent
     },
     {
+      path: 'fundamentals/:code',
+      component: GlobalContentComponent
+    },    
+    {
       path: 'code/:code/chapter/:chapter/lang/:lang',
+      component: GlobalContentComponent
+    },
+    {
+      path: 'fundamentals/:code/chapter/:chapter/lang/:lang',
       component: GlobalContentComponent
     },
     {
       path: 'code/:code/chapter/:chapter/subchapter/:subchapter/lang/:lang',
       component: GlobalContentComponent
-    }
+    },
+    {
+      path: 'fundamentals/:code/chapter/:chapter/subchapter/:subchapter/lang/:lang',
+      component: GlobalContentComponent
+    },
  
 ];
 
