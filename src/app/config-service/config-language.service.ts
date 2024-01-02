@@ -24,8 +24,10 @@ export class ConfigLanguageService {
       let language = "";
       let urlPath = this.urlPathService.getUrlPath(window.location.href);
       console.log("SERVICE LANGUAGE: "+urlPath);
-      console.log("SERVICE LANGUAGE: "+urlPath.includes("code"));
-      if(urlPath.includes("code")){
+      console.log("SERVICE LANGUAGE: "+urlPathService.getTargetPrefixUrl(urlPath));
+      console.log("SERVICE LANGUAGE: "+urlPath.includes(urlPathService.getTargetPrefixUrl(urlPath)));
+      
+      if(urlPath.includes(urlPathService.getTargetPrefixUrl(urlPath))){
 
         if(urlPath.includes("it"))
         language = "it";

@@ -21,6 +21,8 @@ export class UtilityMenuComponent implements OnInit {
   public height: number = 300;
   public width: number = 630;
   public created: boolean = false;
+
+  public iconBook: string = "fa-sharp fa-solid fa-book";
   
   public videoId: string = "";
 
@@ -116,6 +118,11 @@ export class UtilityMenuComponent implements OnInit {
 
   public openAndCloseLegend(){
     document.getElementById("utilitySideBar")?.classList.toggle("utilitySideBarOpen"); 
+    if(document.getElementById("utilitySideBar")?.classList.contains("utilitySideBarOpen")){
+      this.iconBook = "fa-solid fa-book-open";
+    } else {
+      this.iconBook = "fa-sharp fa-solid fa-book";
+    }
   }
 
   

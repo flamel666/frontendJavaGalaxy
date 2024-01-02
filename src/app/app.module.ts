@@ -110,13 +110,13 @@ export class AppModule {
        }
 
        
-      if(this.cookieCreator.check("EX"))
+     /* if(this.cookieCreator.check("EX"))
       this.cookieCreator.set("ALL","MAZZ");
       else{
         this.expireDate = new Date();
         this.expireDate.setDate(this.expireDate.getDate() + 100)
-        this.cookieCreator.set("EX","maxx", this.expireDate, '/' );
-      }
+        this.cookieCreator.set("EX","maxx", this.expireDate, '/' ); //settare l'expiration date al coockie
+      }*/
     }
 
   }

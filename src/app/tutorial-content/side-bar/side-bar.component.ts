@@ -85,7 +85,10 @@ export class SideBarComponent implements OnInit {
       console.log("sono nella sidebar, ho cambiato la lingua "+this.urlPathService.getCourseFromUrl(window.location.href));
       
       const oldCourseUrl = this.urlPathService.getCourseFromUrl(window.location.href);
+      console.log("old: "+oldCourseUrl);
       const newCourse = await this.urlPathService.getTranslateCourseFromUrl(window.location.href);
+
+      console.log("new: "+newCourse);
 
       console.log("sono nella sidebar, ho cambiato la lingua tradotto: "+newCourse);
       let urlPath = this.urlPathService.getUrlPath(window.location.href);   
@@ -580,7 +583,7 @@ export class SideBarComponent implements OnInit {
       this.chaptersJavaCourse.forEach(el => {
         console.log(el.id);
         console.log(el.chapterNumber);
-
+        console.log("è linkato: "+el.linked);
         this.childrenParam = [];
 
         if (el.subChapters != null) {
@@ -590,7 +593,7 @@ export class SideBarComponent implements OnInit {
             child.data = "" + subch.id;
             child.key = "" + subch.subChapterNumber;
             child.label = "" + subch.subChapterTitle;
-
+            
             this.childrenParam.push(
               child
             );
@@ -602,8 +605,10 @@ export class SideBarComponent implements OnInit {
           key: "" + el.chapterNumber,
           data: "" + el.id,
           label: el.chapterTitle,
-          children: this.childrenParam
+          children: this.childrenParam,
+          leaf: el.linked
         });
+        console.log("è linkato: "+el.linked);
       });
       //console.log(this.chaptersJavaCourse);
     });

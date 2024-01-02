@@ -123,7 +123,7 @@ export class HeaderComponent implements OnInit {
             
             subCourseItem.label = nameSubCourse;
             subCourseItem.icon = subCoruse.iconSubCourse;
-            subCourseItem.routerLink = "/code/"+nameSubCourse?.replace(" ", "-");
+            subCourseItem.routerLink = "/"+subCoruse.prefixUrl+"/"+nameSubCourse?.replace(/\s/g, "-");
             subCourseItem.styleClass = subCoruse.translateSubCourse;
             subCourseItem.disabled = !subCoruse.activeSubCourse;
             subCourseItem.command = (event: any) => {
@@ -227,7 +227,7 @@ public switchLang(lang: string) {
               if(subSubItem.styleClass != undefined){
               const value2 = await this.getTranslateLabel(subSubItem.styleClass!);
               subSubItem.label = value2;
-              subSubItem.routerLink = "/code/"+subSubItem.label.replace(" ", "-");
+              subSubItem.routerLink = "/code/"+subSubItem.label.replace(/\s/g, "-");
               }
             });
           }

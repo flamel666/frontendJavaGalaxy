@@ -26,6 +26,10 @@
         line-height: 30px;
         a{
             color: var(--link-color);
+            transition: var(--transition-delay);
+            &:hover{
+                color: #00aaff;
+            }
         }
     }
 
@@ -54,7 +58,7 @@
         margin-top: 50px;
         margin-bottom: 20px;
         border: 2px solid black;
-        background-color: rgba(0,0,0,0.05);
+        background-color: rgba(0,0,0,0.1);//rgb(46 45 51 / 60%)
         border-radius: 20px;
         width: 90%;
         

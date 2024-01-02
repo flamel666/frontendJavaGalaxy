@@ -21,6 +21,7 @@ interface ModelSubCourse{
   description?: string; 
   isActive?: boolean; 
   translateSubCourse?: string;
+  prefixUrl?: string;
 }
 
 @Component({
@@ -60,13 +61,15 @@ export class CoursesDispatcherComponent implements OnInit {
         modelCourse!.subCourse = [];
 
         courses.subCourses?.forEach(subCourse =>{
-          console.log("nel sub for each: "+subCourse);
+          console.log("nel sub for each: "+JSON.stringify(subCourse));
           let modelSubCourse: ModelSubCourse = {};
           
           modelSubCourse!.subCourseTitle = subCourse.subCourseName!;
           modelSubCourse!.url = subCourse.subCourseName!;
           modelSubCourse!.translateSubCourse = subCourse.translateSubCourse;
           modelSubCourse!.isActive = subCourse.activeSubCourse;
+          modelSubCourse!.icon = subCourse.iconSubCourse;
+          modelSubCourse!.prefixUrl = subCourse.prefixUrl;
           modelCourse!.subCourse!.push(modelSubCourse!);
 
         });
@@ -83,6 +86,13 @@ export class CoursesDispatcherComponent implements OnInit {
           }
         });
     }, 0.01);
+
+        this.router.events.subscribe((evt: any) => {//serve ad andare top nella pagina quando termina la navigazione
+          if (!(evt instanceof NavigationEnd)) {//forse dobbiamo metterlo ancora più su
+              return;
+          }
+          window.scrollTo(0, 0)
+      });  
   }
     });
 
@@ -100,24 +110,15 @@ export class CoursesDispatcherComponent implements OnInit {
    ngOnInit(): void {   
     console.log("NELLA GLOBAL NG");
    
-    if(isPlatformBrowser(this.platformId)){    
-    this.router.events.subscribe((evt: any) => {//serve ad andare top nella pagina quando termina la navigazione
-      if (!(evt instanceof NavigationEnd)) {//forse dobbiamo metterlo ancora più su
-        
-          return;
-      }
-      window.scrollTo(0, 0)       
-  });
-}
 
    }
 
   public async navigateToCourse(subCourse: ModelSubCourse) : Promise<void>{
 
     const endPoint = await this.getTranslateLabel(subCourse.translateSubCourse!);
-
-    console.log("/code/"+endPoint.replace(" ", "-"));
-    this.router.navigate(["/code/"+endPoint.replace(" ", "-")]);
+    
+    console.log("/"+subCourse.prefixUrl+"/"+endPoint.replace(/\s/g, "-"));
+    this.router.navigate(["/code/"+endPoint.replace(/\s/g, "-")]);
   }
 
   private async getTranslateLabel(label: string): Promise<string>{

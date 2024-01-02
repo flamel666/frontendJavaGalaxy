@@ -175,8 +175,8 @@ h1 {
   padding: none;
   z-index: -1000;
   .astro{
-    margin-top: -300px;
-    margin-left: -50%;
+    margin-top: -270px;
+    margin-left: -40%;
     width: 550px;
     height: 550px;
     animation: slideUpAndDown 4s ease-in-out infinite;
@@ -239,7 +239,7 @@ h1 {
     font-size: 45px;
     position: relative;
     display: inline-block;
-    padding: 30px 61px;
+    padding: 30px 107px;
     border-radius: 4px;
     color: var(--text-color-body);
     text-decoration: none;
@@ -406,8 +406,8 @@ h1 {
   }
 
   .contentImageSecond{
-    margin-top: 73px;
-    margin-left: -20px;    
+    margin-top: 65px;
+    margin-left: -62px;    
   }
   .imageContentThird{
     margin-top: -10%;
@@ -653,10 +653,10 @@ h1 {
     }
     .contentImageSecond{
       margin-top: -80px;
+      margin-left: -26px;
     }
-    .imageContentThird {
-      
-      margin-top: -103px;
+    .imageContentThird {      
+      margin-top: -72px;
   }
     .contentSchedes{
     p{    
@@ -723,7 +723,7 @@ h1 {
     }
     .contentSchedes{
       p{    
-        font-size:6vw;
+        font-size:9vw;
        }
       }
 
