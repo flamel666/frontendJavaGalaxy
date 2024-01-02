@@ -90,7 +90,7 @@ export class AppModule {
       @Inject(PLATFORM_ID) private platformId: Object, private metaService: Meta){  
 
         // decommentare in prod per disabilitare i log in console
-      //  console.log = function (): void { };
+        console.log = function (): void { };
 
         console.log("--------------------START----------------------------- ");
 
