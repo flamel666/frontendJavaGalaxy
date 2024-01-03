@@ -862,6 +862,8 @@ svg{
   //dovessi aver problema con il .p-menubar quando rimpicciolisci lo schermo
   //vai nel file theme.css di primeng e modifica la media query del .p-menubar così:
   //@media screen and (max-width: 1px) {
+  //è possibile che la modifica non verrà subito caricata. consiglio di eliminare l'import dal file styles.css
+  //buildare, controllare che il fe sia un po' scombinato e poi reintegrare l'import
     
 }
 @media screen and (max-width: 768px) {
