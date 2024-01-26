@@ -15,14 +15,14 @@ export class GlobalContentComponent implements OnInit {
   constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
     console.log("NELLA GLOBAL CONSTR");
     if(isPlatformBrowser(this.platformId)){    
-    this.router.events.subscribe((evt: any) => {//serve ad andare top nella pagina quando termina la navigazione
-      if (!(evt instanceof NavigationEnd)) {//forse dobbiamo metterlo ancora più su
-          return;
-      }
-      window.scrollTo(0, 0)
-  });  
-}
-console.log("NELLA GLOBAL CONSTR FINE");
+      this.router.events.subscribe((evt: any) => {//serve ad andare top nella pagina quando termina la navigazione
+        if (!(evt instanceof NavigationEnd)) {//forse dobbiamo metterlo ancora più su
+            return;
+        }
+        window.scrollTo(0, 0)
+      });  
+    }
+    console.log("NELLA GLOBAL CONSTR FINE");
   }
 
   ngOnInit(): void {   

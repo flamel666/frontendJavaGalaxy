@@ -51,6 +51,41 @@
             "common_error" : "Common mistake",
             "trick" : "Trick"
         }
+    },
+
+    "contact":{
+        "email":{
+            "titleContact": "How can I help you?",
+            "subTitleContact": "Let's talk!",
+            "fistName": "First name",
+            "lastName": "Last name",           
+            "email": "eMail",
+            "emailPlaceHolder": "blabla@email.com",
+            "contactReason": "Reason for contact",
+            "message": "Message to send",
+            "firstNameError": "Name is required",
+            "emailError": "Please enter a valid email",
+            "buttonLabel": "Send message",
+            "dropdownPlaceHolder": "Select a reason",
+            "dropdownError": "The choice is mandatory",
+            "motivation1": "Site suggestions",
+            "motivation2": "Video suggestions",
+            "motivation3": "Spelling error",
+            "motivation4": "Conceptual inaccuracy",
+            "motivation5": "Other",
+            "invitationMessage1": "Your opinion is essential!",
+            "invitationMessage2": "If you have noticed errors, inaccuracies, or have suggestions for improving the site, videos, or anything else that would enrich our community experience, please let me know!",
+            "invitationMessage3": "Every contribution you share is valuable to the evolution and enrichment of the content, as well as to improving everyone's experience.",
+            "invitationMessage4": "I am open to your comments and grateful for your help in making our space better for everyone!",
+            "thnksMessage1": "Thank you for contacting me, I will reply as soon as possible.",
+            "thnksMessage2": "In the meantime, I would like to remind you that you can also follow me on my",
+            "thnksMessage3": "channel so you don't miss out on upcoming content!"
+        }
+    },
+
+    "footer":{
+        "about" : "About me",
+        "contact" : "Contact me"
     }
 
   
