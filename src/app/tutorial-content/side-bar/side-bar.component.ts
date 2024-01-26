@@ -1,12 +1,11 @@
 
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer, Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import {  Meta } from '@angular/platform-browser';
 import { MenuItem } from 'primeng/api';
 import { TreeNode } from 'primeng/api';
-import { delay } from 'rxjs';
 
 import { ChaptersCourse } from "../models/chapters.model";
 import { Children } from '../models/children.model';
@@ -69,7 +68,6 @@ export class SideBarComponent implements OnInit {
       }
     });
 
-
     this.chapterJavaService.actionFromTutorialBodyNextContentChanged$?.subscribe(event => {
       console.log("sono nel costruttore della sideBar ");
       this.nextChapterFromRequestBody();
@@ -94,15 +92,10 @@ export class SideBarComponent implements OnInit {
       let urlPath = this.urlPathService.getUrlPath(window.location.href);   
       console.log("sono nella sidebar, ho cambiato la lingua tradotto: "+urlPath)
 
-
-
       this.location.replaceState(urlPath.substring(0, urlPath.length-2).replace(oldCourseUrl, newCourse)+this.configLanguageService.getBrowserLanguage());
       console.log("sono nella sidebar, ho cambiato la lingua "+urlPath.substring(0, urlPath.length-2)); 
      
       window.location.reload();
-
-
-    
     });
   
   }
@@ -136,8 +129,8 @@ export class SideBarComponent implements OnInit {
               );
   
             });
-          }
-  
+          }  
+          
           this.nodes.push({
             key: "" + el.chapterNumber,
             data: "" + el.id,
@@ -208,7 +201,7 @@ export class SideBarComponent implements OnInit {
     console.log('scope subchapter is ' + lable.children?.length);
 
     console.log('---------------------------parent-------' + lable.parent?.key);
-
+  
     if(this.selectedElementInTheBar != lable.key){
       this.selectedElementInTheBar = lable.key;
 
@@ -373,11 +366,14 @@ export class SideBarComponent implements OnInit {
     console.log("nextChapterFromRequestBody");
     //console.log("sub: " + this.nextSubChapter?.key);
     console.log("sub: " + this.nextSubChapter);
-    if (this.nextSubChapter != undefined) {
-      document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
+   
+    if (this.nextSubChapter != undefined) {      
+     
+      document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");      
       //this.nextSubChapter.key.substring(key.indexOf(".")+1,key.length)
       this.chapterJavaService.changeIdSubChapter(""+this.nextSubChapter.key);      
       document.getElementById(this.nextSubChapter?.key!)?.classList.add("selectedArgument");
+     
       console.log("next chapter: "+this.nextChapter);
       this.lastChapterSelected!.subChapter = this.nextSubChapter.key;
       this.lastChapterSelected!.chapter = this.nextChapter != undefined ? this.nextChapter.key : this.selectedChapter?.data;
@@ -389,9 +385,15 @@ export class SideBarComponent implements OnInit {
       this.evalueateNextSubChapters(this.nextSubChapter);
       this.evalueatePreviousSubChapters(this.selectedSubChapter!);
     } else if (this.nextChapter != undefined) {
+      if (this.nextChapter?.expanded != true) {
+        this.nextChapter!.expanded = true;
+      } 
       document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
       document.getElementById(this.selectedChapter?.key!)?.classList.remove("selectedArgument");
       this.chapterJavaService.changeIdChapter(this.nextChapter.key!);      
+      if (this.selectedChapter?.expanded != false) {
+        this.selectedChapter!.expanded = false;
+      } 
       document.getElementById(this.nextChapter?.key!)?.classList.add("selectedArgument");
 
       this.lastChapterSelected!.chapter = this.nextChapter != undefined ? this.nextChapter.key : this.selectedChapter?.data;
@@ -404,6 +406,7 @@ export class SideBarComponent implements OnInit {
       
       this.initializeSubChapter(this.selectedChapter!);
     }
+   
 
   }
 
@@ -424,10 +427,12 @@ export class SideBarComponent implements OnInit {
       this.evalueatePreviousSubChapters(this.previousSubChapter);
       this.evalueateNextSubChapters(this.selectedSubChapter!);
      
-    } else if (this.previousChapter != undefined) {
+    } else if (this.previousChapter != undefined) {      
       document.getElementById(this.selectedSubChapter?.key!)?.classList.remove("selectedArgument");
       document.getElementById(this.selectedChapter?.key!)?.classList.remove("selectedArgument");
-
+      if (this.selectedChapter?.expanded != false) {
+        this.selectedChapter!.expanded = false;
+      } 
       if(this.previousChapter.children == undefined || this.previousChapter.children.length == 0){
         this.chapterJavaService.changeIdChapter(this.previousChapter.key!);
         this.lastChapterSelected!.chapter = this.previousChapter != undefined ? this.previousChapter!.data : this.selectedChapter!.data;
@@ -455,6 +460,7 @@ export class SideBarComponent implements OnInit {
       }
 
       document.getElementById(this.selectedChapter?.key!)?.classList.add("selectedArgument");
+      
       //evaluate new chapters
       
     }
@@ -601,13 +607,15 @@ export class SideBarComponent implements OnInit {
           });
         }
 
-        this.nodes.push({
-          key: "" + el.chapterNumber,
-          data: "" + el.id,
-          label: el.chapterTitle,
-          children: this.childrenParam,
-          leaf: el.linked
-        });
+        //se il capitolo risulta attivo lo mostriamo. altrimenti no
+        if(el.active)
+          this.nodes.push({
+            key: "" + el.chapterNumber,
+            data: "" + el.id,
+            label: el.chapterTitle,
+            children: this.childrenParam,
+            leaf: el.linked
+          });
         console.log("è linkato: "+el.linked);
       });
       //console.log(this.chaptersJavaCourse);

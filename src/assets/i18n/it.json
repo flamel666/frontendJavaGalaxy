@@ -52,7 +52,44 @@
             "trick" : "Trucco"
 
         }
+    },
+
+    "contact":{
+        "email":{
+            "titleContact": "Come posso aiutarti?",
+            "subTitleContact": "Parliamone!",
+            "fistName": "Nome",
+            "lastName": "Cognome",           
+            "email": "eMail",
+            "emailPlaceHolder": "blabla@email.com",
+            "contactReason": "Motivo di contatto",
+            "message": "Messaggio da inviare",
+            "firstNameError": "Il nome è obbligatorio",
+            "emailError": "Inserire una email valida",
+            "buttonLabel": "Invia messaggio",
+            "dropdownPlaceHolder": "Seleziona una motivazione",
+            "dropdownError": "La scelta è obbligatoria",
+            "motivation1": "Suggerimenti sito",
+            "motivation2": "Suggerimenti video",
+            "motivation3": "Errore ortografico",
+            "motivation4": "Inesattezza concettuale",
+            "motivation5": "Altro",
+            "invitationMessage1": "La tua opinione è fondamentale!",
+            "invitationMessage2": "Se hai notato errori, inesattezze o hai suggerimenti per migliorare il sito, i video o qualsiasi altro aspetto che possa arricchire l'esperienza della nostra community, ti prego di farmelo sapere!",
+            "invitationMessage3": "Ogni contributo che condividi è prezioso per l'evoluzione e l'arricchimento dei contenuti, nonché per migliorare l'esperienza di tutti.",
+            "invitationMessage4": "Sono aperto a ogni tua osservazione e grato per il tuo aiuto nel rendere il nostro spazio migliore per tutti!",
+            "thnksMessage1": "Ti ringrazio per avermi contattato, ti risponderò nel più breve tempo possibile.",
+            "thnksMessage2": "Nel frattempo ti ricordo che puoi seguirmi anche sul mio canale",
+            "thnksMessage3": "per non perderti i prossimi contenuti!"
+        }
+    },
+
+    "footer":{
+        "about" : "Su di me",
+        "contact" : "Contattami"
     }
+
+    
 
    
 }

@@ -1,0 +1,98 @@
+<div class="globalContentContacts">    
+    <div class="contentStructure">
+        <div class="left">
+            
+            <div>               
+                <div class="containerLogomc">
+                    <img  src="assets/images/logomc/logoMC2.png" />
+                </div>
+            </div>
+            <div>
+                <p>
+                    {{'contact.email.invitationMessage1' | translate }} <br>
+                    {{'contact.email.invitationMessage2' | translate }} <br>
+                    {{'contact.email.invitationMessage3' | translate }} <br>
+                    {{'contact.email.invitationMessage4' | translate }}
+                </p>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="titleRight">
+                <h3>{{'contact.email.titleContact' | translate }}</h3><br>
+                <h6 class="titleSubTitle">{{'contact.email.subTitleContact' | translate }}</h6>
+            </div>
+            <form [formGroup]="userForm" (ngSubmit)="sendMail()">
+                <div class="formContent">
+                    <div class="anagraphic">
+                        <div class="firstName">
+                            <label for="firstName" class="block">{{'contact.email.fistName' | translate }}*</label>
+                            <input class="inputAna" type="text" pInputText placeholder="{{'contact.email.fistName' | translate }}" formControlName="firstName"/>
+                            <div>
+                            <small class="p-error block" *ngIf="
+                                userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched
+                                ">
+                                {{'contact.email.firstNameError' | translate }}</small>
+                            </div>
+                        </div>
+
+                        <div class="lastName">
+                            <label for="lastName" class="block">{{'contact.email.lastName' | translate }}</label>
+                            <input class="inputAna" type="text" pInputText placeholder="{{'contact.email.lastName' | translate }}" formControlName="lastName" />
+                        </div>
+                    </div>
+
+                    <div class="mailAndMotiv">
+                        <div class="mail">
+                            <label for="email" class="block">{{'contact.email.email' | translate }}*</label>
+                            <input type="email" pInputText placeholder="{{'contact.email.emailPlaceHolder' | translate }}" formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+                            <div>
+                            <small class="p-error block" *ngIf="
+                                userForm.get('email')?.invalid && userForm.get('email')?.touched">
+                                {{'contact.email.emailError' | translate }}</small>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="motivation">
+                            <label for="p-dropdown" class="block">{{'contact.email.contactReason' | translate }}*</label>
+                            <p-dropdown [options]="motivations" placeholder="{{'contact.email.dropdownPlaceHolder' | translate }}" optionLabel="name"
+                            formControlName="drop"></p-dropdown>
+                            <div>
+                                <small class="p-error block" *ngIf="
+                                    userForm.get('drop')?.invalid && userForm.get('drop')?.touched">
+                                    {{'contact.email.dropdownError' | translate }}</small>
+                                </div>
+                        </div>                        
+                    </div>
+
+                    <div>
+                    </div>
+                    <div class="textAreaContent">
+                        <label for="textarea" class="block">{{'contact.email.message' | translate }}</label>
+                        <textarea [rows]="5" [cols]="30" pInputTextarea formControlName="textArea"></textarea>
+                    </div>
+                    
+                    <div class="buttonCointainer">
+                        <button pButton type="submit" label="{{'contact.email.buttonLabel' | translate }}" [disabled]="userForm.invalid"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <p-dialog class="modalWin" header="Grazie!" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}">
+        <div class="dialogContentBody">
+            <p>
+                {{'contact.email.thnksMessage1' | translate }} <br><br>
+                {{'contact.email.thnksMessage2' | translate }}
+            <a href="https://www.youtube.com/@marcospacecoding" target="_blank">YouTube</a> {{'contact.email.thnksMessage3' | translate }}<br><br>
+            </p>
+        </div>
+        <div class="dialogContentButton">
+        <button type="button" pButton (click)="hideModal()">
+            <i class="pi pi-check"></i>   
+        </button>
+        </div>
+    </p-dialog>
+</div>

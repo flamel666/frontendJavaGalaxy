@@ -19,7 +19,8 @@
     
 }
 
-.contentSideBar{
-  
-  
+@media screen and (max-width: 768px) {
+  .contentTurorial{
+    margin-left: 3px;
+  }
 }

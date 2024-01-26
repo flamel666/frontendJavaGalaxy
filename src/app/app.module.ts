@@ -26,6 +26,7 @@ import {MenubarModule} from 'primeng/menubar';
 
 
 import { HomeModule } from './features/home/home.module';
+import { InfosModule } from './features/infos/infos.module';
 
 import { CookieService } from 'ngx-cookie-service';
 import { CountVisitorServiceService } from './global-service/count-visitor-service.service';
@@ -38,6 +39,7 @@ import { CollapseCanvasComponent } from './galaxysolid/collapse-canvas/collapse-
 import { ProvasunComponent } from './galaxysolid/provasun/provasun.component';
 import { PreliminaryCollapseComponent } from './galaxysolid/preliminary-collapse/preliminary-collapse.component';
 import { isPlatformBrowser } from '@angular/common';
+
 
 //import { AppDraggableDirective } from './global-directives/app-draggable.directive';
 
@@ -61,9 +63,11 @@ import { isPlatformBrowser } from '@angular/common';
     TutorialContentModule,       
     
     HomeModule, 
+    InfosModule,
     AppRoutingModule,
     DropdownModule,
     MenubarModule,
+    
     
     FormsModule,
     ButtonModule,

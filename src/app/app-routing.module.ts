@@ -8,9 +8,12 @@ const routes: Routes = [
    // loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
   },
   { path: 'home',
-   loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) },
-  
-  
+   loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) 
+  }, 
+  {
+    path: "info",
+    loadChildren: () => import('./features/infos/infos.module').then(m => m.InfosModule)
+  },
   {
     path: "auth",
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
