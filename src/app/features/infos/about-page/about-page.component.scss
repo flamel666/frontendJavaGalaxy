@@ -52,9 +52,11 @@
     height: 600px;
     margin:0 auto;
     background:inherit;    
+    min-height: 300px;
+    min-width: 300px;
 
     a{
-      transition: var(--transition-delay);
+      transition: transform var(--transition-delay);
       position:absolute;
       left:0; 
       top:0;
@@ -70,6 +72,10 @@
       height:100%;
       background-size:cover;
       border-radius:inherit;
+    }
+
+    .centerImage{
+      transition: none;
     }
 
     .altoSinistra{
@@ -268,9 +274,40 @@
 
     .altoSinistra{
       i{
-        top: 49px;
-        left: 53px;
-        font-size: 55px;
+        top: 51px !important;
+        left: 53px !important;
+        font-size: 45px !important;
+      }
+    }
+
+    .altoDestra{
+      .fire{
+        top: 37px !important;
+        left: 118px !important;
+        font-size: 17px !important;
+      }
+      .heart{
+        top: 56px !important;
+        left: 76px !important;
+        font-size: 50px !important;
+      }
+
+    }
+
+    .bassoSinistra{
+      i{
+        top: 97px !important;
+        left: 57px !important;
+        font-size: 46px !important;
+      }
+
+    }
+
+    .bassodestra{
+      i{
+        top: 81px !important;
+        left: 94px !important;
+        font-size: 50px !important;
       }
     }
   }
@@ -286,5 +323,44 @@
   .circleMenu{
     width: 300px !important;
     height: 300px !important;
+
+    .altoSinistra{
+      i{
+        top: 33px !important;
+        left: 44px !important;
+        font-size: 42px !important;
+      }
+    }
+
+    .altoDestra{
+      .fire{
+        top: 25px !important;
+        left: 87px !important;
+        font-size: 15px !important;
+      }
+      .heart{
+        top: 41px !important;
+        left: 48px !important;
+        font-size: 45px !important;
+      }
+
+    }
+
+    .bassoSinistra{
+      i{
+        top: 65px !important;
+        left: 41px !important;
+        font-size: 43px !important;
+      }
+
+    }
+
+    .bassodestra{
+      i{
+        top: 55px !important;
+        left: 65px !important;
+        font-size: 45px !important;
+      }
+    }
   }
 }
