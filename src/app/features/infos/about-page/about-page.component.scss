@@ -5,13 +5,14 @@
   border: 2px solid black;
   background-color: white;
   margin-left: 5px;
+  margin-bottom: 80px;
   border-radius: 20px 20px 10px 10px;
  
 
   .contentMenu{
     margin-top: -300px;
-    min-width: 400px;
-    min-height: 400px;
+    min-width: 348px;
+    min-height: 348px;
     display: flex;
     flex-direction: column;
     
@@ -30,7 +31,6 @@
       margin-bottom: 100px;
       margin-left: 20px;
       margin-right: 20px;
-      font-size: 30px;
 
       .aboutMeDescription, .philoDescription, .passionsDescription, .futureDescription{
         h3, h5, blockquote{
@@ -38,6 +38,15 @@
           cite{
             font-size: 23px;
           }
+        }
+        h3{
+          font-size: 50px;
+        }
+        h5{
+          font-size: 30px;
+        }
+        p{
+          font-size: 35px;
         }
       }
     }
@@ -82,6 +91,7 @@
       border-radius:40vmin 0 0 0;
       transform-origin: 110% 110%;
       opacity: 0.7;
+      
       &:hover {
         opacity: 1;
         transform:scale(.6) translate(-5px, -5px) !important;
@@ -89,8 +99,10 @@
         box-shadow: 0px 1px 20px 3px #000000;
       }
       
-      div{
-       
+      div{  
+        
+        animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
+        animation-delay: 2s;
        // background-image:url('https://farm3.staticflickr.com/2827/10384422264_d9c7299146.jpg');
         background: linear-gradient(221deg, rgba(39,35,93,1) 0%, rgba(17,79,147,1) 12%, rgba(105,161,189,1) 100%);
 
@@ -111,7 +123,11 @@
       transform:scale(.6) translate(-5px, -5px) !important;
       -webkit-box-shadow: 0px 1px 20px 3px #000000; 
       box-shadow: 0px 1px 20px 3px #000000;
+      div{ 
+        animation: none;
+      }
     }
+
     
 
     
@@ -128,6 +144,8 @@
       }
       div{
         //background-image:url('https://farm7.staticflickr.com/6083/6055581292_d94c2d90e3.jpg');
+        animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
+        animation-delay: 2s;
         background: linear-gradient(303deg, rgba(39,35,93,1) 0%, rgba(17,79,147,1) 12%, rgba(105,161,189,1) 100%);
           .fire{
             position: relative;
@@ -152,6 +170,9 @@
       transform:scale(.6) translate(5px, -5px) !important;
       -webkit-box-shadow: 0px 1px 20px 3px #000000; 
       box-shadow: 0px 1px 20px 3px #000000;
+      div{ 
+        animation: none;
+      }
     }
 
     .bassoSinistra{
@@ -167,6 +188,8 @@
       }
       div{
         //background-image:url('https://farm7.staticflickr.com/6092/6227418584_d5883b0948.jpg');
+        animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
+        animation-delay: 2s;
         background: linear-gradient(142deg, rgba(39,35,93,1) 0%, rgba(17,79,147,1) 12%, rgba(105,161,189,1) 100%);
         i{
           position: relative;
@@ -184,6 +207,9 @@
       transform:scale(.6) translate(-5px, 5px) !important;
       -webkit-box-shadow: 0px 1px 20px 3px #000000; 
       box-shadow: 0px 1px 20px 3px #000000;
+      div{ 
+        animation: none;
+      }
     }
 
     .bassodestra{
@@ -200,6 +226,8 @@
       }
       div{
       //  background-image: url('https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg');
+        animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
+        animation-delay: 2s;
         background: linear-gradient(50deg, rgba(39,35,93,1) 0%, rgba(17,79,147,1) 12%, rgba(105,161,189,1) 100%);
         i{
           position: relative;
@@ -217,6 +245,9 @@
       transform:scale(.6) translate(5px, 5px) !important;
       -webkit-box-shadow: 0px 1px 20px 3px #000000; 
       box-shadow: 0px 1px 20px 3px #000000;
+      div{ 
+        animation: none;
+      }
     }
    
     .centerImage{
@@ -312,6 +343,22 @@
     }
   }
 
+  .contentDescription {
+
+    .aboutMeDescription, .philoDescription, .passionsDescription, .futureDescription{
+     
+      h3{
+        font-size: 40px !important;
+      }
+      h5{
+        font-size: 25px !important;
+      }
+      p{
+        font-size: 25px !important;
+      }
+    }
+  }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -363,4 +410,37 @@
       }
     }
   }
+
+  .contentDescription {
+
+    .aboutMeDescription, .philoDescription, .passionsDescription, .futureDescription{
+      h3, h5, blockquote{
+       
+        cite{
+          font-size: 17px !important;
+        }
+      }
+      h3{
+        font-size: 30px !important;
+      }
+      h5{
+        font-size: 22px !important;
+      }
+      p{
+        font-size: 20px !important;
+      }
+    }
+  }
+}
+
+
+@keyframes shake {
+  0% { transform:translate(0,0) }
+  1.78571% { transform:translate(5px,0) }
+  3.57143% { transform:translate(0,0) }
+  5.35714% { transform:translate(5px,0) }
+  7.14286% { transform:translate(0,0) }
+  8.92857% { transform:translate(5px,0) }
+  10.71429% { transform:translate(0,0) }
+  100% { transform:translate(0,0) }
 }
