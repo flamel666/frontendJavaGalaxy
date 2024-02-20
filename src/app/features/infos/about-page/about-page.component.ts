@@ -15,7 +15,7 @@ export class AboutPageComponent implements OnInit {
 
   constructor(private router: Router, private metaService: Meta) {
     console.log("costruttore chiamato");
-    this.metaService.updateTag({property: 'og:title', content: "una pagina a caso"});
+    this.setMetaTags();
     this.router.events.subscribe((evt: any) => {//serve ad andare top nella pagina quando termina la navigazione
       if (!(evt instanceof NavigationEnd)) {//forse dobbiamo metterlo ancora più su
           return;
@@ -25,7 +25,6 @@ export class AboutPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log("costruttore chiamato 2");
     document.getElementById(this.lastMenuItemChoiseId)?.classList.add("clicked"+this.lastMenuItemChoiseId);
   }
 
@@ -39,6 +38,11 @@ export class AboutPageComponent implements OnInit {
       this.lastMenuItemChoiseId = id;
     }
 
+  }
+
+  private setMetaTags() : void{
+    this.metaService.updateTag({property: 'og:title', content: "About me page"});
+    this.metaService.updateTag({property: 'og:type', content: "article"});
   }
 
 }

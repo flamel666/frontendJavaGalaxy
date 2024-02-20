@@ -10,8 +10,9 @@
          
           <div class="circleMenu">
             <a class='semi-circle'></a> 
-            <a id="altoSinistra" class="altoSinistra" href="javascript:void(0)" (click)="menuClicked('altoSinistra');"><div>
-              <i class="fa-solid fa-clock-rotate-left"></i>
+            <a id="altoSinistra" class="altoSinistra" href="javascript:void(0)" (click)="menuClicked('altoSinistra');">
+              <div>
+              <i class="fa-solid fa-clock-rotate-left"></i>              
             </div></a>
             <a id="altoDestra" class="altoDestra" href="javascript:void(0)" (click)="menuClicked('altoDestra');">
               <div>
@@ -22,118 +23,98 @@
             <a id="bassodestra" class="bassodestra" href="javascript:void(0)" (click)="menuClicked('bassodestra');">
               <div><i class="fa-regular fa-address-card"></i></div></a>
             <a class="centerImage" href="javascript:void(0)">
-              <div class="visibleImage"></div>
+              <div class="visibleImage">
+                <img id="logoImg" src="../../../../assets/images/logomc/about-me-rounde.png" />
+              </div>
               <div class="firstRounded"></div>
               <div class="secondRounded"></div></a>
           </div>
 
           <div class="contentDescription">
               <div class="aboutMeDescription" *ngIf="showContent == 'bassodestra'">
-                <h3>Chi sono?</h3>
-                <h5>Provo a raccontarvi qualcosa di me...</h5>
-                <p><br>Ciao a tutti, sono Marco, creatore di javagalaxy.xyz, 
-                e sono qui per raccontarvi un po' della mia storia e delle mie passioni che mi guidano nell'affascinante universo della programmazione e dell'informatica. <br><br>
+                <h3>{{'aboutme.who.title' | translate }}</h3>
+                <h5>{{'aboutme.who.subTitle' | translate }}...</h5>
+                <p><br>{{'aboutme.who.p1' | translate }} <br><br>
                 
-                Attualmente, sono un analista informatico in un'azienda di consulenza specializzata nella progettazione e realizzazione di soluzioni innovative
-                nei più disparati settori.<br>
-                Mi occupo della realizzazione di progetti in Java per lo sviluppo di applicazioni orientate ai microservizi in diversi ambiti,
-                soprattutto per il settore bancario e finanziario, settori che richiedono precisione e affidabilità. 
+                  {{'aboutme.who.p2' | translate }}<br>
+                  {{'aboutme.who.p3' | translate }} 
                 <br><br>
-                La consulenza mi ha offerto l'opportunità di esplorare e approfondire le tecnologie più avanzate, seguendo l'intero ciclo di vita di un'applicazione, 
-                dalla fase di progettazione alla sua effettiva messa in produzione. <br>
-                Questo percorso mi ha permesso di acquisire una visione completa e approfondita delle sfide e delle soluzioni nell'ambito enterprise
+                {{'aboutme.who.p4' | translate }} <br>
+                {{'aboutme.who.p5' | translate }}
                 <br><br>
-                Attraverso la piattaforma e il canale YouTube di javagalaxy.xyz, desidero condividere con voi non solo la mia esperienza e conoscenza, 
-                ma anche la passione che nutro per lo sviluppo e l'evoluzione delle tecnologie. <br>
-                Ogni corso, ogni video, ogni articolo sarà un invito a esplorare insieme le potenzialità di Java e le tecnologie che plasmano il nostro futuro digitale.  
+                {{'aboutme.who.p6' | translate }} <a href="https://www.youtube.com/@marcospacecoding" target="_blank">YouTube</a> {{'aboutme.who.p7' | translate }} <br>
+                {{'aboutme.who.p8' | translate }} 
                 <br><br>
-                Iscrivetevi oggi e preparatevi per un viaggio immersivo nel mondo di Java e nelle soluzioni tecnologiche che stanno delineando il nostro domani!
+                {{'aboutme.who.p9' | translate }}
                 </p>
               </div>
               <div class="philoDescription" *ngIf="showContent == 'bassoSinistra'">
-                <h3>La mia filosofia</h3>              
+                <h3>{{'aboutme.philosophie.title' | translate }}</h3>              
                 <p><br>
-                  La nascita di Javagalaxy.xyz e del mio canale YouTube è frutto di una visione ambiziosa che trae ispirazione dalla convinzione profonda 
-                  che la condivisione della mia esperienza nel mondo della programmazione possa diventare un significativo contributo per coloro che 
-                  desiderano imparare e crescere nel campo dello sviluppo software. <br><br>
+                  {{'aboutme.philosophie.p1' | translate }} <a href="https://www.youtube.com/@marcospacecoding" target="_blank">YouTube</a> {{'aboutme.philosophie.p2' | translate }} <br><br>
 
-                  In questo momento, anche se la community non è ancora pienamente sviluppata, credo che la creazione di una piattaforma di apprendimento 
-                  possa diventare il terreno fertile per la crescita di una community appassionata e desiderosa di imparare.<br><br>
+                  {{'aboutme.philosophie.p3' | translate }}<br><br>
 
-                  La conoscenza è la forza che ci caratterizza come esseri umani. <br>
-                  Il desiderio di apprendere e condividere conoscenze è ciò che ci distingue, alimentando il nostro progresso individuale e collettivo. <br>
-                  In questo contesto, Javagalaxy aspira a essere un luogo dove la sete di conoscenza si unisce alla volontà
-                  di condividere, creando una community fondata su valori di apprendimento continuo e collaborazione.<br><br>
+                  {{'aboutme.philosophie.p4' | translate }} <br>
+                  {{'aboutme.philosophie.p5' | translate }} <br>
+                  {{'aboutme.philosophie.p6' | translate }}<br><br>
 
-                  Ciò che guida questo progetto è la convinzione che la creazione di un ambiente in cui la conoscenza possa fluire liberamente sarà la chiave per ispirare, 
-                  motivare e coltivare l'amore per la programmazione. <br>
-                  Javagalaxy è un invito a esplorare, imparare e crescere insieme, poiché credo che ogni contributo, anche il più piccolo, possa plasmare 
-                  positivamente il futuro della nostra comunità. <br><br>
+                  {{'aboutme.philosophie.p7' | translate }} <br><br>
+                  {{'aboutme.philosophie.p8' | translate }} <br><br>
                   
-                  Grazie per essere parte di questo viaggio di scoperta e apprendimento.
+                  {{'aboutme.philosophie.p9' | translate }}
                 </p>
             </div>
             <div class="passionsDescription" *ngIf="showContent == 'altoDestra'">
               <blockquote>
-                <h3>[...] ma per seguir virtute e canoscenza</h3>
-                <cite>Inferno Canto XXVI - La Divina Commedia</cite>
+                <h3>[...] {{'aboutme.passion.title' | translate }}</h3>
+                <cite>{{'aboutme.passion.subTitle' | translate }}</cite>
               </blockquote>
               <p>      <br>          
-                Benvenuti in questa sezione dedicata alle mie passioni, un breve viaggio attraverso la mia nerditudine!
-                Volevo dedicare un po' di tempo a raccontarvi delle mie passioni, quei mondi fantastici che mi catturano ogni giorno.<br><br>
+                {{'aboutme.passion.p1' | translate }}<br>
+                {{'aboutme.passion.p2' | translate }}<br><br>
 
-                Ovviamente se c'è una cosa che mi fa brillare gli occhi, è lo sviluppo e la programmazione. 
-                È un dei pochi modi che ho per esprimere la creatività attraverso la progettazione, algoritmi e linee di codice.<br>
-                Credo che l'informatica sia il collante di tutte le scienze, l'anello di giunzione che possa in qualche modo far collaborare
-                le varie scienze in concerto tra loro anzichè a tenuta stagna ed è per questo che me ne sono innamorato.<br><br>
+                {{'aboutme.passion.p3' | translate }}<br>
+                {{'aboutme.passion.p4' | translate }}<br><br>
 
-                Grazie alla programmazione ho la possibilità di addentrarmi nelle scienze a varie profondità cercando di saziare la mia fame di conoscenza
-                inoltre mi permette di confrontarmi con problemi complessi da cui sono dipendente!<br>
-                Più il problema è complesso, meno dormo la notte! Il mio cervello non si spegne sino a che non trova una soluzione accettabile!
-                Più conosco, più voglio conoscere, più vado a fondo e più informazioni e strumenti ho nella mia faretra per risolvere questi problemi.
-                Da qui deriva il titolo di questa sezione che meglio descriveva il mio pensiero.<br>
-                Seguite le vostre passioni e non sarete mai stanchi di imparare!<br><br>
+                {{'aboutme.passion.p5' | translate }}<br>
+                {{'aboutme.passion.p6' | translate }}<br>
+                {{'aboutme.passion.p7' | translate }}<br>
+                {{'aboutme.passion.p8' | translate }}<br><br>
 
-                Lo sviluppo occupa, oramai, gran parte del mio tempo per cui non credo che riuscirò a diventare il Re dei pirati ne tantomeno un Hokage, non riesco neanche a dedicare il tempo che vorrei a 
-                giocare alle mie saghe preferite come Final Fantasy o Metal Gear, o magari godermi gli anime senza sosta come una volta (per la cronaca il mio preferito
-                è e resterà Death Note), chissà magari un giorno tornerò a fare tutto questo come un tempo, non vi nascondo che un po' mi manca.<br>
-                Per ora mi accontento di vedere qualche video sporadico su YouTube per restare aggiornato su questi temi sognando di viverli!<br><br>
+                {{'aboutme.passion.p9' | translate }}<br>
+                {{'aboutme.passion.p10' | translate }}<br><br>
 
-                Nonostante tutto riesco a salvaguardare l'attività fisica e la passione per la musica, appena posso, anche per soli 5 minuti, impugno la mia chitarra (sempre qui al mio fianco) e 
-                strimpello qualcosa (per fortuna nessuno mi ascolta! 😅)!<br><br>
+                {{'aboutme.passion.p11' | translate }} 😅)!<br><br>
 
-                Sono sicuro che avremo modo di approfondire e condividere le nostre passioni, ma ora è tempo di coding!<br><br>
+                {{'aboutme.passion.p12' | translate }}<br><br>
 
-                Che la forza sia con voi!
+                {{'aboutme.passion.p13' | translate }}
               </p>
             </div>
             <div class="futureDescription" *ngIf="showContent == 'altoSinistra'">
-              <h3>Il futuro</h3>
+              <h3>{{'aboutme.future.title' | translate }}</h3>
               <p><br>
-                Qui, voglio condividere con voi i progetti futuri di javagalaxy.xyz, la mia visione per il futuro del nostro spazio dedicato alla programmazione.<br>
-                  Nulla di scritto sulla pietra, sia chiaro.<br>
-                  Idee, tante idee che non vedo l'ora di realizzare o magari cambiare e adattare.<br>
-                  La partecipazione della community sarà fondamentale per capire quali idee vanno bene, quali andrebbero cambiate o quali messe da parte.
-                  C'è già una pagina dedicata alla raccolta dei vostri feedback che vi esorto ad utilizzare, possiamo trovarla qui(link).
-                  È chiaro, dunque, che voglio fare della community parte integrante del processo decisionale.<br><br>
+                  {{'aboutme.future.p1' | translate }}<br><br>
+                  {{'aboutme.future.p2' | translate }}<br>
+                  {{'aboutme.future.p3' | translate }}<br><br>
+                  {{'aboutme.future.p4' | translate }}<br>
+                  {{'aboutme.future.p5' | translate }} <a href="https://www.javagalaxy.xyz/info/contact">{{'aboutme.future.p6' | translate }}</a>.<br>
+                  {{'aboutme.future.p7' | translate }}<br><br>
 
-                  Chiaramente l'obiettivo cardine è quello di ampliare e arricchire la piattaforma javagalaxy.xyz con contenuti dettagliati e approfonditi sempre aggiornati,
-                  tenendo conto delle tendenze del settore e i suoi cambi di direzione, nonchè, ovviamente, la community.<br>
-                  Dovrà essere necessariamente un luogo dinamico, con contenuti in continua evoluzione per rispondere alle esigenze mutevoli del mondo della programmazione.<br><br>
+                  {{'aboutme.future.p8' | translate }}<br><br>
+                  {{'aboutme.future.p9' | translate }}<br><br>
 
-                  Ho in mente di dare la possibilità di registrarsi alla piattaforma cosichè l'utente abbia la sua pagina personale dove potrà tenere traccia dei corsi che sta seguendo,
-                  lo stato di avanzamento del proprio studio e altri elementi interattivi come esercizi o interazione con il resto della community.<br>
-                  Le idee sono tante e sono sicuro che ne arriveranno di nuove anche grazie ai vostri feedback e suggerimenti.<br><br>
+                  {{'aboutme.future.p10' | translate }}<br>
+                  {{'aboutme.future.p11' | translate }}<br><br>
 
-                  Il mio canale YouTube(mettiamo il link) fungerà da supporto, pianifico di creare almeno un video di approfondimento per ogni capitolo dei corsi presenti sulla piattaforma, 
-                  anche qui l'intervento della community sarà fondamentale, video di approfondimento o di integrazione aggiuntivi dipenderanno soprattutto dalle vostre richieste.<br><br>
+                  {{'aboutme.future.p12' | translate }} <a href="https://www.youtube.com/@marcospacecoding" target="_blank">YouTube</a> {{'aboutme.future.p13' | translate }}<br><br>
 
-                  Il tutto è chiaramente ancora molto acerbo, servirà del tempo per migliorare sia la piattaforma, in termini di grafica(UI) e user experience(UX), sia il canale YouTube, 
-                  cercando di trovare un format che possa essere godibile per tutti.<br>
-                  Sicuramente la priorità, almeno nella fase iniziale, tenderà sui contenuti della piattaforma e i video su YouTube(link).<br><br>
+                  {{'aboutme.future.p14' | translate }}<br><br>
+                  {{'aboutme.future.p15' | translate }} <a href="https://www.youtube.com/@marcospacecoding" target="_blank">YouTube</a>.<br><br>
 
-                  Con questo progetto, ambisco a creare un ecosistema educativo e collaborativo che ispiri e sostenga chiunque desideri immergersi nel mondo affascinante della programmazione. <br><br>
-                  Il futuro è un'avventura da vivere insieme, e sono entusiasta di condividere questo viaggio con voi su Javagalaxy.xyz e oltre.
+                  {{'aboutme.future.p16' | translate }} <br><br>
+                  {{'aboutme.future.p17' | translate }}
               </p>
             </div>              
           </div>
