@@ -73,7 +73,7 @@
       height:47.5%;
       overflow:hidden;
       transform:scale(.6);
-      background:#585247;
+      background-color: transparent;
     }
 
     a div{
@@ -259,7 +259,8 @@
       box-shadow:0 0 0 5vmin #E3DFD2;
       cursor: default;
       .visibleImage{
-        background-image: url('https://farm4.staticflickr.com/3766/12953056854_b8cdf14f21.jpg');
+        //background-image: url('https://farm4.staticflickr.com/3766/12953056854_b8cdf14f21.jpg');
+        background-image: url('../../../../assets/images/about/about-me.png');
       }
 
       .firstRounded{
