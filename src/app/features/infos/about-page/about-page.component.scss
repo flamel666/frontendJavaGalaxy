@@ -10,7 +10,7 @@
   margin-bottom: 80px;
   border-radius: 20px 20px 10px 10px;
   min-width: 348px;
-
+  
   .contentMenu{
     margin-top: -300px;
     min-width: 348px;
@@ -79,7 +79,7 @@
       height:47.5%;
       overflow:hidden;
       transform:scale(.6);
-      background:#585247;
+      background-color: transparent;
     }
 
     a div{
@@ -110,7 +110,7 @@
       //  animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
         animation-delay: 2s;
        // background-image:url('https://farm3.staticflickr.com/2827/10384422264_d9c7299146.jpg');
-       //background-color: var(--navbar-color);
+
         background: linear-gradient(221deg, rgba(39,35,93,1) 0%, var(--navbar-color) 45%, rgba(105,161,189,1) 100%);
 
       i{
@@ -265,10 +265,15 @@
      
       cursor: default;
       .visibleImage{
+
        // background-image: url('https://farm4.staticflickr.com/3766/12953056854_b8cdf14f21.jpg');
         #logoImg{
           height: 330px;
         }
+
+        //background-image: url('https://farm4.staticflickr.com/3766/12953056854_b8cdf14f21.jpg');
+        background-image: url('../../../../assets/images/about/about-me.png');
+
       }
 
       .firstRounded{

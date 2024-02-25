@@ -313,7 +313,7 @@ export class SideBarComponent implements OnInit {
 
     this.previousChapter = undefined;
 
-    if (this.selectedChapter?.expanded != true) {
+    if (this.selectedChapter?.expanded != undefined && this.selectedChapter?.expanded != true) {
       this.selectedChapter!.expanded = true;
     }  
 
@@ -338,8 +338,9 @@ export class SideBarComponent implements OnInit {
     selectedSubChapter = subChapterFlat.substring(subChapterFlat.indexOf(".")+1, subChapterFlat.length);
     console.log("sottocapitolo: "+selectedSubChapter);
    }*/
-   console.log("nella sideBar = "+actualChapterSelected.children);
-    if (actualChapterSelected.children != undefined) {
+   console.log("nella sideBar = "+actualChapterSelected);
+   //console.log("nella sideBar = "+actualChapterSelected.children);
+    if (actualChapterSelected != undefined && actualChapterSelected.children != undefined) {
 
       //this.selectedSubChapter = document.getElementById("1.3").;
     //  console.log("elemento html: "+document.getElementById("1.3"));
