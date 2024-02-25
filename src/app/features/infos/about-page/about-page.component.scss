@@ -3,10 +3,13 @@
   height: 100vp;
   width: 99%;
   border: 2px solid black;
-  background-color: white;
+  background-color: var(--background-color-content-tutorial);
+  color: var(--text-color-content-tutorial);
+  transition: var(--transition-delay);
   margin-left: 5px;
   margin-bottom: 80px;
   border-radius: 20px 20px 10px 10px;
+  min-width: 348px;
  
 
   .contentMenu{
@@ -21,7 +24,9 @@
       /* left: 5%; */
       width: 100%;
       height: 50%;
-      background-color: #ffffff;
+      background-color: var(--background-color-content-tutorial);
+      color: var(--text-color-content-tutorial);
+      transition: var(--transition-delay);
       border-radius: 25rem 25rem 0 0;
     }
   
@@ -33,6 +38,7 @@
       margin-right: 20px;
 
       .aboutMeDescription, .philoDescription, .passionsDescription, .futureDescription{
+        margin: 0 30px;
         h3, h5, blockquote{
           text-align: center;
           cite{
@@ -104,7 +110,7 @@
         animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
         animation-delay: 2s;
        // background-image:url('https://farm3.staticflickr.com/2827/10384422264_d9c7299146.jpg');
-        background: linear-gradient(221deg, rgba(39,35,93,1) 0%, rgba(17,79,147,1) 12%, rgba(105,161,189,1) 100%);
+        background: linear-gradient(221deg, rgba(39,35,93,1) 0%, var(--navbar-color) 45%, rgba(105,161,189,1) 100%);
 
       i{
         position: relative;
@@ -146,7 +152,7 @@
         //background-image:url('https://farm7.staticflickr.com/6083/6055581292_d94c2d90e3.jpg');
         animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
         animation-delay: 2s;
-        background: linear-gradient(303deg, rgba(39,35,93,1) 0%, rgba(17,79,147,1) 12%, rgba(105,161,189,1) 100%);
+        background: linear-gradient(303deg, rgba(39,35,93,1) 0%, var(--navbar-color) 45%, rgba(105,161,189,1) 100%);
           .fire{
             position: relative;
             top: 63px;
@@ -190,7 +196,7 @@
         //background-image:url('https://farm7.staticflickr.com/6092/6227418584_d5883b0948.jpg');
         animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
         animation-delay: 2s;
-        background: linear-gradient(142deg, rgba(39,35,93,1) 0%, rgba(17,79,147,1) 12%, rgba(105,161,189,1) 100%);
+        background: linear-gradient(142deg, rgba(39,35,93,1) 0%, var(--navbar-color) 45%, rgba(105,161,189,1) 100%);
         i{
           position: relative;
           top: 136px;
@@ -228,7 +234,7 @@
       //  background-image: url('https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg');
         animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
         animation-delay: 2s;
-        background: linear-gradient(50deg, rgba(39,35,93,1) 0%, rgba(17,79,147,1) 12%, rgba(105,161,189,1) 100%);
+        background: linear-gradient(50deg, rgba(39,35,93,1) 0%, var(--navbar-color) 45%, rgba(105,161,189,1) 100%);
         i{
           position: relative;
           top: 116px;
@@ -265,6 +271,7 @@
 
       .firstRounded{
         border-top: 10px solid rgb(209, 139, 46);
+        box-shadow:0 0 0 5vmin #E3DFD2;
         position: absolute;
         width: 101%;
         height: 101%;
