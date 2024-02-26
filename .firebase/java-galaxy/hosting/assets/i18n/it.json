@@ -84,6 +84,71 @@
         }
     },
 
+    "aboutme":{
+        "who":{
+            "title": "Chi sono?",
+            "subTitle": "Provo a raccontarvi qualcosa di me",
+            "p1": "Ciao a tutti, sono Marco, creatore di javagalaxy.xyz, e sono qui per raccontarvi un po' della mia storia e delle mie passioni che mi guidano nell'affascinante universo della programmazione e dell'informatica.",
+            "p2":"Attualmente, sono un analista informatico in un'azienda di consulenza specializzata nella progettazione e realizzazione di soluzioni innovative nei più disparati settori.",
+            "p3":"Mi occupo della realizzazione di progetti in Java per lo sviluppo di applicazioni orientate ai microservizi in diversi ambiti, soprattutto per il settore bancario e finanziario, settori che richiedono precisione e affidabilità.",
+            "p4":"La consulenza mi ha offerto l'opportunità di esplorare e approfondire le tecnologie più avanzate, seguendo l'intero ciclo di vita di un'applicazione, dalla fase di progettazione alla sua effettiva messa in produzione.",
+            "p5":"Questo percorso mi ha permesso di acquisire una visione completa e approfondita delle sfide e delle soluzioni nell'ambito enterprise.",
+            "p6":"Attraverso la piattaforma e il canale",
+            "p7":"di javagalaxy.xyz, desidero condividere con voi non solo la mia esperienza e conoscenza, ma anche la passione che nutro per lo sviluppo e l'evoluzione delle tecnologie.",
+            "p8":"Ogni corso, ogni video o articolo saranno un invito a esplorare insieme le potenzialità di Java e le tecnologie che plasmano il nostro futuro digitale.",
+            "p9":"Iscrivetevi oggi e preparatevi per un viaggio immersivo nel mondo di Java e delle soluzioni tecnologiche che stanno delineando il nostro domani!"
+        },
+        "philosophie":{
+            "title": "La mia filosofia",
+            "p1":"La nascita di javagalaxy.xyz e del mio canale",
+            "p2":"è frutto di una visione ambiziosa che trae ispirazione dalla convinzione profonda che la condivisione della mia esperienza nel mondo della programmazione possa diventare un significativo contributo per coloro che desiderino imparare e crescere nel campo dello sviluppo software.",
+            "p3":"In questo momento, anche se la community non è ancora pienamente sviluppata, credo che la creazione di una piattaforma di apprendimento possa diventare il terreno fertile per la crescita di una community appassionata e desiderosa di imparare.",
+            "p4":"La conoscenza è la forza che ci caratterizza come esseri umani.",
+            "p5":"Il desiderio di apprendere e condividere conoscenze è ciò che ci distingue, alimentando il nostro progresso individuale e collettivo.",
+            "p6":"In questo contesto, javagalaxy aspira a essere un luogo dove la sete di conoscenza si unisce alla volontà di condividere, creando una community fondata su valori di apprendimento continuo e collaborazione.",
+            "p7":"Ciò che guida questo progetto è la convinzione che la creazione di un ambiente in cui la conoscenza possa fluire liberamente sarà la chiave per ispirare, motivare e coltivare l'amore per la programmazione.",
+            "p8":"javagalaxy è un invito a esplorare, imparare e crescere insieme, poiché credo che ogni contributo, anche il più piccolo, possa plasmare positivamente il futuro della nostra comunità.",
+            "p9":"Grazie per essere parte di questo viaggio di scoperta e apprendimento."
+        },
+        "future":{
+            "title": "Il futuro (e oltre!)",
+            "p1":"Qui, voglio condividere la mia visione per il futuro di questo nostro spazio dedicato alla programmazione.",
+            "p2":"Nulla di scritto sulla pietra, sia chiaro.",
+            "p3":"Idee, tante idee che non vedo l'ora di realizzare o magari cambiare e adattare.",
+            "p4":"La partecipazione della community sarà fondamentale per capire quali idee vanno bene, quali andrebbero cambiate o quali messe da parte.",
+            "p5":"C'è già una pagina dedicata alla raccolta dei vostri feedback che vi esorto ad utilizzare, potete trovarla",
+            "p6":"qui",
+            "p7":"Voglio fare della community parte integrante del processo decisionale",
+            "p8":"L'obiettivo cardine è quello di ampliare e arricchire la piattaforma javagalaxy.xyz con contenuti dettagliati e approfonditi sempre aggiornati, tenendo conto delle tendenze del settore e i suoi cambi di direzione, nonchè, ovviamente, la community.",
+            "p9":"Dovrà essere un luogo dinamico, con contenuti in continua evoluzione per rispondere alle esigenze mutevoli del mondo della programmazione.",
+            "p10":"Ho in mente di dare la possibilità di registrarsi alla piattaforma cosicchè l'utente abbia la sua pagina personale dove potrà tenere traccia dei corsi che sta seguendo, lo stato di avanzamento del proprio studio e altri elementi interattivi come esercizi e possibilità di interagire con il resto della community.",
+            "p11":"Le idee sono tante e sono sicuro che ne arriveranno di nuove anche grazie ai vostri feedback e suggerimenti.",
+            "p12":"Il mio canale",
+            "p13":"fungerà da supporto; pianifico di creare almeno un video di approfondimento per ogni capitolo dei corsi presenti sulla piattaforma, anche qui l'intervento della community sarà fondamentale, video di approfondimento o di integrazione aggiuntivi dipenderanno soprattutto dalle vostre richieste.",
+            "p14":"Il tutto è ancora molto acerbo, servirà del tempo per migliorare sia la piattaforma, in termini di grafica(UI) e user experience(UX), che il canale YouTube, cercando di trovare un format che possa essere godibile per tutti.",
+            "p15":"La priorità, almeno nella fase iniziale, tenderà sui contenuti della piattaforma e i video su",
+            "p16":"Con questo progetto, ambisco a creare un ecosistema educativo e collaborativo che ispiri e sostenga chiunque desideri immergersi nel mondo affascinante della programmazione.",
+            "p17":"Il futuro è un'avventura da vivere insieme, e sono entusiasta di condividere questo viaggio con voi su javagalaxy.xyz... e oltre!"
+        },
+        "passion":{
+            "title": "ma per seguir virtute e canoscenza",
+            "subTitle": "Inferno Canto XXVI - La Divina Commedia",
+            "p1":"Benvenuti in questa sezione dedicata alle mie passioni, un breve viaggio attraverso la mia nerditudine!",
+            "p2":"Volevo dedicare un po' di tempo a raccontarvi delle mie passioni, quei mondi fantastici che mi catturano ogni giorno.",
+            "p3":"Ovviamente se c'è una cosa che mi fa brillare gli occhi, è lo sviluppo e la programmazione. È un dei pochi modi che ho per esprimere la creatività attraverso la progettazione, algoritmi e linee di codice.",
+            "p4":"Credo che l'informatica sia il collante di tutte le scienze, l'anello di giunzione che possa in qualche modo far collaborare le varie scienze in concerto tra loro anzichè a tenuta stagna ed è per questo che me ne sono innamorato.",
+            "p5":"Grazie alla programmazione ho la possibilità di addentrarmi nelle scienze a varie profondità cercando di saziare la mia fame di conoscenza. Inoltre, mi permette di confrontarmi con problemi complessi(che mi creano una sorta di dipendenza!).",
+            "p6":"Più il problema è complesso, meno dormo la notte! Il mio cervello non si spegne sino a che non trova una soluzione accettabile! Più conosco, più voglio conoscere, più vado a fondo e più informazioni e strumenti ho nella mia faretra per centrare la soluzione!",
+            "p7":"Da qui deriva il titolo di questa sezione che meglio descriveva il mio pensiero.",
+            "p8":"Seguite le vostre passioni e non sarete mai stanchi di imparare!",
+            "p9":"Lo sviluppo occupa, oramai, gran parte del mio tempo per cui non credo che riuscirò a diventare il Re dei pirati e tantomeno un Hokage, non riesco neanche a dedicare il tempo che vorrei a giocare alle mie saghe preferite come Final Fantasy o Metal Gear, o magari godermi gli anime senza sosta come una volta (per la cronaca il mio preferito è, e resterà, Death Note). Chissà, magari, un giorno tornerò a fare tutto questo come un tempo, non vi nascondo che un po' mi manca.",
+            "p10":"Per ora mi accontento di vedere qualche video sporadico su YouTube per restare aggiornato su questi temi sognando di viverli!",
+            "p11":"Nonostante tutto riesco a salvaguardare l'attività fisica e la passione per la musica, appena posso, anche per soli 5 minuti, impugno la mia chitarra (sempre qui al mio fianco) e strimpello qualcosa (per fortuna nessuno mi ascolta!",
+            "p12":"Sono sicuro che avremo modo di approfondire e condividere le nostre passioni, ma ora è tempo di coding!",
+            "p13":"Che la forza sia con voi!"
+        }
+    },
+
     "footer":{
         "about" : "Su di me",
         "contact" : "Contattami"
