@@ -1,7 +1,8 @@
-import { Component, HostListener, OnInit, Pipe, PipeTransform, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, Pipe, PipeTransform, ViewEncapsulation, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ConfigLanguageService } from 'src/app/config-service/config-language.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,13 @@ export class HomeComponent implements OnInit {
 
   displayModal: boolean = false;
 
-  constructor(private router: Router, private configLanguageService: ConfigLanguageService, private cookieCreator: CookieService) { 
+  constructor(private router: Router, private configLanguageService: ConfigLanguageService, private cookieCreator: CookieService, @Inject(PLATFORM_ID) private platformId: Object) { 
     
-    if(!this.cookieCreator.check("betaModalVisited")){
-      this.displayModal = true;      
-    }
+    if (isPlatformBrowser(this.platformId)) {
+      if(!this.cookieCreator.check("betaModalVisited")){
+        this.displayModal = true;      
+      }
+  }
   }
 
 
