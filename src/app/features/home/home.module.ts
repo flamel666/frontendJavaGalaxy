@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
+import {DialogModule} from 'primeng/dialog';
 
 import * as AOS from 'aos';
 
@@ -18,6 +19,7 @@ import * as AOS from 'aos';
   imports: [
     CommonModule,
     HomeRoutingModule,
+    DialogModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

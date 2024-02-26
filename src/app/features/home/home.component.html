@@ -11,7 +11,29 @@
 
 <div class="welcomeContent">
 
-
+    <p-dialog class="modalWin"  [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}">
+        <ng-template pTemplate="header">
+            <h2>{{'welcome.popupBetaSiteTitle' | translate }}</h2>
+        </ng-template>
+        <div class="dialogContentBody">           
+            <p>                
+                {{'welcome.popupBetaSiteMessage1' | translate }} 
+                <br>
+                {{'welcome.popupBetaSiteMessage1b' | translate }}
+                <br><br>
+                {{'welcome.popupBetaSiteMessage2' | translate }}
+            <a href="https://www.youtube.com/@marcospacecoding" target="_blank">{{'welcome.tube' | translate }}</a> {{'welcome.popupBetaSiteMessage3' | translate }}<br><br>
+            </p>
+        </div>
+        
+        <div class="dialogContentButton">
+        
+            <button type="button" pButton (click)="hideModal()">
+                <i class="pi pi-check"></i>   
+            </button>
+        </div>     
+    
+    </p-dialog>
 
     <div class="contentAstronauts">
         <img class="astro" src="assets/images/welcome.component/image/AstroB.png" />
