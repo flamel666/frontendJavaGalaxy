@@ -96,22 +96,18 @@
     .altoSinistra{
       border-radius:40vmin 0 0 0;
       transform-origin: 110% 110%;
-      opacity: 0.7;
-      
+      opacity: 0.7;      
       &:hover {
         opacity: 1;
         transform:scale(.6) translate(-5px, -5px) !important;
         -webkit-box-shadow: 0px 1px 20px 3px #000000; 
         box-shadow: 0px 1px 20px 3px #000000;
-      }
-      
-      div{  
-        
+      }      
+      div{          
         animation: shake 6s infinite cubic-bezier(.36,.07,.19,.97) both; 
         animation-delay: 2s;
        // background-image:url('https://farm3.staticflickr.com/2827/10384422264_d9c7299146.jpg');
         background: linear-gradient(221deg, rgba(39,35,93,1) 0%, var(--navbar-color) 45%, rgba(105,161,189,1) 100%);
-
       i{
         position: relative;
         top: 70px;

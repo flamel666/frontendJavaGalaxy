@@ -37,7 +37,14 @@
         "messageFour" : "Non voglio mentirti...",
         "messageFive" : "...non sarà semplice, ci vorranno studio e duro lavoro...",
         "messageSix" : "Ti seguirò passo dopo passo, mattone dopo mattone, useremo esempi concreti e porteremo avanti un progetto completo a 360°...",
-        "messageSeven" : "...i risultati arriveranno presto, non temere, e saranno fantastici! Non perdiamo tempo ed iniziamo!"
+        "messageSeven" : "...i risultati arriveranno presto, non temere, e saranno fantastici! Non perdiamo tempo ed iniziamo!",
+        "popupBetaSiteTitle": "Benvenuto sul mio sito!",
+        "tube": "YouTube",
+        "popupBetaSiteMessage1": "Il sito è in fase beta, pertanto, ti chiedo scusa se la tua user experience non sarà perfetta come vorrei.",
+        "popupBetaSiteMessage1b": "La tua esperienza e i contenuti miglioreranno nel tempo, è una promessa!",
+        "popupBetaSiteMessage2": "Nel frattempo ti ricordo che puoi seguirmi anche sul mio canale",
+        "popupBetaSiteMessage3": "per non perderti i prossimi contenuti!"
+
     },
 
     "ContentBodyTutorial":{
@@ -78,6 +85,7 @@
             "invitationMessage2": "Se hai notato errori, inesattezze o hai suggerimenti per migliorare il sito, i video o qualsiasi altro aspetto che possa arricchire l'esperienza della nostra community, ti prego di farmelo sapere!",
             "invitationMessage3": "Ogni contributo che condividi è prezioso per l'evoluzione e l'arricchimento dei contenuti, nonché per migliorare l'esperienza di tutti.",
             "invitationMessage4": "Sono aperto a ogni tua osservazione e grato per il tuo aiuto nel rendere il nostro spazio migliore per tutti!",
+            "titleThnksMessage":"Grazie per avermi contattato!",
             "thnksMessage1": "Ti ringrazio per avermi contattato, ti risponderò nel più breve tempo possibile.",
             "thnksMessage2": "Nel frattempo ti ricordo che puoi seguirmi anche sul mio canale",
             "thnksMessage3": "per non perderti i prossimi contenuti!"
