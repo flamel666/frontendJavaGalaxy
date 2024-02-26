@@ -37,7 +37,13 @@
         "messageFour" : "I don't want to lie to you...",
         "messageFive" : "...it won't be easy, it will take study and hard work...",
         "messageSix" : "I will follow you step by step, brick by brick, we will use concrete examples and carry out a complete 360-degree project...",
-        "messageSeven" : "...results will come soon, don't worry, and they will be fantastic! Don't not waste time and let's get started!"
+        "messageSeven" : "...results will come soon, don't worry, and they will be fantastic! Don't not waste time and let's get started!",
+        "popupBetaSiteTitle": "Welcome to my website!",
+        "tube": "YouTube",
+        "popupBetaSiteMessage1": "The website is in beta phase, therefore, I apologize if your user experience may not be perfect as I would like.",
+        "popupBetaSiteMessage1b": "Your experience and the content will improve over time, that's a promise!",
+        "popupBetaSiteMessage2": "In the meantime, I would like to remind you that you can also follow me on my",
+        "popupBetaSiteMessage3": "channel so you don't miss out on upcoming content!"
     },
 
     "ContentBodyTutorial":{
@@ -77,6 +83,7 @@
             "invitationMessage2": "If you have noticed errors, inaccuracies, or have suggestions for improving the site, videos, or anything else that would enrich our community experience, please let me know!",
             "invitationMessage3": "Every contribution you share is valuable to the evolution and enrichment of the content, as well as to improving everyone's experience.",
             "invitationMessage4": "I am open to your comments and grateful for your help in making our space better for everyone!",
+            "titleThnksMessage":"Thanks for contacting me!",
             "thnksMessage1": "Thank you for contacting me, I will reply as soon as possible.",
             "thnksMessage2": "In the meantime, I would like to remind you that you can also follow me on my",
             "thnksMessage3": "channel so you don't miss out on upcoming content!"
